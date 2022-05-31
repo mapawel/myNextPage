@@ -9,11 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "formik": "^2.2.9",
+    "gsap": "^3.10.4",
     "next": "12.1.6",
+    "particlesjs": "^2.2.3",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "react-portal": "^4.2.2",
+    "styled-components": "^5.3.5",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
+    "babel-plugin-inline-react-svg": "^2.0.1",
+    "babel-plugin-styled-components": "^1.13.3",
     "eslint": "8.16.0",
     "eslint-config-next": "12.1.6"
   }
