@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import styled, { keyframes } from 'styled-components';
@@ -11,6 +12,8 @@ import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
 import { breakpoint } from 'breakpoints';
 import { headings } from 'assets/data/headings';
 import { uiSubs } from 'assets/data/uiSubs';
+import { myBlurData } from 'helpers/myBlurData';
+import mainImg from 'public/headerImage.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
@@ -40,6 +43,7 @@ const imgAnim = keyframes`
 `;
 
 const StyledTwoColumns = styled(TwoColumns)`
+  flex-direction: row;
   position: relative;
   z-index: 0;
   min-height: 100vh;
@@ -58,18 +62,17 @@ const StyledHeaderTxt = styled.h1`
   }
 
   @media screen and (min-width: ${breakpoint.L}) {
-    font-size: ${({ theme }) => theme.fontSize.xxl};
   }
 
   @media screen and (min-width: ${breakpoint.XL}) {
-    font-size: ${({ theme }) => theme.fontSize.xxxl};
+    font-size: ${({ theme }) => theme.fontSize.xxl};
   }
 `;
 
 const StyledHeaderTxtSpan = styled(StyledHeaderTxt)`
   color: ${({ theme }) => theme.color.textPrimary};
   margin-top: ${({ theme }) => theme.fontSize.s};
-  margin-bottom: ${({ theme }) => theme.fontSize.xxs};
+  margin-bottom: ${({ theme }) => theme.fontSize.s};
   text-shadow: ${({ theme }) => `0 0 4px ${theme.color.textPrimaryShadow}`};
 
   @media screen and (min-width: ${breakpoint.M}) {
@@ -79,8 +82,7 @@ const StyledHeaderTxtSpan = styled(StyledHeaderTxt)`
 `;
 
 const StyledTxtBox = styled.div`
-  position: relative;
-  z-index: 0;
+  z-index: 1;
   width: 100%;
   padding-top: 4rem;
   padding-left: 1rem;
@@ -108,7 +110,7 @@ const StyledLogo = styled.img`
 `;
 
 const StyledHeadingContainer = styled.div`
-  margin-top: 7vh;
+  margin-top: 11vh;
   margin-bottom: auto;
   padding-left: 2rem;
 
@@ -122,51 +124,13 @@ const StyledHeadingContainer = styled.div`
 `;
 
 const StyledImgBox = styled.div`
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  margin-bottom: 10vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-self: flex-end;
-  align-items: flex-end;
-  opacity: 0;
-
+  width: 1%;
+  height: 100vh;
+  /* opacity: 0; */
+  opacity: 1;
+  
   @media screen and (min-width: ${breakpoint.S}) {
-    width: 45%;
-    margin-bottom: 5vh;
-  }
-
-  @media screen and (min-width: ${breakpoint.M}) {
     width: 30%;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  @media screen and (min-width: ${breakpoint.L}) {
-    width: 25%;
-  }
-
-  @media screen and (min-width: ${breakpoint.XL}) {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-  }
-`;
-
-const StyledHeaderImg = styled.img`
-  max-width: 50%;
-  z-index: 1;
-  animation: ${imgAnim} 0.5s 4s both;
-
-  @media screen and (min-width: ${breakpoint.S}) {
-    max-width: 55%;
-  }
-
-  @media screen and (min-width: ${breakpoint.M}) {
-    max-width: 100%;
   }
 `;
 
@@ -202,12 +166,12 @@ const StyledTriangle = styled(Triangle)`
   transform: rotate(15deg);
   width: 300px;
   height: 300px;
-  top: -10%;
+  top: 60%;
   left: 25%;
   opacity: 0;
 
   @media screen and (min-width: ${breakpoint.S}) {
-    top: -30%;
+    top: 20%;
     width: 500px;
     height: 500px;
   }
@@ -227,6 +191,27 @@ const StyledTriangle = styled(Triangle)`
     width: 1000px;
     height: 1000px;
   }
+`;
+
+const ImageWrapper = styled.div`
+  position: relative;
+  height: 100vh;
+  width: calc(100vh * 1.5);
+  margin-left: -35vw;
+  
+  @media screen and (min-width: ${breakpoint.S}) {
+    margin-left: 0;
+  }
+`;
+
+const Blend = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(90deg, #010201f6 0%, rgba(0, 0, 0, 0.6) 60%),
+    linear-gradient(180deg, #01020100 80%, #010201f6 100%);
 `;
 
 const Header = () => {
@@ -304,18 +289,27 @@ const Header = () => {
                 {headings?.[locale]?.[0]}
                 <br />
               </StyledHeaderTxt>
-              <StyledHeaderTxtSpan>{headings?.[locale]?.[1]}</StyledHeaderTxtSpan>
+              <StyledHeaderTxtSpan>
+                {headings?.[locale]?.[1]}
+              </StyledHeaderTxtSpan>
               <StyledHeaderTxt as="">{headings?.[locale]?.[2]}</StyledHeaderTxt>
             </StyledHeadingContainer>
           </StyledTxtBox>
           <StyledImgBox ref={imgRef}>
-            {/* <StyledHeaderImg
-              src={headerImageUrl && headerImageUrl}
-              alt="Pawel DevPav owner's photo"
-            /> */}
-            <StyledButton onClick={handleClick}>
+            <ImageWrapper>
+              <Image
+                src={mainImg}
+                alt=" "
+                layout="fill"
+                placeholder="blur"
+                blurDataURL={myBlurData}
+                priority={true}
+              />
+              <Blend />
+            </ImageWrapper>
+            {/* <StyledButton onClick={handleClick}>
             {uiSubs?.contactBtn?.[locale]}
-            </StyledButton>
+            </StyledButton> */}
           </StyledImgBox>
         </StyledTwoColumns>
       </Wrapper>
