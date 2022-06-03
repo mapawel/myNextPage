@@ -11,9 +11,7 @@ export const aboutHomeIcons = [
         'Tworzymy projkety nieszablonowe, spersonalizowane, pod Twoje potrzeby',
       ],
     },
-    icon: {
-      url: 'https://media.graphassets.com/dPR3C4IoTtW0LRazPQuu',
-    },
+    icon: './ruller.svg',
   },
   {
     id: 'icon2',
@@ -22,12 +20,12 @@ export const aboutHomeIcons = [
       pl: 'efektywnie',
     },
     content: {
-      en: ['Our solutions will give you a productivity not only proper opereting'],
+      en: [
+        'Our solutions will give you a productivity not only proper opereting',
+      ],
       pl: ['Nasze projekty mają dawać korzyści, nie tylko działać'],
     },
-    icon: {
-      url: 'https://media.graphassets.com/h6562Rs5QNKjNEgYb7wp',
-    },
+    icon: './graph1.svg',
   },
   {
     id: 'icon3',
@@ -39,8 +37,6 @@ export const aboutHomeIcons = [
       en: ['Easy-to-use applications', 'Technical support'],
       pl: ['Aplikacje proste w obsłudze', 'Wparcie wdrożeniowe'],
     },
-    icon: {
-      url: 'https://media.graphassets.com/9cuvFrnTzWrllQJba9CK',
-    },
+    icon: './easy2.svg',
   },
 ];

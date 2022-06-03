@@ -34,7 +34,7 @@ export default class MyDocument extends Document {
         <Head>
           <style>
             @import
-            url(https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap);
+            url(https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap);
             @import
             url(https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);
           </style>

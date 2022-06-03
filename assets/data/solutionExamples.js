@@ -68,7 +68,7 @@ export const solutionExamples = {
     }
   },
   {
-    id: 'solutionExample8',
+    id: 'solutionExample10',
     item: {
       en: 'others...',
       pl: 'i inne...',

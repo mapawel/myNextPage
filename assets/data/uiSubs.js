@@ -1,7 +1,7 @@
 export const uiSubs = {
-  contactBtn: {
-    en: 'contact us',
-    pl: 'kontakt',
+  welcomeBtn: {
+    en: 'check us',
+    pl: 'sprawdź',
   },
   rotateCube: {
     en: 'rotate the cube',
@@ -14,6 +14,14 @@ export const uiSubs = {
   aboutMore: {
     en: 'read more',
     pl: 'więcej informacji',
+  },
+  ourProjects: {
+    en: 'our projects',
+    pl: 'nasze projekty',
+  },
+  ourSolutions: {
+    en: 'examples of solutions',
+    pl: 'przykładowe rozwiązania',
   },
 
 }

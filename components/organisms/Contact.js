@@ -12,6 +12,12 @@ import { contactIcons } from 'assets/data/contactIcons';
 
 const StyledMessageBox = styled.div`
   margin: 0 auto;
+  width: 90%;
+  max-width: 90rem;
+  
+  @media screen and (min-width: ${breakpoint.S}) {
+    width: 70%;
+  }
 `;
 
 const StyledMediaBox = styled.div`

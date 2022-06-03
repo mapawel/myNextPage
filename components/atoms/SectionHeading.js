@@ -23,7 +23,7 @@ const StyledHeading = styled.h2`
 
 const Svg = styled.svg`
   font-size: ${({ theme }) => theme.fontSize.m};
-  font-weight: 900;
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
   width: 100%;
   margin-top: ${({ nomargin }) => (nomargin ? '0rem' : '2rem')};
   text-transform: uppercase;

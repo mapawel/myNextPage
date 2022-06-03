@@ -115,7 +115,7 @@ const AboutHome = () => {
                 key={element.id}
                 title={element.title}
                 content={element.content}
-                icon={element.icon.url}
+                icon={element.icon}
               />
             ))}
           </StyledColumn>

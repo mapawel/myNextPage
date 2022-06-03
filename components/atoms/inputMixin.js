@@ -9,7 +9,7 @@ export const inputMixin = () =>
     background-color: ${theme.color.primaryOpacity};
     border: none;
     color: ${theme.color.textPrimary};
-    font-family: 'Orbitron', sans-serif;
+    font-family: ${theme.fontFamily.main};
     font-size: ${theme.fontSize.s};
     line-height: 1;
     overflow: hidden;

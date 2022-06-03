@@ -70,7 +70,7 @@ const StyledList = styled.ul`
 const StyledListElement = styled.li`
   padding: 2rem 0;
   font-size: ${({ theme }) => theme.fontSize.m};
-  font-weight: bold;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   color: ${({ theme }) => theme.color.textPrimary};
   white-space: nowrap;
   cursor: pointer;

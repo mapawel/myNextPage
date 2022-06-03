@@ -66,7 +66,7 @@ const RecentProjectsCube = () => {
   const { locale } = router;
   const title = sectiontitles?.[1]?.title?.[locale];
   const data = projects;
-  const sectionId = sectiontitles?.[locale]?.[0]?.titleMenuId;
+  const sectionId = sectiontitles?.[1]?.titleMenuId;
 
   const instrucionsRef = useRef(null);
   const [instructionVisible, setInstructionVisible] = useState(true);
@@ -110,7 +110,7 @@ const RecentProjectsCube = () => {
   return (
     <section id={sectionId}>
       <Wrapper>
-        <SectionHeading>{title}</SectionHeading>
+        <SectionHeading nomargin>{title}</SectionHeading>
         <StyledContainer>
           {instructionVisible && (
             <StyledParagraph ref={instrucionsRef}>

@@ -1,3 +1,4 @@
+import React from 'react'
 import PropTypes from 'prop-types';
 import styled, { keyframes, css } from 'styled-components';
 
@@ -39,12 +40,12 @@ const StyledButton = styled.button`
   color: ${({ theme }) => theme.color.textPrimary};
   border: ${({ theme }) => `2px solid ${theme.color.textPrimary}`};
   padding: 1.5rem 2rem;
-  font-family: ${({theme}) => theme.fontFamily.secondary}
+  font-family: ${({ theme }) => theme.fontFamily.secondary}
   ${({ variant }) => {
     switch (variant) {
       case 'noborder':
         return css`
-        border: ${({ theme }) => `0px solid ${theme.color.textPrimary}`};
+          border: ${({ theme }) => `0px solid ${theme.color.textPrimary}`};
         `;
       case 'cta':
         return css`
@@ -52,11 +53,10 @@ const StyledButton = styled.button`
         `;
       default:
         return css`
-        border: ${({ theme }) => `2px solid ${theme.color.textPrimary}`};
+          border: ${({ theme }) => `2px solid ${theme.color.textPrimary}`};
         `;
     }
-  }
-}
+  }}
   cursor: pointer;
   ::before{
     content: '';
@@ -88,18 +88,19 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({
-  children, className, onClick, disabled, type, variant,
-}) => (
-  <StyledButton
-    className={className}
-    onClick={onClick}
-    disabled={disabled}
-    type={type}
-    variant={variant}
-  >
-    {children}
-  </StyledButton>
+const Button = React.forwardRef(
+  ({ children, className, onClick, disabled, type, variant }, ref) => (
+    <StyledButton
+      ref={ref}
+      className={className}
+      onClick={onClick}
+      disabled={disabled}
+      type={type}
+      variant={variant}
+    >
+      {children}
+    </StyledButton>
+  )
 );
 
 Button.propTypes = {

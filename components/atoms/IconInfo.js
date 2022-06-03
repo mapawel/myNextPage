@@ -14,6 +14,8 @@ const StyledContainer = styled.div`
 const StyledIconBox = styled.div`
   width: 5rem;
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
 
   @media screen and (min-width: ${breakpoint.M}) {
     width: 7rem;
@@ -21,7 +23,7 @@ const StyledIconBox = styled.div`
 `;
 
 const StyledImg = styled.img`
-  margin-top: 1.5rem;
+  width: 100%;
 
   @media screen and (min-width: ${breakpoint.L}) {
     margin-top: 3.5rem;

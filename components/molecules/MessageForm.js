@@ -53,13 +53,13 @@ const StyledError = styled.p`
   bottom: -2rem;
   left: 1rem;
   font-size: ${({ theme }) => theme.fontSize.xxs};
-  font-weight: 700;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   color: ${({ theme }) => theme.color.textSecondary};
   text-decoration: underline;
 `;
 
 const StyledLink = styled.a`
-  font-weight: bold;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   text-decoration: underline;
   cursor: pointer;
 `;

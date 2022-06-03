@@ -23,12 +23,9 @@ const blink = keyframes`
 const StyledContainer = styled.div`
   position: relative;
   margin-bottom: 8rem;
+  margin-left: 5vw;
   &:last-child {
     margin-bottom: 1rem;
-  }
-
-  @media screen and (min-width: ${breakpoint.S}) {
-    margin-left: 5vw;
   }
 
   @media screen and (min-width: ${breakpoint.M}) {
@@ -51,18 +48,21 @@ const StyledUl = styled.ul`
 const StyledLi = styled.li`
   position: relative;
   margin-left: ${({ index }) => `${index * 1.4}rem`};
+  margin-bottom: 0.6rem;
   color: ${({ theme }) => theme.color.textPrimary};
   font-size: ${({ theme }) => theme.fontSize.s};
-  font-weight: 700;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   opacity: 0;
-
+  
   @media screen and (min-width: ${breakpoint.XS}) {
-    margin-left: ${({ index }) => `${index * 3}rem`};
+    margin-left: ${({ index }) => `${index * 2.5}rem`};
+    margin-bottom: 0.8rem;
     font-size: ${({ theme }) => theme.fontSize.m};
   }
-
+  
   @media screen and (min-width: ${breakpoint.L}) {
     margin-left: ${({ index }) => `${index * 4}rem`};
+    margin-bottom: 1rem;
     font-size: ${({ theme }) => theme.fontSize.l};
   }
 `;

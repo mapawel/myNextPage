@@ -14,33 +14,10 @@ import { headings } from 'assets/data/headings';
 import { uiSubs } from 'assets/data/uiSubs';
 import { myBlurData } from 'helpers/myBlurData';
 import mainImg from 'public/headerImage.jpg';
+import { sectiontitles } from 'assets/data/sectiontitles';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
-
-const imgAnim = keyframes`
-0% {
-  opacity: .3;
-}
-20% {
-  opacity: 0.1;
-}
-40% {
-  opacity: 0.5;
-}
-55% {
-  opacity: 0.3;
-}
-70% {
-  opacity: 0.7;
-}
-85% {
-  opacity: 0.6;
-}
-100% {
-  opacity: 1;
-}
-`;
 
 const StyledTwoColumns = styled(TwoColumns)`
   flex-direction: row;
@@ -54,8 +31,12 @@ const StyledHeaderTxt = styled.h1`
   font-size: ${({ theme }) => theme.fontSize.m};
   line-height: 1.5;
   text-shadow: -2px 2px 6px black;
-  font-weight: 700;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   line-height: 1.05;
+
+  @media screen and (min-width: ${breakpoint.S}) {
+    font-size: ${({ theme }) => theme.fontSize.ml};
+  }
 
   @media screen and (min-width: ${breakpoint.M}) {
     font-size: ${({ theme }) => theme.fontSize.l};
@@ -82,31 +63,37 @@ const StyledHeaderTxtSpan = styled(StyledHeaderTxt)`
 `;
 
 const StyledTxtBox = styled.div`
+  min-height: 100vh;
   z-index: 1;
   width: 100%;
   padding-top: 4rem;
   padding-left: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
+  margin-bottom: 8rem;
 
   @media screen and (min-width: ${breakpoint.S}) {
-    height: 100vh;
     padding-top: 0rem;
+  }
+
+  @media screen and (min-width: ${breakpoint.M}) {
+    height: 100vh;
     width: 55%;
   }
   @media screen and (min-width: ${breakpoint.M}) {
     width: 70%;
   }
-
-  @media screen and (min-width: ${breakpoint.XL}) {
-  }
 `;
 
 const StyledLogo = styled.img`
   width: 95%;
-  margin-top: auto;
+  margin-top: 20%;
   margin-bottom: -40vh;
+
+  @media screen and (min-width: ${breakpoint.L}) {
+    margin-top: 40%;
+  }
 `;
 
 const StyledHeadingContainer = styled.div`
@@ -124,40 +111,22 @@ const StyledHeadingContainer = styled.div`
 `;
 
 const StyledImgBox = styled.div`
+  position: relative;
   width: 1%;
   height: 100vh;
-  /* opacity: 0; */
   opacity: 1;
-  
-  @media screen and (min-width: ${breakpoint.S}) {
+
+  @media screen and (min-width: ${breakpoint.M}) {
     width: 30%;
   }
 `;
 
 const StyledButton = styled(Button)`
-  margin: 2rem 1rem 5rem;
-  order: -1;
   white-space: nowrap;
   font-size: ${({ theme }) => theme.fontSize.xxs};
-
-  @media screen and (min-width: ${breakpoint.S}) {
-    margin-bottom: 8%;
-    margin-left: -15rem;
-  }
-
-  @media screen and (min-width: ${breakpoint.M}) {
-    margin-left: 1rem;
-    margin-bottom: 5rem;
-    order: 1;
-  }
-
-  @media screen and (min-width: ${breakpoint.L}) {
-    order: 1;
-  }
-
-  @media screen and (min-width: ${breakpoint.XL}) {
-    margin-top: 10rem;
-  }
+  margin: 4rem 0 6rem;
+  align-self: flex-end;
+  opacity: 0;
 `;
 
 const StyledTriangle = styled(Triangle)`
@@ -198,8 +167,8 @@ const ImageWrapper = styled.div`
   height: 100vh;
   width: calc(100vh * 1.5);
   margin-left: -35vw;
-  
-  @media screen and (min-width: ${breakpoint.S}) {
+
+  @media screen and (min-width: ${breakpoint.M}) {
     margin-left: 0;
   }
 `;
@@ -215,11 +184,18 @@ const Blend = styled.div`
 `;
 
 const Header = () => {
-  const { locale } = useRouter();
+  const router = useRouter();
+  const { locale } = router;
   const headinTxtRef = useRef(null);
   const triangleRef = useRef(null);
   const imgRef = useRef(null);
+  const btnRef = useRef(null);
   const logoRef = useRef(null);
+  const sectionId = sectiontitles?.[0]?.titleMenuId;
+
+  const hancleClick = () => {
+    router.push(`#${sectiontitles?.[1]?.titleMenuId}`);
+  };
 
   useEffect(() => {
     const tl = gsap.timeline();
@@ -258,7 +234,12 @@ const Header = () => {
           opacity: 1,
           duration: 3,
         }
-      );
+      )
+      .to(btnRef.current, {
+        opacity: 1,
+        delay: -1.5,
+        duration: 0.5,
+      });
 
     gsap.fromTo(
       triangleRef.current,
@@ -270,16 +251,9 @@ const Header = () => {
     );
   }, []);
 
-  const handleClick = () => {
-    gsap.to(window, {
-      duration: 1,
-      scrollTo: { y: `#${sectionId}`, offsetY: -30 },
-    });
-  };
-
   return (
     <header id="headerSection">
-      <Wrapper>
+      <Wrapper id={sectionId}>
         <StyledTwoColumns>
           <StyledTxtBox>
             <StyledTriangle ref={triangleRef} />
@@ -294,6 +268,9 @@ const Header = () => {
               </StyledHeaderTxtSpan>
               <StyledHeaderTxt as="">{headings?.[locale]?.[2]}</StyledHeaderTxt>
             </StyledHeadingContainer>
+            <StyledButton ref={btnRef} onClick={hancleClick}>
+              {uiSubs?.welcomeBtn?.[locale]}
+            </StyledButton>
           </StyledTxtBox>
           <StyledImgBox ref={imgRef}>
             <ImageWrapper>
@@ -307,9 +284,6 @@ const Header = () => {
               />
               <Blend />
             </ImageWrapper>
-            {/* <StyledButton onClick={handleClick}>
-            {uiSubs?.contactBtn?.[locale]}
-            </StyledButton> */}
           </StyledImgBox>
         </StyledTwoColumns>
       </Wrapper>

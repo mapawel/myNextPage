@@ -2,6 +2,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import Paragraph from 'components/atoms/Paragraph';
 import { breakpoint } from 'breakpoints';
+import { sectiontitles } from 'assets/data/sectiontitles';
 
 const StyledFooter = styled.footer`
   margin-top: auto;
@@ -68,18 +69,11 @@ const StyledUpTxt = styled(StyledParagraph)`
   position: relative;
   top: 3rem;
   line-height: 0;
-  font-weight: 900;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   color: ${({ theme }) => theme.color.textSecondary};
 `;
 
 const Footer = () => {
-  const handleClick = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
   return (
     <StyledFooter>
       <StyledParagraph>
@@ -89,9 +83,11 @@ const Footer = () => {
         </Link>
         , All rights reserved
       </StyledParagraph>
-      <StyledArrowBox onClick={handleClick}>
-        <StyledUpTxt>UP</StyledUpTxt>
-      </StyledArrowBox>
+      <Link href={`#${sectiontitles?.[0]?.titleMenuId}`}>
+        <StyledArrowBox>
+          <StyledUpTxt>UP</StyledUpTxt>
+        </StyledArrowBox>
+      </Link>
     </StyledFooter>
   );
 };
