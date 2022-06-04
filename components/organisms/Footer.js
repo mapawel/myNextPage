@@ -77,17 +77,16 @@ const Footer = () => {
   return (
     <StyledFooter>
       <StyledParagraph>
-        &copy;{' '}
+        &copy; {new Date().getFullYear()}{' '}
         <Link href="https://devdefer.com" passHref>
-          <StyledA>devdefer</StyledA>
+          <StyledA>dev.defer</StyledA>
         </Link>
         , All rights reserved
       </StyledParagraph>
-      <Link href={`#${sectiontitles?.[0]?.titleMenuId}`}>
-        <StyledArrowBox>
-          <StyledUpTxt>UP</StyledUpTxt>
-        </StyledArrowBox>
-      </Link>
+      <StyledArrowBox onClick={() => window.scroll(0, 0)}>
+        {/* // TODO it should be a button */}
+        <StyledUpTxt>UP</StyledUpTxt>
+      </StyledArrowBox>
     </StyledFooter>
   );
 };

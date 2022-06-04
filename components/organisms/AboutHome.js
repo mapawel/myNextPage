@@ -58,7 +58,6 @@ const StyledButton = styled(Button)`
   }
 
   @media screen and (min-width: ${breakpoint.M}) {
-    font-size: ${({ theme }) => theme.fontSize.s};
     padding: 2.5rem 3rem;
     margin-right: 6rem;
   }
@@ -68,6 +67,7 @@ const StyledButton = styled(Button)`
   }
 
   @media screen and (min-width: ${breakpoint.XL}) {
+    font-size: ${({ theme }) => theme.fontSize.s};
     margin-right: 15rem;
   }
 `;
@@ -81,7 +81,7 @@ const AboutHome = () => {
   const router = useRouter();
   const { locale } = router;
   const title = sectiontitles?.[2]?.title?.[locale];
-  const sectionId = sectiontitles?.[locale]?.[2]?.titleMenuId;
+  const sectionId = sectiontitles?.[2]?.titleMenuId;
 
   const iconsArrRef = useRef(null);
 
@@ -104,27 +104,25 @@ const AboutHome = () => {
     );
   });
   return (
-    <section id={sectionId}>
-      <StyledWrapper>
-        <SectionHeading>{title}</SectionHeading>
-        <StyledTwoColumns>
-          <TextBox data={aboutHome} rect />
-          <StyledColumn ref={iconsArrRef}>
-            {aboutHomeIcons?.map((element) => (
-              <IconInfo
-                key={element.id}
-                title={element.title}
-                content={element.content}
-                icon={element.icon}
-              />
-            ))}
-          </StyledColumn>
-        </StyledTwoColumns>
-        <StyledButton variant="cta" onClick={() => {}}>
-          {uiSubs?.aboutMore?.[locale]}
-        </StyledButton>
-      </StyledWrapper>
-    </section>
+    <StyledWrapper as="section" id={sectionId}>
+      <SectionHeading>{title}</SectionHeading>
+      <StyledTwoColumns>
+        <TextBox data={aboutHome} rect />
+        <StyledColumn ref={iconsArrRef}>
+          {aboutHomeIcons?.map((element) => (
+            <IconInfo
+              key={element.id}
+              title={element.title}
+              content={element.content}
+              icon={element.icon}
+            />
+          ))}
+        </StyledColumn>
+      </StyledTwoColumns>
+      <StyledButton variant="cta" onClick={() => router.push('/about')}>
+        {uiSubs?.aboutMore?.[locale]}
+      </StyledButton>
+    </StyledWrapper>
   );
 };
 

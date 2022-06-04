@@ -14,7 +14,7 @@ const StyledMessageBox = styled.div`
   margin: 0 auto;
   width: 90%;
   max-width: 90rem;
-  
+
   @media screen and (min-width: ${breakpoint.S}) {
     width: 70%;
   }
@@ -61,23 +61,28 @@ const StyledSection = styled.section`
 const Contact = () => {
   const { locale } = useRouter();
   const title = sectiontitles?.[4]?.title?.[locale];
-  const sectionId = sectiontitles?.[locale]?.[4]?.titleMenuId;
+  const sectionId = sectiontitles?.[4]?.titleMenuId;
 
   return (
-    <StyledSection id={sectionId}>
-      <Wrapper>
-        <SectionHeading>{title}</SectionHeading>
-        <TwoColumns>
-          <StyledMediaBox>
-            {contactIcons?.map((icon) => <StyledImg key={icon.id} src={icon.icon.url} alt="contact" onClick={() => window.open(icon.link, '_blank')} />)}
-          </StyledMediaBox>
-          <StyledMessageBox>
-            <StyledHeading>{contactForm?.heading?.[locale]}</StyledHeading>
-            <MessageForm data={contactForm} />
-          </StyledMessageBox>
-        </TwoColumns>
-      </Wrapper>
-    </StyledSection>
+    <Wrapper as="section" id={sectionId}>
+      <SectionHeading>{title}</SectionHeading>
+      <TwoColumns>
+        <StyledMediaBox>
+          {contactIcons?.map((icon) => (
+            <StyledImg
+              key={icon.id}
+              src={icon.icon.url}
+              alt="contact"
+              onClick={() => window.open(icon.link, '_blank')}
+            />
+          ))}
+        </StyledMediaBox>
+        <StyledMessageBox>
+          <StyledHeading>{contactForm?.heading?.[locale]}</StyledHeading>
+          <MessageForm data={contactForm} />
+        </StyledMessageBox>
+      </TwoColumns>
+    </Wrapper>
   );
 };
 

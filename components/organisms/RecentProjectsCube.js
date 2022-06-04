@@ -34,7 +34,6 @@ const StyledButton = styled(Button)`
   }
 
   @media screen and (min-width: ${breakpoint.M}) {
-    font-size: ${({ theme }) => theme.fontSize.s};
     padding: 2.5rem 3rem;
     margin-right: 6rem;
   }
@@ -44,6 +43,7 @@ const StyledButton = styled(Button)`
   }
 
   @media screen and (min-width: ${breakpoint.XL}) {
+    font-size: ${({ theme }) => theme.fontSize.s};
     margin-right: 15rem;
   }
 `;
@@ -108,26 +108,24 @@ const RecentProjectsCube = () => {
   };
 
   return (
-    <section id={sectionId}>
-      <Wrapper>
-        <SectionHeading nomargin>{title}</SectionHeading>
-        <StyledContainer>
-          {instructionVisible && (
-            <StyledParagraph ref={instrucionsRef}>
-              {uiSubs?.rotateCube?.[locale]}
-            </StyledParagraph>
-          )}
-          <Cube
-            // data={data?.sort((a, b) => (moment(b.creationDate) - moment(a.creationDate))).slice(0, 6)}
-            data={data?.slice(0, 6)}
-            setInstructionVisible={setInstructionVisible}
-          />
-          <StyledButton variant="cta" onClick={handleDetailsClick}>
-            {uiSubs?.moreProjects?.[locale]}
-          </StyledButton>
-        </StyledContainer>
-      </Wrapper>
-    </section>
+    <Wrapper as="section" id={sectionId}>
+      <SectionHeading nomargin>{title}</SectionHeading>
+      <StyledContainer>
+        {instructionVisible && (
+          <StyledParagraph ref={instrucionsRef}>
+            {uiSubs?.rotateCube?.[locale]}
+          </StyledParagraph>
+        )}
+        <Cube
+          // data={data?.sort((a, b) => (moment(b.creationDate) - moment(a.creationDate))).slice(0, 6)}
+          data={data?.slice(0, 6)}
+          setInstructionVisible={setInstructionVisible}
+        />
+        <StyledButton variant="cta" onClick={handleDetailsClick}>
+          {uiSubs?.moreProjects?.[locale]}
+        </StyledButton>
+      </StyledContainer>
+    </Wrapper>
   );
 };
 

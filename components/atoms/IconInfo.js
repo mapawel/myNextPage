@@ -16,9 +16,21 @@ const StyledIconBox = styled.div`
   flex-shrink: 0;
   display: flex;
   justify-content: center;
-
+  margin: 0 1rem;
+  
+  @media screen and (min-width: ${breakpoint.S}) {
+    margin-right: 3rem;
+  }
   @media screen and (min-width: ${breakpoint.M}) {
     width: 7rem;
+  }
+  
+  @media screen and (min-width: ${breakpoint.L}) {
+    margin-right: 1rem;
+  }
+  
+  @media screen and (min-width: ${breakpoint.XL}) {
+    margin-right: 3rem;
   }
 `;
 

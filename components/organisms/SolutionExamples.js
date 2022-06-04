@@ -40,11 +40,14 @@ const StyledButton = styled(Button)`
 
   @media screen and (min-width: ${breakpoint.S}) {
     margin: 1rem;
-    font-size: ${({ theme }) => theme.fontSize.s};
   }
 
   @media screen and (min-width: ${breakpoint.M}) {
     padding: 2.5rem 3rem;
+  }
+
+  @media screen and (min-width: ${breakpoint.XL}) {
+    font-size: ${({ theme }) => theme.fontSize.s};
   }
 `;
 
@@ -52,27 +55,25 @@ const SolutionExamples = () => {
   const { locale } = useRouter();
 
   const title = sectiontitles?.[3]?.title?.[locale];
-  const sectionId = sectiontitles?.[locale]?.[3]?.titleMenuId;
+  const sectionId = sectiontitles?.[3]?.titleMenuId;
 
   return (
-    <section id={sectionId}>
-      <Wrapper>
-        <SectionHeading>{title}</SectionHeading>
-        <List
-          nr={1}
-          title={solutionExamples?.title?.[locale]}
-          content={solutionExamples?.listed}
-        />
-        <ButtonContainer>
-          <StyledButton variant="cta" onClick={() => {}}>
-            {uiSubs?.ourSolutions?.[locale]}
-          </StyledButton>
-          <StyledButton variant="cta" onClick={() => {}}>
-            {uiSubs?.ourProjects?.[locale]}
-          </StyledButton>
-        </ButtonContainer>
-      </Wrapper>
-    </section>
+    <Wrapper as="section" id={sectionId}>
+      <SectionHeading>{title}</SectionHeading>
+      <List
+        nr={1}
+        title={solutionExamples?.title?.[locale]}
+        content={solutionExamples?.listed}
+      />
+      <ButtonContainer>
+        <StyledButton variant="cta" onClick={() => {}}>
+          {uiSubs?.ourSolutions?.[locale]}
+        </StyledButton>
+        <StyledButton variant="cta" onClick={() => {}}>
+          {uiSubs?.ourProjects?.[locale]}
+        </StyledButton>
+      </ButtonContainer>
+    </Wrapper>
   );
 };
 

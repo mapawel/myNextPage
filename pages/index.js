@@ -5,6 +5,7 @@ import RecentProjectsCube from 'components/organisms/RecentProjectsCube';
 import AboutHome from 'components/organisms/AboutHome';
 import SolutionExamples from 'components/organisms/SolutionExamples';
 import Contact from 'components/organisms/Contact';
+import { headSubs } from 'assets/data/headSubs';
 
 const HomePage = () => {
   const { locale } = useRouter();
@@ -12,10 +13,10 @@ const HomePage = () => {
   return (
     <>
       <Head>
-        <title>DEVDEFER | HOME</title>
+        <title>{headSubs?.home?.title?.[locale]}</title>
         <meta
           name="description"
-          content="opis, który będize w 2 językach zależnie od locale"
+          content={headSubs?.home?.description?.[locale]}
         />
       </Head>
       <Header />
