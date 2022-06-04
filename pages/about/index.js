@@ -1,15 +1,22 @@
+import { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Autoplay } from 'swiper';
+// import 'swiper/swiper-bundle.css';
+import 'swiper/css';
 import { headSubs } from 'assets/data/headSubs';
 import Wrapper from 'components/templates/Wrapper';
 import TwoColumns from 'components/templates/TwoColumns';
 import SectionHeading from 'components/atoms/SectionHeading';
 import IconInfo from 'components/atoms/IconInfo';
 import TextBox from 'components/molecules/TextBox';
+import useBrowser from 'hooks/useBrowser';
 import { breakpoint } from 'breakpoints';
 import { sectiontitles } from 'assets/data/sectiontitles';
 import { aboutPage } from 'assets/data/aboutPage';
+import { aboutHomeIcons } from 'assets/data/aboutHomeIcons';
 import { aboutPageIcons } from 'assets/data/aboutPageIcons';
 
 const StyledTwoColumns = styled(TwoColumns)`
@@ -39,9 +46,32 @@ const StyledColumn = styled.div`
   }
 `;
 
+const StyledCarouselContainer = styled.div`
+  position: relative;
+  width: 100%;
+  margin-bottom: 10rem;
+`;
+
+const swiperSlideStyle = {
+  listStyle: 'none',
+  overflow: 'hidden',
+};
+
+const Card = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const AboutPage = () => {
+  const isBrowser = useBrowser();
+  SwiperCore.use([Autoplay]);
   const { locale } = useRouter();
   const title = sectiontitles?.[2]?.title?.[locale];
+
+  // useEffect(() => {
+  //   window.scroll(0, 0);
+  // }, []);
+
   return (
     <>
       <Head>
@@ -56,17 +86,63 @@ const AboutPage = () => {
           <SectionHeading nomargin>{title}</SectionHeading>
           <StyledTwoColumns>
             <TextBox data={aboutPage} triangle />
-            <StyledColumn>
-              {aboutPageIcons?.map((element) => (
-                <IconInfo
-                  key={element.id}
-                  title={element.title}
-                  content={element.content}
-                  icon={element.icon}
-                />
-              ))}
-            </StyledColumn>
+            <StyledColumn></StyledColumn>
           </StyledTwoColumns>
+          <StyledCarouselContainer id="swiper">
+            {isBrowser ? (
+              <Swiper
+                wrapperTag="ul"
+                spaceBetween={50}
+                loop="true"
+                autoplay={{
+                  delay: 4000,
+                  pauseOnMouseEnter: true,
+                  disableOnInteraction: false,
+                }}
+                slidesPerView={1}
+                breakpoints={{
+                  [breakpoint.M.slice(0, -2)]: {
+                    slidesPerView: 2,
+                  },
+                  [breakpoint.L.slice(0, -2)]: {
+                    slidesPerView: 3,
+                  },
+                }}
+              >
+                {aboutPageIcons?.map(({ id, icon, title, content }, index) => (
+                  <SwiperSlide
+                    id={id}
+                    tag="li"
+                    key={id}
+                    style={swiperSlideStyle}
+                  >
+                    <Card>
+                      <IconInfo
+                        inSwiper
+                        key={id}
+                        title={title}
+                        content={content}
+                        icon={index + 1}
+                      />
+                    </Card>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              <>
+                {aboutPageIcons?.map(({ id, icon, title, content }, index) => (
+                  <IconInfo
+                    inSwiper
+                    forceMargins
+                    key={id}
+                    title={title}
+                    content={content}
+                    icon={index + 1}
+                  />
+                ))}
+              </>
+            )}
+          </StyledCarouselContainer>
         </Wrapper>
       </main>
     </>

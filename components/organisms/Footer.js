@@ -74,6 +74,13 @@ const StyledUpTxt = styled(StyledParagraph)`
 `;
 
 const Footer = () => {
+  const handleClick = () => {
+    window.scroll({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <StyledFooter>
       <StyledParagraph>
@@ -83,7 +90,7 @@ const Footer = () => {
         </Link>
         , All rights reserved
       </StyledParagraph>
-      <StyledArrowBox onClick={() => window.scroll(0, 0)}>
+      <StyledArrowBox onClick={handleClick}>
         {/* // TODO it should be a button */}
         <StyledUpTxt>UP</StyledUpTxt>
       </StyledArrowBox>

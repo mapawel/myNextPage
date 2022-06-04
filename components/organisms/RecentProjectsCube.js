@@ -16,6 +16,11 @@ import { uiSubs } from 'assets/data/uiSubs';
 gsap.registerPlugin(ScrollTrigger);
 const tl = gsap.timeline({ repeat: -1 });
 
+const StyledWrapper = styled(Wrapper)`
+  display: flex;
+  flex-direction: column;
+`;
+
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -108,7 +113,7 @@ const RecentProjectsCube = () => {
   };
 
   return (
-    <Wrapper as="section" id={sectionId}>
+    <StyledWrapper as="section" id={sectionId}>
       <SectionHeading nomargin>{title}</SectionHeading>
       <StyledContainer>
         {instructionVisible && (
@@ -121,11 +126,11 @@ const RecentProjectsCube = () => {
           data={data?.slice(0, 6)}
           setInstructionVisible={setInstructionVisible}
         />
-        <StyledButton variant="cta" onClick={handleDetailsClick}>
-          {uiSubs?.moreProjects?.[locale]}
-        </StyledButton>
       </StyledContainer>
-    </Wrapper>
+      <StyledButton variant="cta" onClick={handleDetailsClick}>
+        {uiSubs?.moreProjects?.[locale]}
+      </StyledButton>
+    </StyledWrapper>
   );
 };
 

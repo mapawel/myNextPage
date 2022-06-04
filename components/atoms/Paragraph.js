@@ -7,7 +7,7 @@ const Paragraph = styled.p`
   line-height: 1.5;
 
   @media screen and (min-width: ${breakpoint.M}) {
-    font-size: ${({ theme }) => theme.fontSize.m};
+    font-size: ${({ theme, inSwiper }) => inSwiper ? theme.fontSize.s : theme.fontSize.m};
     }
 `;
 

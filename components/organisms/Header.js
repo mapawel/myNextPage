@@ -124,7 +124,7 @@ const StyledImgBox = styled.div`
 const StyledButton = styled(Button)`
   white-space: nowrap;
   font-size: ${({ theme }) => theme.fontSize.xxs};
-  margin: 4rem 0 6rem;
+  margin: 4rem 0 10rem;
   align-self: flex-end;
   opacity: 0;
 `;

@@ -11,7 +11,7 @@ export const aboutPage = {
     ],
     pl: [
       'Masz problem biznesowy lub pomysł na optymalizację ale nie wiesz co dalej?',
-      'Pytasz programistów, mogą napisać aplikację, ale to Ty masz określić jak to ma działać, dostarzyć projekt i podjąć setki niezrozumiałych decyzji?',
+      'Pytasz programistów, mogą napisać aplikację, ale to Ty masz określić jak to ma działać, dostarczyć projekt i podjąć setki niezrozumiałych decyzji?',
       'Nie u nas! My zajmiemy się rozwiązaniem od A do Z, od potrzeby po jej wypełnienie dzięki rozwiązaniom webowym.',
     ],
   },

@@ -85,6 +85,10 @@ const AboutHome = () => {
 
   const iconsArrRef = useRef(null);
 
+  const handleClick = () => {
+    router.push('/about')
+  }
+
   useEffect(() => {
     const iconsAnimTarget = (triggerElement) => ({
       x: '0',
@@ -119,7 +123,7 @@ const AboutHome = () => {
           ))}
         </StyledColumn>
       </StyledTwoColumns>
-      <StyledButton variant="cta" onClick={() => router.push('/about')}>
+      <StyledButton variant="cta" onClick={handleClick}>
         {uiSubs?.aboutMore?.[locale]}
       </StyledButton>
     </StyledWrapper>

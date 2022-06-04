@@ -102,7 +102,7 @@ const TextBox = ({ rect, triangle, data }) => {
   useEffect(() => {
     gsap.fromTo(rectRef.current, ...pulseAnim);
     gsap.fromTo(triangleRef.current, ...pulseAnim);
-  });
+  }, []);
 
   return (
     <StyledContainer>

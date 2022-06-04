@@ -6,7 +6,7 @@ const nextConfig = {
     defaultLocale: 'en',
   },
   experimental: {
-    scrollRestoration: true,
+    // scrollRestoration: true,
     outputStandalone: true,
   },
   images: {

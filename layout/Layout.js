@@ -9,7 +9,7 @@ const style = {
   overflow: 'hidden',
   position: 'relative',
   zIndex: '0',
-  minHeight: '200vh',
+  minHeight: '100vh',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-end',

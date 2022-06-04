@@ -8,10 +8,9 @@ export const aboutPageIcons = [
     content: {
       en: ['Our projects are custom solutions suite for your needs'],
       pl: [
-        'Tworzymy projkety nieszablonowe, spersonalizowane, pod Twoje potrzeby',
+        'Dobierzmy optymalne rozwiązanie Twojego problemy w zakresie web-dewelopmentu',
       ],
     },
-    icon: '/ruller.svg',
   },
   {
     id: 'icon2',
@@ -23,56 +22,62 @@ export const aboutPageIcons = [
       en: [
         'Our solutions will give you a productivity not only proper opereting',
       ],
-      pl: ['Nasze projekty mają dawać korzyści, nie tylko działać'],
+      pl: ['Przedstawimy projekt: zarówno interfejsu graficznego jak i logiki biznesowej'],
     },
-    icon: '/graph1.svg',
   },
   {
     id: 'icon3',
     title: {
       en: 'user-friendly',
-      pl: 'napiszemy',
+      pl: 'dobierzemy narzędzia',
     },
     content: {
       en: ['Easy-to-use applications', 'Technical support'],
-      pl: ['Aplikacje proste w obsłudze', 'Wparcie wdrożeniowe'],
+      pl: ['W jakiej technologii będzie funkcjonowała aplikacja i dlaczego'],
     },
-    icon: '/easy2.svg',
   },
   {
     id: 'icon4',
+    title: {
+      en: 'user-friendly',
+      pl: 'zakodujemy',
+    },
+    content: {
+      en: ['Easy-to-use applications', 'Technical support'],
+      pl: ['Napiszemy kod, dostosujemy do Twoich wymogów działania'],
+    },
+  },
+  {
+    id: 'icon5',
     title: {
       en: 'user-friendly',
       pl: 'wyprodukujemy',
     },
     content: {
       en: ['Easy-to-use applications', 'Technical support'],
-      pl: ['Aplikacje proste w obsłudze', 'Wparcie wdrożeniowe'],
+      pl: ['Dobierzmy hosting, podepniemy domenę, zadbamy o bezpieczeństwo'],
     },
-    icon: '/easy2.svg',
   },
   {
-    id: 'icon4',
+    id: 'icon6',
     title: {
       en: 'user-friendly',
       pl: 'przeszkolimy',
     },
     content: {
       en: ['Easy-to-use applications', 'Technical support'],
-      pl: ['Aplikacje proste w obsłudze', 'Wparcie wdrożeniowe'],
+      pl: ['Wdrożymy pracowników w działanie aplikacji, aby wszystko szło sprawnie'],
     },
-    icon: '/easy2.svg',
   },
   {
-    id: 'icon4',
+    id: 'icon7',
     title: {
       en: 'user-friendly',
       pl: 'obsłużymy',
     },
     content: {
       en: ['Easy-to-use applications', 'Technical support'],
-      pl: ['Aplikacje proste w obsłudze', 'Wparcie wdrożeniowe'],
+      pl: ['Jeśli pojawią się trudności, wspomożemy'],
     },
-    icon: '/easy2.svg',
   },
 ];

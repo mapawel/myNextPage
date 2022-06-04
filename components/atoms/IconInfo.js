@@ -8,27 +8,28 @@ import { breakpoint } from 'breakpoints';
 const StyledContainer = styled.div`
   display: flex;
   max-width: 42rem;
-  margin: 3rem 0 8rem;
+  margin: ${({ inSwiper }) => (inSwiper ? '0' : '3rem 0 8rem')};
+  margin: ${({ forceMargins }) => forceMargins && '4rem auto'};
 `;
 
 const StyledIconBox = styled.div`
   width: 5rem;
   flex-shrink: 0;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   margin: 0 1rem;
-  
+
   @media screen and (min-width: ${breakpoint.S}) {
     margin-right: 3rem;
   }
   @media screen and (min-width: ${breakpoint.M}) {
     width: 7rem;
   }
-  
+
   @media screen and (min-width: ${breakpoint.L}) {
     margin-right: 1rem;
   }
-  
+
   @media screen and (min-width: ${breakpoint.XL}) {
     margin-right: 3rem;
   }
@@ -36,14 +37,13 @@ const StyledIconBox = styled.div`
 
 const StyledImg = styled.img`
   width: 100%;
-
-  @media screen and (min-width: ${breakpoint.L}) {
-    margin-top: 3.5rem;
-  }
+  height: 10rem;
+  margin-top: 1.5rem;
 `;
 
 const StyledTxtBox = styled.div`
   padding-left: 2rem;
+  width: 100%;
 `;
 
 const StyledHeading = styled(Heading)`
@@ -54,24 +54,53 @@ const StyledHeading = styled(Heading)`
     font-size: 4.8rem;
   }
 
+  @media screen and (min-width: ${breakpoint.M}) {
+    font-size: ${({ inSwiper, theme }) => inSwiper && theme.fontSize.m};
+  }
+
   @media screen and (min-width: ${breakpoint.L}) {
-    font-size: 5rem;
+    font-size: ${({ inSwiper, theme }) =>
+      inSwiper ? theme.fontSize.m : '5rem'};
   }
 `;
 
-const IconInfo = ({ title, content, icon }) => {
+const Number = styled.span`
+  display: block;
+  width: 9rem;
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
+  font-size: ${({ theme }) => theme.fontSize.l};
+  color: ${({ theme }) => theme.color.textPrimary};
+  margin-top: 1.5rem;
+  
+  @media screen and (min-width: ${breakpoint.M}) {
+    margin-top: 1rem;
+  }
+  @media screen and (min-width: ${breakpoint.L}) {
+    font-size: ${({ theme }) => theme.fontSize.xl};
+  }
+`;
+
+const IconInfo = ({ title, content, icon, inSwiper, forceMargins }) => {
   const router = useRouter();
   const { locale } = router;
 
   return (
-    <StyledContainer>
-      <StyledIconBox>
-        <StyledImg src={icon} alt=">" />
-      </StyledIconBox>
+    <StyledContainer inSwiper={inSwiper} forceMargins={forceMargins}>
+      {inSwiper ? (
+        <Number>{icon}</Number>
+      ) : (
+        <StyledIconBox>
+          <StyledImg src={icon} alt=">" />
+        </StyledIconBox>
+      )}
       <StyledTxtBox>
-        <StyledHeading>{title?.[locale]?.toUpperCase()}</StyledHeading>
+        <StyledHeading inSwiper={inSwiper}>
+          {title?.[locale]?.toUpperCase()}
+        </StyledHeading>
         {content?.[locale]?.map((bullet) => (
-          <Paragraph key={bullet}>{bullet}</Paragraph>
+          <Paragraph inSwiper={inSwiper} key={bullet}>
+            {bullet}
+          </Paragraph>
         ))}
       </StyledTxtBox>
     </StyledContainer>
