@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import styled, { ThemeProvider, css } from 'styled-components';
 import PropTypes from 'prop-types';
@@ -10,15 +11,16 @@ const StyledContainer = styled.div`
   margin-left: auto;
   width: 10rem;
   opacity: ${({ manuBarVisible }) => (manuBarVisible ? 1 : 0)};
-  transition: opacity .3s;
+  transition: opacity 0.3s;
 `;
 
 const StyledTrianglesBox = styled.div`
   display: ${({ manuBarVisible }) => (manuBarVisible ? 'block' : 'none')};
   position: fixed;
   top: 0;
-  transform: ${({ theme: { manuBarWide } }) => (manuBarWide ? 'scale(1)' : 'scale(.7)')};
-  transition: transform .2s;
+  transform: ${({ theme: { manuBarWide } }) =>
+    manuBarWide ? 'scale(1)' : 'scale(.7)'};
+  transition: transform 0.2s;
   cursor: pointer;
 `;
 
@@ -26,15 +28,16 @@ const StyledTriangleSmall = styled.div`
   position: fixed;
   top: 0;
   transform: translateX(-20px);
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 6rem solid transparent;
   border-right: 6rem solid transparent;
   border-top: ${({ theme }) => `6rem solid ${theme.color.particles}`};
   border-left: 4rem solid transparent;
   border-right: 4rem solid transparent;
   border-top: ${({ theme }) => `4rem solid ${theme.color.particles}`};
-  opacity: .6;
+  opacity: 0.6;
+  cursor: pointer;
 `;
 
 const StyledTriangleBig = styled.div`
@@ -42,24 +45,27 @@ const StyledTriangleBig = styled.div`
   z-index: 2;
   top: 0;
   transform: translateX(60px);
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 6rem solid transparent;
   border-right: 6rem solid transparent;
   border-top: ${({ theme }) => `6rem solid ${theme.color.particles}`};
+  cursor: pointer;
 `;
 
 const StyledMenuBack = styled.div`
   position: fixed;
   z-index: 1;
   top: 0;
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 6rem solid transparent;
   border-right: 6rem solid transparent;
   border-bottom: ${({ theme }) => `6rem solid ${theme.color.back}`};
-  transform: ${({ theme: { manuBarWide } }) => (manuBarWide ? 'translate(0)' : 'translate(20px, -20px)')};
-  transition: transform .2s;
+  transform: ${({ theme: { manuBarWide } }) =>
+    manuBarWide ? 'translate(0)' : 'translate(20px, -20px)'};
+  transition: transform 0.2s;
+  cursor: pointer;
 `;
 
 const StyledButton = styled.button`
@@ -74,43 +80,53 @@ const StyledButton = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
-  ::before, ::after{
+  cursor: pointer;
+  ::before,
+  ::after {
     content: '';
     position: absolute;
     left: 0;
     background-color: ${({ theme }) => theme.color.textPrimary};
     height: 2px;
     width: 4rem;
-    transform: ${({ theme: { manuBarWide } }) => (manuBarWide ? 'scaleX(1) translate(0, 0)' : 'scaleX(.65) translate(-18px, 10px)')};
+    transform: ${({ theme: { manuBarWide } }) =>
+      manuBarWide
+        ? 'scaleX(1) translate(0, 0)'
+        : 'scaleX(.65) translate(-18px, 10px)'};
     transform-origin: left;
-    transition: transform .2s;
+    transition: transform 0.2s;
   }
-  ::before{
+  ::before {
     bottom: 14px;
   }
-  ::after{
+  ::after {
     content: '';
     bottom: 24px;
   }
 
-  ${({ manuOpen }) => manuOpen && css`
-    ::after{
-      transform-origin: center;
-      transform: translate(2px, 5px) rotate(45deg) ;
-    }
-    ::before{
-      transform-origin: center;
-      transform: translate(2px, -5px) rotate(-45deg) ;
-    }
-  `}
+  ${({ manuOpen }) =>
+    manuOpen &&
+    css`
+      ::after {
+        transform-origin: center;
+        transform: translate(2px, 5px) rotate(45deg);
+      }
+      ::before {
+        transform-origin: center;
+        transform: translate(2px, -5px) rotate(-45deg);
+      }
+    `}
 `;
 
-const MenuBar = ({ handleClick, manuOpen }) => {
-  const [pageHeight, setPageHeight] = useState(100);
-  const [manuBarVisible, setMenuBarVisible] = useState(false);
+const MenuBar = ({ handleClick, manuOpen, manuBarVisible, setMenuBarVisible }) => {
+  const { pathname } = useRouter();
   const [manuBarWide, setMenuBarWide] = useState(true);
 
   let prevScrollY = 0;
+
+  useEffect(() => {
+    if (pathname !== '/') setMenuBarVisible(true);
+  }, [pathname]);
 
   useEffect(() => {
     const direction = () => {
@@ -126,24 +142,6 @@ const MenuBar = ({ handleClick, manuOpen }) => {
     return () => window.removeEventListener('scroll', direction);
   }, []);
 
-  useEffect(() => {
-    const checkHeight = () => {
-      setPageHeight(window.innerHeight);
-    };
-    window.addEventListener('resize', checkHeight);
-    checkHeight();
-    return () => window.removeEventListener('resize', checkHeight);
-  }, []);
-
-  useEffect(() => {
-    const showMenuBar = () => {
-      if (window.scrollY > (pageHeight * 0.7)) setMenuBarVisible(true);
-      // if (window.scrollY > 100) setMenuBarVisible(true);
-    };
-    window.addEventListener('scroll', showMenuBar);
-    return () => window.removeEventListener('scroll', showMenuBar);
-  }, [pageHeight]);
-
   return (
     <Wrapper>
       <ThemeProvider theme={{ manuBarWide }}>
@@ -154,7 +152,10 @@ const MenuBar = ({ handleClick, manuOpen }) => {
             onClick={handleClick}
           >
             <StyledMenuBack>
-              <StyledButton manuOpen={manuOpen} aria-label="open or close menu" />
+              <StyledButton
+                manuOpen={manuOpen}
+                aria-label="open or close menu"
+              />
             </StyledMenuBack>
             <StyledTriangleSmall />
             <StyledTriangleBig />

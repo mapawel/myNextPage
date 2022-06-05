@@ -49,8 +49,8 @@ const StyledCarouselContainer = styled.div`
 
 const Arrows = styled.img`
   display: block;
-  transform: rotate(45deg);
-  height: 2rem;
+  transform: scaleX(1.5) rotate(45deg) ;
+  height: 1.5rem;
   margin: 0 auto;
 `;
 

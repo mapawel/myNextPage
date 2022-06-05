@@ -8,6 +8,7 @@ import { breakpoint } from 'breakpoints';
 // import Switch from 'templates/Switch';
 import MenuBar from 'components/molecules/MenuBar';
 import routes from 'routes';
+import LocaleSwitch from 'components/molecules/LocaleSwitch';
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -97,6 +98,7 @@ const Menu = () => {
   const router = useRouter();
   const { locale } = router;
   const [manuOpen, setMenuOpen] = useState(false);
+  const [manuBarVisible, setMenuBarVisible] = useState(false);
   const menuListRef = useRef(null);
   const switchRef = useRef(null);
 
@@ -171,13 +173,21 @@ const Menu = () => {
   }, [manuOpen]);
 
   useEffect(() => {
-    const handleRouteChange = () => closeMenu();
+    const handleRouteChange = () => setMenuOpen(false);
 
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
     };
   }, [closeMenu, router.events]);
+
+  useEffect(() => {
+    const showMenuBar = () => {
+      if (!manuBarVisible) setMenuBarVisible(true);
+    };
+    window.addEventListener('scroll', showMenuBar);
+    return () => window.removeEventListener('scroll', showMenuBar);
+  }, []);
 
   return (
     <menu>
@@ -200,7 +210,13 @@ const Menu = () => {
         </StyledList>
         {/* <Switch ref={switchRef} /> */}
       </StyledListContainer>
-      <MenuBar handleClick={handleClick} manuOpen={manuOpen} />
+      <LocaleSwitch manuBarVisible={manuBarVisible} />
+      <MenuBar
+        handleClick={handleClick}
+        manuOpen={manuOpen}
+        manuBarVisible={manuBarVisible}
+        setMenuBarVisible={setMenuBarVisible}
+      />
     </menu>
   );
 };
