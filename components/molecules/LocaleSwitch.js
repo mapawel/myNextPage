@@ -60,7 +60,6 @@ const LocaleSwitch = ({ manuBarVisible }) => {
 
   return (
     <TrianglesBox manuBarVisible={manuBarVisible}>
-      {console.log(activeLocale)}
       <Triangle isActive={activeLocale === 'pl'}>
         {isBrowser && (
           <Link href={{ pathname, query }} passHref as={asPath} locale="pl">

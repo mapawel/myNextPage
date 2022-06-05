@@ -23,5 +23,17 @@ export const uiSubs = {
     en: 'examples of solutions',
     pl: 'przykładowe rozwiązania',
   },
+  home: {
+    en: 'home',
+    pl: 'home',
+  },
+  live: {
+    en: 'check live',
+    pl: 'zobacz stronę',
+  },
+  details: {
+    en: 'details',
+    pl: 'szczegóły',
+  },
 
 }

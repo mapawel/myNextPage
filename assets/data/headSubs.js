@@ -19,4 +19,14 @@ export const headSubs = {
       pl: 'Mówimy Twoim językiem biznesu i korzyści - nie tylko kodowania i aplikacji. Rozumiemy Twoje potrzeby.',
     },
   },
+  projects: {
+    title: {
+      en: 'DEV.DEFER | RECENT PROJECTS',
+      pl: 'DEV.DEFER | OSTATNIE PROJEKTY',
+    },
+    description: {
+      en: 'Our latest projects. Each of them is an custom solution for a client, fullfiling his needs.',
+      pl: 'Nasze ostatnie projekty. Każdy z nich jest indywidualnym rozwiązaniem dla danego klienta, na miarę jego potrzeb.',
+    },
+  },
 };
