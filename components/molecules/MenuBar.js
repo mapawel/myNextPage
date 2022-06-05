@@ -137,8 +137,8 @@ const MenuBar = ({ handleClick, manuOpen }) => {
 
   useEffect(() => {
     const showMenuBar = () => {
-      // if (window.scrollY > (pageHeight * 0.7)) setMenuBarVisible(true);
-      if (window.scrollY > 100) setMenuBarVisible(true);
+      if (window.scrollY > (pageHeight * 0.7)) setMenuBarVisible(true);
+      // if (window.scrollY > 100) setMenuBarVisible(true);
     };
     window.addEventListener('scroll', showMenuBar);
     return () => window.removeEventListener('scroll', showMenuBar);

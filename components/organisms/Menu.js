@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled, { css, keyframes } from 'styled-components';
 import { gsap } from 'gsap/dist/gsap';
@@ -67,7 +68,7 @@ const StyledList = styled.ul`
   margin: auto;
 `;
 
-const StyledListElement = styled.li`
+const StyledListElement = styled.a`
   padding: 2rem 0;
   font-size: ${({ theme }) => theme.fontSize.m};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
@@ -98,11 +99,6 @@ const Menu = () => {
   const [manuOpen, setMenuOpen] = useState(false);
   const menuListRef = useRef(null);
   const switchRef = useRef(null);
-
-  useEffect(() => {
-    if (manuOpen) document.body.style.overflowY = 'hidden';
-    else document.body.style.overflowY = 'auto';
-  }, [manuOpen]);
 
   const menuElementsAnim = () => {
     tl.clear();
@@ -158,49 +154,48 @@ const Menu = () => {
     else tl2.seek(0).pause().clear();
   };
 
+  const closeMenu = () => {
+    setMenuOpen((prevState) => !prevState);
+    menuElementsAnim();
+  };
+
   const handleClick = (e) => {
-    const close = () => {
-      setMenuOpen((prevState) => !prevState);
-      menuElementsAnim();
+    if (e.target.closest('.menuLink')) return null;
+    if (e.target.closest('#switch')) return setTimeout(closeMenu, 300);
+    closeMenu();
+  };
+
+  useEffect(() => {
+    if (manuOpen) document.body.style.overflowY = 'hidden';
+    else document.body.style.overflowY = 'auto';
+  }, [manuOpen]);
+
+  useEffect(() => {
+    const handleRouteChange = () => closeMenu();
+
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
     };
-    if (e.target.closest('#switch')) {
-      setTimeout(close, 300);
-    } else {
-      close();
-    }
-  };
-
-  const scrollToSelectedSection = (linkToTitle, path) => {
-    gsap.to(window, {
-      duration: 1,
-      scrollTo: { y: `#${linkToTitle}`, offsetY: -30 },
-    });
-  };
-
-  // const handleMenuClick = (linkToTitle, path) => {
-  //   router.push(path);
-  //   if (fetchStatus.home) scrollToSelectedSection(linkToTitle, path);
-  //   if (!fetchStatus.home)
-  //     window.addEventListener(
-  //       'fetched',
-  //       () => scrollToSelectedSection(linkToTitle, path),
-  //       false
-  //     );
-  // };
+  }, [closeMenu, router.events]);
 
   return (
     <menu>
       <StyledBlend manuOpen={manuOpen} />
       <StyledListContainer manuOpen={manuOpen} onClick={(e) => handleClick(e)}>
         <StyledList ref={menuListRef}>
-          {routes?.map(({name, path}) => (
-            <StyledListElement
+          {routes?.map(({ name, path }) => (
+            <li
               onMouseOver={(e) => hoverMenuElAnim(e, true)}
               onMouseOut={(e) => hoverMenuElAnim(e, false)}
               key={path}
             >
-              {name?.[locale]}
-            </StyledListElement>
+              <Link href={path}>
+                <StyledListElement className="menuLink">
+                  {name?.[locale]}
+                </StyledListElement>
+              </Link>
+            </li>
           ))}
         </StyledList>
         {/* <Switch ref={switchRef} /> */}
