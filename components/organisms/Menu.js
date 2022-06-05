@@ -6,7 +6,7 @@ import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
 import { breakpoint } from 'breakpoints';
 // import Switch from 'templates/Switch';
 import MenuBar from 'components/molecules/MenuBar';
-import { sectiontitles } from 'assets/data/sectiontitles';
+import routes from 'routes';
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -177,32 +177,29 @@ const Menu = () => {
     });
   };
 
-  const handleMenuClick = (linkToTitle, path) => {
-    router.push(path);
-    if (fetchStatus.home) scrollToSelectedSection(linkToTitle, path);
-    if (!fetchStatus.home)
-      window.addEventListener(
-        'fetched',
-        () => scrollToSelectedSection(linkToTitle, path),
-        false
-      );
-  };
+  // const handleMenuClick = (linkToTitle, path) => {
+  //   router.push(path);
+  //   if (fetchStatus.home) scrollToSelectedSection(linkToTitle, path);
+  //   if (!fetchStatus.home)
+  //     window.addEventListener(
+  //       'fetched',
+  //       () => scrollToSelectedSection(linkToTitle, path),
+  //       false
+  //     );
+  // };
 
   return (
     <menu>
       <StyledBlend manuOpen={manuOpen} />
       <StyledListContainer manuOpen={manuOpen} onClick={(e) => handleClick(e)}>
         <StyledList ref={menuListRef}>
-          {sectiontitles?.map((sectiontitle) => (
+          {routes?.map(({name, path}) => (
             <StyledListElement
-              onClick={() =>
-                handleMenuClick(sectiontitle.titleMenuId, sectiontitle.path)
-              }
               onMouseOver={(e) => hoverMenuElAnim(e, true)}
               onMouseOut={(e) => hoverMenuElAnim(e, false)}
-              key={sectiontitle.title[locale]}
+              key={path}
             >
-              {sectiontitle.title[locale]}
+              {name?.[locale]}
             </StyledListElement>
           ))}
         </StyledList>

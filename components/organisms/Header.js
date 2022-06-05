@@ -15,6 +15,7 @@ import { uiSubs } from 'assets/data/uiSubs';
 import { myBlurData } from 'helpers/myBlurData';
 import mainImg from 'public/headerImage.jpg';
 import { sectiontitles } from 'assets/data/sectiontitles';
+import { scrollToSection } from 'helpers/scrollToSection';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
@@ -122,6 +123,7 @@ const StyledImgBox = styled.div`
 `;
 
 const StyledButton = styled(Button)`
+  display: none;
   white-space: nowrap;
   font-size: ${({ theme }) => theme.fontSize.xxs};
   margin: 4rem 0 10rem;
@@ -193,10 +195,6 @@ const Header = () => {
   const logoRef = useRef(null);
   const sectionId = sectiontitles?.[0]?.titleMenuId;
 
-  const hancleClick = () => {
-    router.push(`#${sectiontitles?.[1]?.titleMenuId}`);
-  };
-
   useEffect(() => {
     const tl = gsap.timeline();
     tl.fromTo(
@@ -236,6 +234,7 @@ const Header = () => {
         }
       )
       .to(btnRef.current, {
+        display: 'block',
         opacity: 1,
         delay: -1.5,
         duration: 0.5,
@@ -268,7 +267,12 @@ const Header = () => {
               </StyledHeaderTxtSpan>
               <StyledHeaderTxt as="">{headings?.[locale]?.[2]}</StyledHeaderTxt>
             </StyledHeadingContainer>
-            <StyledButton ref={btnRef} onClick={hancleClick}>
+            <StyledButton
+              ref={btnRef}
+              onClick={() =>
+                scrollToSection(sectiontitles?.[1]?.titleMenuId)
+              }
+            >
               {uiSubs?.welcomeBtn?.[locale]}
             </StyledButton>
           </StyledTxtBox>

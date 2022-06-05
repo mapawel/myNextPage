@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Paragraph from 'components/atoms/Paragraph';
 import { breakpoint } from 'breakpoints';
 import { sectiontitles } from 'assets/data/sectiontitles';
+import { scrollToSection } from 'helpers/scrollToSection';
 
 const StyledFooter = styled.footer`
   margin-top: auto;
@@ -74,13 +75,6 @@ const StyledUpTxt = styled(StyledParagraph)`
 `;
 
 const Footer = () => {
-  const handleClick = () => {
-    window.scroll({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
   return (
     <StyledFooter>
       <StyledParagraph>
@@ -90,7 +84,9 @@ const Footer = () => {
         </Link>
         , All rights reserved
       </StyledParagraph>
-      <StyledArrowBox onClick={handleClick}>
+      <StyledArrowBox
+        onClick={() => scrollToSection(sectiontitles?.[0]?.titleMenuId)}
+      >
         {/* // TODO it should be a button */}
         <StyledUpTxt>UP</StyledUpTxt>
       </StyledArrowBox>
