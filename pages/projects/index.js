@@ -65,10 +65,8 @@ const ProjectsPage = () => {
           </StyledContainer>
 
           <Grid2Cols>
-            {console.log(projects)}
             {projects
-              ?.slice(0, 9)
-              .map(({ id, title, images, description, code, live }) => (
+              ?.map(({ id, title, images, description, code, live }) => (
                 <ProjectBox
                   key={id}
                   projectId={id}

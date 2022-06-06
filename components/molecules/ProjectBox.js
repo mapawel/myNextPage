@@ -136,6 +136,86 @@ const StyledParagraph = styled(Paragraph)`
   }
 `;
 
+
+
+
+
+const ImageWrapper = styled.div`
+  overflow: hidden;
+  position: relative;
+  border: 1px solid ${({theme}) => theme.color.textSecondary};
+  width: 100%;
+  height: 0;
+  padding: 28% 0;
+
+  >span{
+    transform: translateY(-50%);
+  }
+
+  ::after{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: .3;
+    transition: opacity 0.2s;
+  }
+
+  :nth-child(1),
+  :nth-child(3) {
+    transition: transform 0.2s;
+  }
+
+  :nth-child(1) {
+    transform: translate(10%, 0);
+    z-index: 5;
+  }
+
+  :nth-child(2) {
+    transform: translate(0, -50%);
+    z-index: 3;
+  }
+
+  :nth-child(3) {
+    transform: translate(-10%, -100%);
+  }
+
+  @media screen and (min-width: ${breakpoint.M}) {
+    :nth-child(1) {
+      transform: translate(10%, 0);
+    }
+
+    :nth-child(2) {
+      transform: translate(0, -65%);
+    }
+
+    :nth-child(3) {
+      transform: translate(-10%, -130%);
+    }
+  }
+
+  @media screen and (min-width: ${breakpoint.L}) {
+    margin-left: 0;
+
+    :nth-child(1) {
+      transform: translate(10%, 0);
+      z-index: 5;
+    }
+
+    :nth-child(2) {
+      transform: translate(0, -50%);
+      z-index: 3;
+    }
+
+    :nth-child(3) {
+      transform: translate(-10%, -100%);
+    }
+  }
+`;
+
 const StyledImgBox = styled.div`
   position: relative;
   width: 86%;
@@ -145,32 +225,14 @@ const StyledImgBox = styled.div`
   margin-bottom: 2rem;
   cursor: pointer;
 
-  > span:nth-child(1),
-  > span:nth-child(3) {
-    transition: transform 0.2s;
-  }
-
-  > span:nth-child(1) {
-    transform: translate(10%, 0);
-    z-index: 5;
-  }
-
-  > span:nth-child(2) {
-    transform: translate(0, -40%);
-    z-index: 3;
-  }
-
-  > span:nth-child(3) {
-    transform: translate(-10%, -80%);
-  }
-
-  :hover > span::after {
+  :hover > ${ImageWrapper}::after {
     opacity: 0;
   }
-  :hover > span:nth-child(1) {
+
+  :hover > ${ImageWrapper}:nth-child(1) {
     transform: translate(-10%, -5%);
   }
-  :hover > span:nth-child(3) {
+  :hover > ${ImageWrapper}:nth-child(3) {
     transform: translate(10%, -75%);
   }
 
@@ -185,19 +247,7 @@ const StyledImgBox = styled.div`
   @media screen and (min-width: ${breakpoint.M}) {
     height: 54rem;
 
-    > span:nth-child(1) {
-      transform: translate(10%, 0);
-    }
-
-    > span:nth-child(2) {
-      transform: translate(0, -60%);
-    }
-
-    > span:nth-child(3) {
-      transform: translate(-10%, -120%);
-    }
-
-    :hover > span:nth-child(3) {
+    :hover > ${ImageWrapper}:nth-child(3) {
       transform: translate(10%, -110%);
     }
   }
@@ -207,21 +257,7 @@ const StyledImgBox = styled.div`
     width: 100%;
     margin-left: 0;
 
-    > div:nth-child(1) {
-      transform: translate(10%, 0);
-      z-index: 5;
-    }
-
-    > div:nth-child(2) {
-      transform: translate(0, -40%);
-      z-index: 3;
-    }
-
-    > div:nth-child(3) {
-      transform: translate(-10%, -80%);
-    }
-
-    :hover > div:nth-child(3) {
+    :hover > ${ImageWrapper}:nth-child(3) {
       transform: translate(10%, -75%);
     }
   }
@@ -232,21 +268,14 @@ const StyledImgBox = styled.div`
   }
 `;
 
+
+
+
+
 const StyledButton = styled(Button)`
   margin: 2rem 0;
 `;
 
-const StyledHedingBox = styled.div`
-  border: 1px solid lime;
-  position: relative;
-  cursor: pointer;
-  opacity: 1;
-  transition: opacity 0.3s;
-
-  :hover {
-    opacity: 0.5;
-  }
-`;
 
 const StyledToolBox = styled.div`
   position: absolute;
@@ -340,18 +369,21 @@ const ProjectBox = ({ projectId, title, images, description, code, live }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    gsap.fromTo(containerRef.current, {
-      opacity: 0
-    },
+    gsap.fromTo(
+      containerRef.current,
       {
-      y: '+=100',
-      opacity: 1,
-      duration: 0.5,
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top 80%',
+        opacity: 0,
       },
-    });
+      {
+        y: '+=100',
+        opacity: 1,
+        duration: 0.5,
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 80%',
+        },
+      }
+    );
   }, []);
 
   return (
@@ -359,19 +391,18 @@ const ProjectBox = ({ projectId, title, images, description, code, live }) => {
       <StyledHeading>{title?.toUpperCase()}</StyledHeading>
       <StyledImgBox>
         {images?.length !== 0 &&
-          images
-            ?.slice(0, 3)
-            .map(({ id, img }, index) => (
+          images?.slice(0, 3).map(({ id, img }, index) => (
+            <ImageWrapper key={id}>
               <Image
-                key={id}
                 src={img}
                 alt={`image nr ${index + 1} of project: ${title}`}
                 layout="intrinsic"
                 placeholder="blur"
                 blurDataURL={myBlurData}
-                priority={true}
+                // priority={true}
               />
-            ))}
+            </ImageWrapper>
+          ))}
       </StyledImgBox>
       <StyledParagraph isToolVisible={isToolVisible}>
         {description}

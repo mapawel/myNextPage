@@ -5,17 +5,13 @@ export const sectiontitles = [
       pl: '<home />',
     },
     titleMenuId: 'home',
-    path: '/',
-    isTitle: false,
   },
   {
     title: {
       en: '<recent projects />',
-      pl: '<projekty />',
+      pl: '<ostatnie projekty />',
     },
     titleMenuId: 'recentProjects',
-    path: '/',
-    isTitle: true,
   },
   {
     title: {
@@ -23,8 +19,6 @@ export const sectiontitles = [
       pl: '<o nas />',
     },
     titleMenuId: 'aboutHome',
-    path: '/',
-    isTitle: true,
   },
   {
     title: {
@@ -32,8 +26,6 @@ export const sectiontitles = [
       pl: '<zakres />',
     },
     titleMenuId: 'scopeHome',
-    path: '/',
-    isTitle: true,
   },
   {
     title: {
@@ -41,7 +33,5 @@ export const sectiontitles = [
       pl: '<kontakt />',
     },
     titleMenuId: 'contactHome',
-    path: '/',
-    isTitle: true,
   },
 ];
