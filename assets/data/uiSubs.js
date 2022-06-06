@@ -35,5 +35,9 @@ export const uiSubs = {
     en: 'details',
     pl: 'szczegóły',
   },
+  clickForDetails: {
+    en: 'click on the selected project box to see details',
+    pl: 'kliknij w wybrany projekt aby przejść do szczegółów',
+  },
 
 }

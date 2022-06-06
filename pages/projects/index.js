@@ -11,12 +11,13 @@ import Button from 'components/atoms/Button';
 import ProjectBox from 'components/molecules/ProjectBox';
 import { projects } from 'assets/data/projects';
 import { uiSubs } from 'assets/data/uiSubs';
+import Paragraph from 'components/atoms/Paragraph';
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 8rem;
+  margin-bottom: 4rem;
 `;
 
 const StyledButton = styled(Button)`
@@ -37,7 +38,12 @@ const StyledButton = styled(Button)`
   @media screen and (min-width: ${breakpoint.XL}) {
     margin-left: 15rem;
   }
-`;
+  `;
+
+const StyledParagraph = styled(Paragraph)`
+  color: ${({theme}) => theme.color.textPrimary};
+  margin-top: 2rem;
+`
 
 const ProjectsPage = () => {
   const router = useRouter();
@@ -62,14 +68,17 @@ const ProjectsPage = () => {
           <StyledContainer>
             <SectionHeading nomargin>{title}</SectionHeading>
             <StyledButton onClick={handleHomeClick}>{uiSubs?.home?.[locale]}</StyledButton>
+            <StyledParagraph>
+              {uiSubs?.clickForDetails?.[locale]}
+            </StyledParagraph>
           </StyledContainer>
 
           <Grid2Cols>
             {projects
-              ?.map(({ id, title, images, description, code, live }) => (
+              ?.map(({ slug, title, images, description, code, live }) => (
                 <ProjectBox
-                  key={id}
-                  projectId={id}
+                  key={slug}
+                  slug={slug}
                   title={title}
                   images={images}
                   description={description}

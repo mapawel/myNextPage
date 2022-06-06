@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes, css } from 'styled-components';
 
@@ -35,13 +35,16 @@ const buttonAnim = keyframes`
 }
 `;
 
-const StyledButton = styled.button`
+const StyledButton = styled.a`
+  text-decoration: none;
   position: relative;
   background-color: transparent;
   color: ${({ theme }) => theme.color.textPrimary};
   border: ${({ theme }) => `2px solid ${theme.color.textPrimary}`};
   padding: 1.5rem 2rem;
+  font-size: ${({ theme }) => theme.fontSize.xxs};
   font-family: ${({ theme }) => theme.fontFamily.secondary}
+  text-align: center;
   ${({ variant }) => {
     switch (variant) {
       case 'noborder':
@@ -90,7 +93,20 @@ const StyledButton = styled.button`
 `;
 
 const Button = React.forwardRef(
-  ({ children, className, onClick, disabled, type, variant, href }, ref) => (
+  (
+    {
+      children,
+      className,
+      onClick,
+      disabled,
+      type,
+      variant,
+      href,
+      target,
+      rel,
+    },
+    ref
+  ) => (
     <StyledButton
       ref={ref}
       className={className}
@@ -99,6 +115,8 @@ const Button = React.forwardRef(
       type={type}
       variant={variant}
       href={href}
+      target={target}
+      rel={rel}
     >
       {children}
     </StyledButton>

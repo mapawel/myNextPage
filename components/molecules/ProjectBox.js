@@ -1,18 +1,18 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Heading from 'components/atoms/Heading';
 import Paragraph from 'components/atoms/Paragraph';
 import Button from 'components/atoms/Button';
+import ButtonLink from 'components/atoms/ButtonLink';
 import Rect from 'components/atoms/Rect';
 import { breakpoint } from 'breakpoints';
-// import { ReactSVG } from 'react-svg';
-// import eyeIcon from 'assets/icons/eye.svg';
 import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import Image from 'next/image';
-import myBlurData from 'helpers/myBlurData';
+import { myBlurData } from 'helpers/myBlurData';
 import { uiSubs } from 'assets/data/uiSubs';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -136,23 +136,19 @@ const StyledParagraph = styled(Paragraph)`
   }
 `;
 
-
-
-
-
 const ImageWrapper = styled.div`
   overflow: hidden;
   position: relative;
-  border: 1px solid ${({theme}) => theme.color.textSecondary};
+  border: 1px solid ${({ theme }) => theme.color.textSecondary};
   width: 100%;
   height: 0;
   padding: 28% 0;
 
-  >span{
+  > span {
     transform: translateY(-50%);
   }
 
-  ::after{
+  ::after {
     position: absolute;
     content: '';
     top: 0;
@@ -160,7 +156,7 @@ const ImageWrapper = styled.div`
     width: 100%;
     height: 100%;
     background-color: black;
-    opacity: .3;
+    opacity: 0.3;
     transition: opacity 0.2s;
   }
 
@@ -268,14 +264,13 @@ const StyledImgBox = styled.div`
   }
 `;
 
-
-
-
-
 const StyledButton = styled(Button)`
   margin: 2rem 0;
 `;
 
+const StyledButtonLink = styled(ButtonLink)`
+  margin: 2rem 0;
+`;
 
 const StyledToolBox = styled.div`
   position: absolute;
@@ -362,8 +357,9 @@ const StyledStandardButton = styled.button`
   }
 `;
 
-const ProjectBox = ({ projectId, title, images, description, code, live }) => {
-  const { locale } = useRouter();
+const ProjectBox = ({ slug, title, images, description, live }) => {
+  const router = useRouter();
+  const { locale } = router;
   const [isToolVisible, setToolVisible] = useState(false);
 
   const containerRef = useRef(null);
@@ -421,15 +417,18 @@ const ProjectBox = ({ projectId, title, images, description, code, live }) => {
             }}
             aria-label="close toolbox"
           />
-          <StyledButton
-            variant="cta"
-            onClick={() => history.push(`/projects/${projectId}`)}
+          <Link href={`/projects/${slug}`} passHref>
+            <StyledButton variant="cta">
+              {uiSubs?.details?.[locale]}
+            </StyledButton>
+          </Link>
+          <StyledButtonLink
+            href={live}
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            {uiSubs?.details?.[locale]}
-          </StyledButton>
-          <StyledButton onClick={() => window.open(live, '_blank')}>
             {uiSubs?.live?.[locale]}
-          </StyledButton>
+          </StyledButtonLink>
         </StyledButtonBox>
       </StyledToolBox>
     </StyledContainer>
@@ -437,7 +436,7 @@ const ProjectBox = ({ projectId, title, images, description, code, live }) => {
 };
 
 ProjectBox.propTypes = {
-  projectId: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   images: PropTypes.arrayOf(PropTypes.object),
   description: PropTypes.string.isRequired,
