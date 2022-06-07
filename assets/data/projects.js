@@ -212,7 +212,7 @@ export const projects = [
   },
   {
     slug: 'expensesplanner',
-    title: 'expenses planner',
+    title: 'expenses planner test',
     description:
       'React, Redux, React Router, Styled Components, Formik, my own calendar project, SPA, RWD',
     code: 'https://github.com/mapawel/react-expenses-planner',

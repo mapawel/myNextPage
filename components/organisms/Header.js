@@ -280,11 +280,11 @@ const Header = () => {
             <ImageWrapper>
               <Image
                 src={mainImg}
-                alt=" "
+                alt="background photo with a code on a screen"
                 layout="fill"
                 placeholder="blur"
-                blurDataURL={myBlurData}
-                priority={true}
+                priority
+                sizes="200vw"
               />
               <Blend />
             </ImageWrapper>

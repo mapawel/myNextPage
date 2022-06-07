@@ -92,69 +92,12 @@ const StyledImgBox = styled.div`
   }
 `;
 
-const StyledImg = styled.div`
-  position: absolute;
-  z-index: 0;
-  width: calc(100% - 20px);
-  height: 70px;
-  border: ${({ theme }) => `1px solid ${theme.color.textSecondary}`};
-  background-image: ${({ src }) => src};
-  background-size: cover;
-  background-repeat: no-repeat;
-  ::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000000;
-    opacity: 0.25;
-    transition: opacity 0.35s;
-  }
-
-  :nth-child(1) {
-    left: 50%;
-    z-index: 5;
-    transform: translate(-50%, 0);
-    transition: transform 0.25s;
-  }
-  :nth-child(2) {
-    bottom: 0;
-    z-index: 0;
-    transform: translate(0, 0);
-    transition: transform 0.25s;
-  }
-  :nth-child(3) {
-    top: 50%;
-    right: 0;
-    z-index: 2;
-    transform: translateY(-50%);
-  }
-
-  @media screen and (min-width: ${breakpoint.XS}) {
-    height: 100px;
-  }
-
-  @media screen and (min-width: ${breakpoint.M}) {
-    height: 160px;
-  }
-
-  @media screen and (min-width: ${breakpoint.L}) {
-    height: 190px;
-  }
-
-  @media screen and (min-width: ${breakpoint.XL}) {
-    height: 220px;
-  }
-`;
-
 const ImageWrapper = styled.div`
 overflow: hidden;
   position: absolute;
   z-index: 0;
   width: calc(100% - 20px);
-  height: 70px;
+  height: 90px;
   border: ${({ theme }) => `1px solid ${theme.color.textSecondary}`};
 
   ::after {
@@ -178,26 +121,48 @@ overflow: hidden;
   :nth-child(2) {
     bottom: 0;
     z-index: 0;
-    transform: translate(0, 0);
+    transform: translate(0, 25%);
     transition: transform 0.25s;
   }
   :nth-child(3) {
     top: 50%;
     right: 0;
     z-index: 2;
-    transform: translateY(-50%);
+    transform: translate(0, -40%);
   }
 
   @media screen and (min-width: ${breakpoint.XS}) {
     height: 100px;
+    :nth-child(2) {
+    transform: translate(0, 0%);
+  }
+  :nth-child(3) {
+    transform: translate(0, -50%);
+  }
+  }
+
+  @media screen and (min-width: ${breakpoint.S}) {
+    height: 140px;
+    :nth-child(2) {
+    transform: translate(0, 40%);
+  }
+  :nth-child(3) {
+    transform: translate(0, -30%);
+  }
   }
 
   @media screen and (min-width: ${breakpoint.M}) {
-    height: 160px;
+    height: 190px;
+    :nth-child(2) {
+    transform: translate(0, 20%);
+  }
+  :nth-child(3) {
+    transform: translate(0, -40%);
+  }
   }
 
   @media screen and (min-width: ${breakpoint.L}) {
-    height: 190px;
+    height: 200px;
   }
 
   @media screen and (min-width: ${breakpoint.XL}) {
@@ -216,10 +181,9 @@ const ProjectOnCubeBox = ({ title, images, upSideDown }) => (
             <Image
               src={img}
               alt=" "
-              layout="intrinsic"
+              layout="responsive"
               placeholder="blur"
-              blurDataURL={myBlurData}
-              // priority={index < 1 ? true : false}
+              sizes={`(max-width: ${breakpoint.L}) 50vw, (max-width: ${breakpoint.XL}) 40vw, 22vw`}
             />
           </ImageWrapper>
         ))}

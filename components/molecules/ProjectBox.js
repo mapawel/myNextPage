@@ -144,10 +144,6 @@ const ImageWrapper = styled.div`
   height: 0;
   padding: 28% 0;
 
-  > span {
-    transform: translateY(-50%);
-  }
-
   ::after {
     position: absolute;
     content: '';
@@ -392,9 +388,9 @@ const ProjectBox = ({ slug, title, images, description, live }) => {
               <Image
                 src={img}
                 alt={`image nr ${index + 1} of project: ${title}`}
-                layout="intrinsic"
+                layout="fill"
                 placeholder="blur"
-                blurDataURL={myBlurData}
+                sizes={`(max-width: ${breakpoint.L}) 70vw, (max-width: ${breakpoint.XL}) 30vw, 20vw`}
                 // priority={true}
               />
             </ImageWrapper>

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 // import PropTypes from 'prop-types';
 import { Portal } from 'react-portal';
 import Image from 'next/image';
+import { breakpoint } from 'breakpoints';
 
 const StyledPortalContainer = styled.div`
   position: fixed;
@@ -16,10 +17,21 @@ const StyledPortalContainer = styled.div`
   align-items: center;
 `;
 
+const ImageWrapper = styled.div`
+  position: relative;
+`;
+
 const ImageModal = ({ src, closeModal }) => (
   <Portal>
     <StyledPortalContainer onClick={closeModal}>
-      <Image src={src} />
+      <ImageWrapper>
+        <Image
+          src={src}
+          alt={`Zoomed project example photo.`}
+          layout="intrinsic"
+          placeholder="blur"
+        />
+      </ImageWrapper>
     </StyledPortalContainer>
   </Portal>
 );

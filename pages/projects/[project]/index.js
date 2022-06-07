@@ -168,9 +168,9 @@ const StyledSmallImg = styled.div`
   width: 100%;
   height: 0;
   padding: 28% 0;
-> span {
-  transform: translateY(-50%);
-}
+  > span {
+    transform: translateY(-50%);
+  }
   cursor: pointer;
   border: 1px solid black;
 
@@ -248,12 +248,10 @@ const StyledList = styled.ul`
 const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
   height: 0;
   padding: 28% 0;
-
-  > span {
-    transform: translateY(-50%);
-  }
 `;
 
 const DetailProjectPage = ({ selectedProject }) => {
@@ -340,11 +338,11 @@ const DetailProjectPage = ({ selectedProject }) => {
             <Image
               src={mainImage}
               alt={`image of project ${title} on different devices`}
-              layout="intrinsic"
+              layout="fill"
               placeholder="blur"
+              objectFit='contain'
             />
           </ImageWrapper>
-
 
           <StyledSubheading>{techUsedList?.listTitle}</StyledSubheading>
           <StyledListContainer>
@@ -356,7 +354,6 @@ const DetailProjectPage = ({ selectedProject }) => {
             <StyledRect />
           </StyledListContainer>
           <StyledSubheading>Description:</StyledSubheading>
-
 
           <StyledBox>
             <div>
@@ -379,15 +376,13 @@ const DetailProjectPage = ({ selectedProject }) => {
             </div>
             <StyledImageBox ref={imagesBoxRef}>
               {images.map(({ id, img }) => (
-                <StyledSmallImg
-                  key={id}
-                  onClick={() => openImage(img)}
-                >
+                <StyledSmallImg key={id} onClick={() => openImage(img)}>
                   <Image
                     src={img}
                     alt={`image of project ${title} on different devices`}
-                    layout="intrinsic"
+                    layout="responsive"
                     placeholder="blur"
+                    sizes={`(max-width: ${breakpoint.M}) 90vw, (max-width: ${breakpoint.L}) 50vw, 25vw`}
                   />
                 </StyledSmallImg>
               ))}
