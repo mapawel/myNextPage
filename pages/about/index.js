@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { headSubs } from 'assets/data/headSubs';
@@ -6,6 +7,7 @@ import Wrapper from 'components/templates/Wrapper';
 import TwoColumns from 'components/templates/TwoColumns';
 import SectionHeading from 'components/atoms/SectionHeading';
 import IconInfo from 'components/atoms/IconInfo';
+import Button from 'components/atoms/Button';
 import TextBox from 'components/molecules/TextBox';
 import useBrowser from 'hooks/useBrowser';
 import { breakpoint } from 'breakpoints';
@@ -13,6 +15,7 @@ import { sectiontitles } from 'assets/data/sectiontitles';
 import { aboutPage } from 'assets/data/aboutPage';
 import { aboutPageIcons } from 'assets/data/aboutPageIcons';
 import SwiperAbout from 'components/organisms/SwiperAbout';
+import { uiSubs } from 'assets/data/uiSubs';
 
 const StyledTwoColumns = styled(TwoColumns)`
   margin: 2rem 0 5rem;
@@ -25,6 +28,33 @@ const StyledTwoColumns = styled(TwoColumns)`
   @media screen and (min-width: ${breakpoint.L}) {
     flex-direction: row;
     align-items: center;
+  }
+`;
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4rem;
+`;
+
+const StyledButton = styled(Button)`
+  margin-top: 2rem;
+  margin-bottom: 6rem;
+
+  @media screen and (min-width: ${breakpoint.M}) {
+    align-self: flex-start;
+    font-size: ${({ theme }) => theme.fontSize.xs};
+    padding: 2.5rem 3rem;
+    margin-left: 6rem;
+  }
+
+  @media screen and (min-width: ${breakpoint.L}) {
+    margin-left: 11rem;
+  }
+
+  @media screen and (min-width: ${breakpoint.XL}) {
+    margin-left: 15rem;
   }
 `;
 
@@ -49,7 +79,7 @@ const StyledCarouselContainer = styled.div`
 
 const Arrows = styled.img`
   display: block;
-  transform: scaleX(1.5) rotate(45deg) ;
+  transform: scaleX(1.5) rotate(45deg);
   height: 1.5rem;
   margin: 0 auto;
 `;
@@ -70,7 +100,7 @@ const AboutPage = () => {
       </Head>
       <main>
         <Wrapper as="section">
-          <SectionHeading nomargin>{title}</SectionHeading>
+            <SectionHeading nomargin>{title}</SectionHeading>
           <StyledTwoColumns>
             <TextBox data={aboutPage} triangle />
             <StyledColumn></StyledColumn>
@@ -78,9 +108,9 @@ const AboutPage = () => {
           <StyledCarouselContainer id="swiper">
             {isBrowser ? (
               <>
-            <SwiperAbout slides={aboutPageIcons} />
-            <Arrows src="/arrows.svg" />
-            </>
+                <SwiperAbout slides={aboutPageIcons} />
+                <Arrows src="/arrows.svg" />
+              </>
             ) : (
               <>
                 {aboutPageIcons?.map(({ id, icon, title, content }, index) => (
@@ -96,6 +126,11 @@ const AboutPage = () => {
               </>
             )}
           </StyledCarouselContainer>
+          <StyledContainer>
+            <Link href="/" passHref>
+              <StyledButton>{uiSubs?.home?.[locale]}</StyledButton>
+            </Link>
+          </StyledContainer>
         </Wrapper>
       </main>
     </>

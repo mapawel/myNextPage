@@ -92,7 +92,7 @@ const StyledButton = styled.a`
   }
 `;
 
-const Button = React.forwardRef(
+const ButtonLink = React.forwardRef(
   (
     {
       children,
@@ -123,7 +123,7 @@ const Button = React.forwardRef(
   )
 );
 
-Button.propTypes = {
+ButtonLink.propTypes = {
   children: PropTypes.string.isRequired,
   className: PropTypes.string,
   onClick: PropTypes.func,
@@ -132,7 +132,7 @@ Button.propTypes = {
   variant: PropTypes.string,
 };
 
-Button.defaultProps = {
+ButtonLink.defaultProps = {
   className: null,
   disabled: null,
   type: null,
@@ -140,4 +140,4 @@ Button.defaultProps = {
   variant: null,
 };
 
-export default Button;
+export default ButtonLink;

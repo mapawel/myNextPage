@@ -23,9 +23,11 @@ export const projects = [
   {
     slug: 'bluechip',
     title: 'bluechip',
-    description:
-      'Company home page with blog, CMS. React, Redux, many custom components, SPA, RWD.',
-    code: 'https://github.com/mapawel/bluechip',
+    description: {
+      en: 'Company home page with blog. CMS included.',
+      pl: 'Strona firmowa z blogiem. Zarządzanie z CMS.',
+    },
+        code: 'https://github.com/mapawel/bluechip',
     live: 'https://i-bluechip.pl/',
     creationDate: '2021-04-30',
     images: [
@@ -117,7 +119,10 @@ export const projects = [
     slug: 'quizgame',
     title: 'Quiz Game',
     description:
-      'Game app with custom auth, database with users and game results, Server Side Rendering, Express.js, MongoDB, RWD',
+    {
+      en: 'Quiz game app with statistics and users accounts.',
+      pl: 'Gra webowa Quiz. Zawiera statystyki i strefy użytkowników.',
+    },
     code: 'https://github.com/mapawel/quiz-game---full-stack-app',
     live: 'https://warm-harbor-74468.herokuapp.com/',
     creationDate: '2021-01-31',
@@ -214,7 +219,10 @@ export const projects = [
     slug: 'expensesplanner',
     title: 'expenses planner test',
     description:
-      'React, Redux, React Router, Styled Components, Formik, my own calendar project, SPA, RWD',
+    {
+      en: 'Front-end for app to expensess management.',
+      pl: 'Front-end użytkowej aplikacji do zarządzania wydatkami.',
+    },
     code: 'https://github.com/mapawel/react-expenses-planner',
     live: 'https://stoic-leavitt-bd046f.netlify.app/dashboard',
     creationDate: '2020-11-01',

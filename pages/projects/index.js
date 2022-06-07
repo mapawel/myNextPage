@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { headSubs } from 'assets/data/headSubs';
@@ -21,12 +22,12 @@ const StyledContainer = styled.div`
 `;
 
 const StyledButton = styled(Button)`
-  margin-top: 2rem;
+  margin-top: 8rem;
   margin-bottom: 3rem;
 
   @media screen and (min-width: ${breakpoint.M}) {
     align-self: flex-start;
-    font-size: ${({ theme }) => theme.fontSize.s};
+    font-size: ${({ theme }) => theme.fontSize.xs};
     padding: 2.5rem 3rem;
     margin-left: 6rem;
   }
@@ -38,21 +39,16 @@ const StyledButton = styled(Button)`
   @media screen and (min-width: ${breakpoint.XL}) {
     margin-left: 15rem;
   }
-  `;
+`;
 
 const StyledParagraph = styled(Paragraph)`
-  color: ${({theme}) => theme.color.textPrimary};
-  margin-top: 2rem;
-`
+  color: ${({ theme }) => theme.color.textPrimary};
+`;
 
 const ProjectsPage = () => {
   const router = useRouter();
   const { locale } = router;
   const title = sectiontitles?.[1]?.title?.[locale];
-
-  const handleHomeClick = () => {
-    router.push('/');
-  };
 
   return (
     <>
@@ -65,28 +61,32 @@ const ProjectsPage = () => {
       </Head>
       <main>
         <Wrapper as="section">
+          <SectionHeading nomargin>{title}</SectionHeading>
           <StyledContainer>
-            <SectionHeading nomargin>{title}</SectionHeading>
-            <StyledButton onClick={handleHomeClick}>{uiSubs?.home?.[locale]}</StyledButton>
             <StyledParagraph>
               {uiSubs?.clickForDetails?.[locale]}
             </StyledParagraph>
           </StyledContainer>
-
           <Grid2Cols>
-            {projects
-              ?.map(({ slug, title, images, description, code, live }) => (
+            {projects?.map(
+              ({ slug, title, images, description, code, live }) => (
                 <ProjectBox
                   key={slug}
                   slug={slug}
                   title={title}
                   images={images}
-                  description={description}
+                  description={description?.[locale]}
                   code={code}
                   live={live}
                 />
-              ))}
+              )
+            )}
           </Grid2Cols>
+          <StyledContainer>
+            <Link href="/" passHref>
+              <StyledButton>{uiSubs?.home?.[locale]}</StyledButton>
+            </Link>
+          </StyledContainer>
         </Wrapper>
       </main>
     </>

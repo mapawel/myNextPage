@@ -54,11 +54,10 @@ const StyledContainer = styled.div`
 
 const StyledButton = styled(Button)`
   margin: 2rem 1rem 3rem;
-  line-height: 1.4;
 
   @media screen and (min-width: ${breakpoint.M}) {
     align-self: flex-start;
-    font-size: ${({ theme }) => theme.fontSize.xs};
+    font-size: ${({ theme }) => theme.fontSize.s};
     padding: 2.5rem 3rem;
     margin-left: 6rem;
   }
@@ -74,11 +73,10 @@ const StyledButton = styled(Button)`
 
 const StyledButtonLink = styled(ButtonLink)`
   margin: 2rem 1rem 3rem;
-  line-height: 1.4;
 
   @media screen and (min-width: ${breakpoint.M}) {
     align-self: flex-start;
-    font-size: ${({ theme }) => theme.fontSize.xs};
+    font-size: ${({ theme }) => theme.fontSize.s};
     padding: 2.5rem 3rem;
     margin-left: 6rem;
   }
@@ -278,6 +276,7 @@ const ImageWrapper = styled.div`
 const DetailProjectPage = ({ selectedProject }) => {
   const router = useRouter();
   const { locale, asPath } = router;
+  // const { projectId } = useParams();
   const { openImage, closeImage, isModalOpen, imageUrl } = useImageModal();
 
   const stackList = useRef(null);
@@ -294,63 +293,67 @@ const DetailProjectPage = ({ selectedProject }) => {
     },
   } = selectedProject;
 
-  useEffect(() => {
-    gsap.fromTo(
-      stackList.current.children,
-      {
-        x: '-=100',
-        opacity: 0,
-      },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 0.2,
-        stagger: 0.05,
-        scrollTrigger: {
-          trigger: stackList.current,
-          start: 'top 70%',
-        },
-      }
-    );
+  const handleBackClick = () => {
+    router.push('/projects');
+  };
 
-    const imagesToAnim = gsap.utils.toArray(imagesBoxRef.current.children);
-    imagesToAnim.forEach((child) => {
-      gsap.fromTo(
-        child,
-        {
-          x: '+=50',
-          opacity: 0,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.3,
-          scrollTrigger: {
-            trigger: child,
-            start: 'top 70%',
-          },
-        }
-      );
-    });
+  // useEffect(() => {
+  //   gsap.fromTo(
+  //     stackList.current.children,
+  //     {
+  //       x: '-=100',
+  //       opacity: 0,
+  //     },
+  //     {
+  //       x: 0,
+  //       opacity: 1,
+  //       duration: 0.2,
+  //       stagger: 0.05,
+  //       scrollTrigger: {
+  //         trigger: stackList.current,
+  //         start: 'top 70%',
+  //       },
+  //     }
+  //   );
 
-    const descriptionsToAnim = gsap.utils.toArray('.descriptionToAnim');
-    descriptionsToAnim.forEach((child) => {
-      gsap.fromTo(
-        child,
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          duration: 1,
-          scrollTrigger: {
-            trigger: child,
-            start: 'top 70%',
-          },
-        }
-      );
-    });
-  }, []);
+  //   const imagesToAnim = gsap.utils.toArray(imagesBoxRef.current.children);
+  //   imagesToAnim.forEach((child) => {
+  //     gsap.fromTo(
+  //       child,
+  //       {
+  //         x: '+=50',
+  //         opacity: 0,
+  //       },
+  //       {
+  //         x: 0,
+  //         opacity: 1,
+  //         duration: 0.3,
+  //         scrollTrigger: {
+  //           trigger: child,
+  //           start: 'top 70%',
+  //         },
+  //       }
+  //     );
+  //   });
+
+  //   const descriptionsToAnim = gsap.utils.toArray('.descriptionToAnim');
+  //   descriptionsToAnim.forEach((child) => {
+  //     gsap.fromTo(
+  //       child,
+  //       {
+  //         opacity: 0,
+  //       },
+  //       {
+  //         opacity: 1,
+  //         duration: 1,
+  //         scrollTrigger: {
+  //           trigger: child,
+  //           start: 'top 70%',
+  //         },
+  //       }
+  //     );
+  //   });
+  // }, []);
 
   return (
     <>
@@ -363,78 +366,10 @@ const DetailProjectPage = ({ selectedProject }) => {
       </Head>
       <main>
         <Wrapper as="section">
-          <StyledContainer>
-            <SectionHeading nomargin component="span">
-              project details
-            </SectionHeading>
-            <Link href="/projects" passHref>
-              <StyledButton>{uiSubs?.allProjects?.[locale]}</StyledButton>
-            </Link>
-          </StyledContainer>
-          <StyledHeading>{title}</StyledHeading>
-          <ImageWrapper key={title}>
-            <Image
-              src={mainImage}
-              alt={`image of project ${title} on different devices`}
-              layout="fill"
-              placeholder="blur"
-              objectFit="contain"
-            />
-          </ImageWrapper>
-
-          <StyledSubheading>{techUsedList?.listTitle}</StyledSubheading>
-          <StyledListContainer>
-            <StyledList ref={stackList}>
-              {techUsedList?.techNames?.map((techName, index) => (
-                <li key={techName + index}>{techName}</li>
-              ))}
-            </StyledList>
-            <StyledRect />
-          </StyledListContainer>
-          <StyledSubheading>Description:</StyledSubheading>
-
-          <StyledBox>
-            <div>
-              {descriptionsForProject?.map(({ id, title, description }) => (
-                <div key={id} className="descriptionToAnim">
-                  <StyledParTitle>{title}</StyledParTitle>
-                  {description?.map((text, index) => (
-                    <StyledPar key={text + index}>{text}</StyledPar>
-                  ))}
-                </div>
-              ))}
-              <StyledBtnBox>
-                <StyledButtonLink
-                  href={live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {uiSubs?.live?.[locale]}
-                </StyledButtonLink>
-                <Link href={`${asPath}/technicals`} passHref>
-                  <StyledButton>
-                    {uiSubs?.technicalDetails?.[locale]}
-                  </StyledButton>
-                </Link>
-              </StyledBtnBox>
-            </div>
-            <StyledImageBox ref={imagesBoxRef}>
-              {images.map(({ id, img }) => (
-                <StyledSmallImg key={id} onClick={() => openImage(img)}>
-                  <Image
-                    src={img}
-                    alt={`image of project ${title} on different devices`}
-                    layout="responsive"
-                    placeholder="blur"
-                    sizes={`(max-width: ${breakpoint.M}) 90vw, (max-width: ${breakpoint.L}) 50vw, 25vw`}
-                  />
-                </StyledSmallImg>
-              ))}
-            </StyledImageBox>
-          </StyledBox>
+          <h1>{title}</h1>
+          <h2>{asPath}</h2>
         </Wrapper>
       </main>
-      {isModalOpen && <ImageModal src={imageUrl} closeModal={closeImage} />}
     </>
   );
 };

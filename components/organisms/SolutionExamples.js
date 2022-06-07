@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import styled from 'styled-components';
 import Wrapper from 'components/templates/Wrapper';
 import SectionHeading from 'components/atoms/SectionHeading';
@@ -66,12 +67,16 @@ const SolutionExamples = () => {
         content={solutionExamples?.listed}
       />
       <ButtonContainer>
-        <StyledButton variant="cta" onClick={() => {}}>
-          {uiSubs?.ourSolutions?.[locale]}
-        </StyledButton>
-        <StyledButton variant="cta" onClick={() => {}}>
-          {uiSubs?.ourProjects?.[locale]}
-        </StyledButton>
+        <Link href="/solutions" passHref>
+          <StyledButton >
+            {uiSubs?.ourSolutions?.[locale]}
+          </StyledButton>
+        </Link>
+        <Link href="/projects" passHref>
+          <StyledButton >
+            {uiSubs?.ourProjects?.[locale]}
+          </StyledButton>
+        </Link>
       </ButtonContainer>
     </Wrapper>
   );

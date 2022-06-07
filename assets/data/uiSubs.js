@@ -11,6 +11,10 @@ export const uiSubs = {
     en: 'more projects',
     pl: 'zobacz więcej',
   },
+  allProjects: {
+    en: 'projects list',
+    pl: 'lista projektów',
+  },
   aboutMore: {
     en: 'read more',
     pl: 'więcej informacji',
@@ -38,6 +42,10 @@ export const uiSubs = {
   clickForDetails: {
     en: 'click on the selected project box to see details',
     pl: 'kliknij w wybrany projekt aby przejść do szczegółów',
+  },
+  technicalDetails: {
+    en: 'technical details',
+    pl: 'szczegóły techniczne',
   },
 
 }
