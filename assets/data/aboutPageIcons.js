@@ -1,4 +1,9 @@
-export const aboutPageIcons = [
+export const aboutPageIcons = {
+  title: {
+    en: 'how we work:',
+    pl: 'schemat działania:',
+  },
+  listed: [
   {
     id: 'icon1',
     title: {
@@ -80,4 +85,4 @@ export const aboutPageIcons = [
       pl: ['Jeśli pojawią się trudności, wspomożemy'],
     },
   },
-];
+]};

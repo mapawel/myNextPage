@@ -25,7 +25,7 @@ const HomePage = () => {
         <RecentProjectsCube />
         <AboutHome />
         <SolutionExamples />
-        <Contact />
+        {/* <Contact /> */}
       </main>
     </>
   );

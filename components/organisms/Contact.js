@@ -60,12 +60,10 @@ const StyledSection = styled.section`
 
 const Contact = () => {
   const { locale } = useRouter();
-  const title = sectiontitles?.[4]?.title?.[locale];
   const sectionId = sectiontitles?.[4]?.titleMenuId;
 
   return (
     <Wrapper as="section" id={sectionId}>
-      <SectionHeading>{title}</SectionHeading>
       <TwoColumns>
         <StyledMediaBox>
           {contactIcons?.map((icon) => (

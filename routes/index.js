@@ -27,6 +27,13 @@ const routes = [
       pl: '<przykłady rozwiązań />',
     },
   },
+  {
+    path: '/contact',
+    name: {
+      en: '<kontakt />',
+      pl: '<contact us />',
+    },
+  },
 ];
 
 export default routes;

@@ -4,6 +4,7 @@ export const theme = {
     primaryOpacity: '#18760015',
     secondary: '#1F1F1F',
     back: '#081205',
+    backSecondary: '#030a03',
     particles: '#284A25',
     textPrimary: '#37b844',
     textPrimaryShadow: '#0cd820cc',
