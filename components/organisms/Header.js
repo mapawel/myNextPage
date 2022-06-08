@@ -12,8 +12,7 @@ import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
 import { breakpoint } from 'breakpoints';
 import { headings } from 'assets/data/headings';
 import { uiSubs } from 'assets/data/uiSubs';
-import { myBlurData } from 'helpers/myBlurData';
-import mainImg from 'public/headerImage.jpg';
+import mainImg from 'public/images/headerImage.jpg';
 import { sectiontitles } from 'assets/data/sectiontitles';
 import { scrollToSection } from 'helpers/scrollToSection';
 
@@ -256,7 +255,7 @@ const Header = () => {
         <StyledTwoColumns>
           <StyledTxtBox>
             <StyledTriangle ref={triangleRef} />
-            <StyledLogo ref={logoRef} src="/devconelogo.svg" />
+            <StyledLogo ref={logoRef} src="/icons/devconelogo.svg" />
             <StyledHeadingContainer ref={headinTxtRef}>
               <StyledHeaderTxt>
                 {headings?.[locale]?.[0]}

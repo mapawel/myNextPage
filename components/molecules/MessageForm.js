@@ -7,15 +7,14 @@ import Button from 'components/atoms/Button';
 import { Formik, ErrorMessage } from 'formik';
 import { validatorSchema } from 'validators/validatorSchema';
 import SentMailPopUp from 'components/organisms/SentMailPopUp';
-import spinnerIcon from '../../public/spinner.svg';
 import TextModal from 'components/organisms/TextModal';
 
 const spin = keyframes`
   from {
-    transform: rotate(0)
+    transform: translateY(-50%) rotate(0) 
   }
   to {
-    transform: rotate(360deg)
+    transform: translateY(-50%) rotate(360deg) 
   }
 `;
 
@@ -25,20 +24,23 @@ const StyledButtonBox = styled.div`
   margin-top: 4rem;
 `;
 
-const StyledSubmitButton = styled(Button)`
-  ${({ disabled }) =>
-    disabled &&
+const StyledSubmitButtonBox = styled.div`
+  position: relative;
+  & > img {
+    display: none;
+  }
+  ${({ submitting }) =>
+    submitting &&
     css`
-      position: relative;
-      ::after {
-        content: '';
+      & > img {
+        display: block;
         position: absolute;
-        top: 0;
-        right: -6rem;
-        width: 4rem;
-        height: 4rem;
-        background-image: url('${spinnerIcon}');
-        animation: ${spin} 2s infinite linear;
+        top: 50%;
+        right: -100%;
+        height: 100%;
+        width: 100%;
+        transform: translateY(-50%);
+        animation: ${spin} 1s infinite linear;
       }
     `}
 `;
@@ -88,8 +90,12 @@ const MessageForm = ({ data }) => {
         }}
         validationSchema={validatorSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
-          await sendMail(values, handleSentMailFeedback);
-          resetForm();
+          setSubmitting(true);
+          const test = new Promise((res, rej) => {
+            setTimeout(() => res('ok'), 1000);
+          });
+          await test;
+          // resetForm();
           setSubmitting(false);
         }}
       >
@@ -163,15 +169,19 @@ const MessageForm = ({ data }) => {
             >
               <ErrorMessage component={StyledError} name="acceptTerms" />
             </Input>
+            {console.log('isSubmitting', isSubmitting)}
             <StyledButtonBox>
-              <StyledSubmitButton
-                type="submit"
-                onClick={handleSubmit}
-                disabled={isSubmitting}
-                variant="cta"
-              >
-                send
-              </StyledSubmitButton>
+              <StyledSubmitButtonBox submitting={isSubmitting}>
+                <Button
+                  type="submit"
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                  variant="cta"
+                >
+                  send
+                </Button>
+                <img src="/icons/spinner.svg" alt="spinner" />
+              </StyledSubmitButtonBox>
               <Button onClick={resetForm} variant="noborder">
                 clear
               </Button>

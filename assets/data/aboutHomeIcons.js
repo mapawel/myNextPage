@@ -11,7 +11,7 @@ export const aboutHomeIcons = [
         'Tworzymy projkety nieszablonowe, spersonalizowane, pod Twoje potrzeby',
       ],
     },
-    icon: '/ruller.svg',
+    icon: '/icons/ruller.svg',
   },
   {
     id: 'icon2',
@@ -25,7 +25,7 @@ export const aboutHomeIcons = [
       ],
       pl: ['Nasze projekty mają dawać korzyści, nie tylko działać'],
     },
-    icon: '/graph1.svg',
+    icon: '/icons/graph1.svg',
   },
   {
     id: 'icon3',
@@ -37,6 +37,6 @@ export const aboutHomeIcons = [
       en: ['Easy-to-use applications', 'Technical support'],
       pl: ['Aplikacje proste w obsłudze', 'Wparcie wdrożeniowe'],
     },
-    icon: '/easy2.svg',
+    icon: '/icons/easy2.svg',
   },
 ];

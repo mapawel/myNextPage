@@ -17,6 +17,7 @@ import ImageModal from 'components/organisms/ImageModal';
 import { useImageModal } from 'hooks/useImageModal';
 import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { pageTites } from 'assets/data/pageTitles';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({
@@ -187,11 +188,6 @@ const StyledSmallImg = styled.div`
   position: relative;
   margin: 2rem 0;
   width: 100%;
-  height: 0;
-  padding: 28% 0;
-  > span {
-    transform: translateY(-50%);
-  }
   cursor: pointer;
   border: 1px solid black;
 
@@ -205,7 +201,6 @@ const StyledSmallImg = styled.div`
   ::before {
     content: '';
     width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
     background-color: #000000d4;
@@ -230,22 +225,18 @@ const StyledSmallImg = styled.div`
 
   @media screen and (min-width: ${breakpoint.XS}) {
     width: 90%;
-    padding: 25% 0;
   }
 
   @media screen and (min-width: ${breakpoint.S}) {
     width: 70%;
-    padding: 19% 0;
   }
 
   @media screen and (min-width: ${breakpoint.M}) {
     width: 55%;
-    padding: 15% 0;
   }
 
   @media screen and (min-width: ${breakpoint.L}) {
     width: 100%;
-    padding: 28% 0;
   }
 `;
 
@@ -286,12 +277,7 @@ const DetailProjectPage = ({ selectedProject }) => {
   const {
     images,
     live,
-    detailProjectView: {
-      title,
-      techUsedList,
-      descriptionsForProject,
-      mainImage,
-    },
+    detailProjectView: { title, scopeList, descriptionsForProject, mainImage },
   } = selectedProject;
 
   useEffect(() => {
@@ -365,40 +351,40 @@ const DetailProjectPage = ({ selectedProject }) => {
         <Wrapper as="section">
           <StyledContainer>
             <SectionHeading nomargin component="span">
-              project details
+              {pageTites?.projectDetails?.[locale]}
             </SectionHeading>
             <Link href="/projects" passHref>
               <StyledButton>{uiSubs?.allProjects?.[locale]}</StyledButton>
             </Link>
           </StyledContainer>
-          <StyledHeading>{title}</StyledHeading>
-          <ImageWrapper key={title}>
+          <StyledHeading>{title?.[locale]}</StyledHeading>
+          <ImageWrapper key={title?.[locale]}>
             <Image
               src={mainImage}
-              alt={`image of project ${title} on different devices`}
+              alt={`image of project ${title?.[locale]} on different devices`}
               layout="fill"
               placeholder="blur"
               objectFit="contain"
             />
           </ImageWrapper>
 
-          <StyledSubheading>{techUsedList?.listTitle}</StyledSubheading>
+          <StyledSubheading>{scopeList?.listTitle?.[locale]}</StyledSubheading>
           <StyledListContainer>
             <StyledList ref={stackList}>
-              {techUsedList?.techNames?.map((techName, index) => (
+              {scopeList?.scopeTxts?.[locale]?.map((techName, index) => (
                 <li key={techName + index}>{techName}</li>
               ))}
             </StyledList>
             <StyledRect />
           </StyledListContainer>
-          <StyledSubheading>Description:</StyledSubheading>
+          <StyledSubheading>{uiSubs?.description?.[locale]}</StyledSubheading>
 
           <StyledBox>
             <div>
               {descriptionsForProject?.map(({ id, title, description }) => (
                 <div key={id} className="descriptionToAnim">
-                  <StyledParTitle>{title}</StyledParTitle>
-                  {description?.map((text, index) => (
+                  <StyledParTitle>{title?.[locale]}</StyledParTitle>
+                  {description?.[locale]?.map((text, index) => (
                     <StyledPar key={text + index}>{text}</StyledPar>
                   ))}
                 </div>
@@ -423,7 +409,7 @@ const DetailProjectPage = ({ selectedProject }) => {
                 <StyledSmallImg key={id} onClick={() => openImage(img)}>
                   <Image
                     src={img}
-                    alt={`image of project ${title} on different devices`}
+                    alt={`image of project ${title?.[locale]} on different devices`}
                     layout="responsive"
                     placeholder="blur"
                     sizes={`(max-width: ${breakpoint.M}) 90vw, (max-width: ${breakpoint.L}) 50vw, 25vw`}

@@ -9,9 +9,6 @@ const nextConfig = {
     scrollRestoration: true,
     outputStandalone: true,
   },
-  images: {
-    domains: ['media.graphassets.com'],
-  },
 };
 
 module.exports = nextConfig;

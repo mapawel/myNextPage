@@ -47,5 +47,9 @@ export const uiSubs = {
     en: 'technical details',
     pl: 'szczegóły techniczne',
   },
+  description: {
+    en: 'Description:',
+    pl: 'Opis:',
+  },
 
 }

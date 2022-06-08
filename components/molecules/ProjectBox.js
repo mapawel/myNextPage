@@ -380,7 +380,7 @@ const ProjectBox = ({ slug, title, images, description, live }) => {
 
   return (
     <StyledContainer ref={containerRef} onClick={() => setToolVisible(true)}>
-      <StyledHeading>{title?.toUpperCase()}</StyledHeading>
+      <StyledHeading>{title?.[locale]?.toUpperCase()}</StyledHeading>
       <StyledImgBox>
         {images?.length !== 0 &&
           images?.slice(0, 3).map(({ id, img }, index) => (
@@ -433,10 +433,9 @@ const ProjectBox = ({ slug, title, images, description, live }) => {
 
 ProjectBox.propTypes = {
   slug: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.objectOf(PropTypes.string).isRequired,
   images: PropTypes.arrayOf(PropTypes.object),
   description: PropTypes.string.isRequired,
-  code: PropTypes.string.isRequired,
   live: PropTypes.string.isRequired,
 };
 

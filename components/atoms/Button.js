@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes, css } from 'styled-components';
 

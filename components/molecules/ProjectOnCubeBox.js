@@ -1,9 +1,9 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import styled, { keyframes, css } from 'styled-components';
 import Heading from 'components/atoms/Heading';
 import { breakpoint } from 'breakpoints';
-import { myBlurData } from 'helpers/myBlurData';
 
 const reverseAnim = keyframes`
   0% {
@@ -46,6 +46,7 @@ const StyledHeading = styled(Heading)`
   text-align: center;
   margin-bottom: 1rem;
   font-size: ${({ theme }) => theme.fontSize.s};
+  line-height: 1.1;
 
   @media screen and (max-width: 390px) {
     font-size: 1.8rem;
@@ -93,7 +94,7 @@ const StyledImgBox = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-overflow: hidden;
+  overflow: hidden;
   position: absolute;
   z-index: 0;
   width: calc(100% - 20px);
@@ -134,31 +135,31 @@ overflow: hidden;
   @media screen and (min-width: ${breakpoint.XS}) {
     height: 100px;
     :nth-child(2) {
-    transform: translate(0, 0%);
-  }
-  :nth-child(3) {
-    transform: translate(0, -50%);
-  }
+      transform: translate(0, 0%);
+    }
+    :nth-child(3) {
+      transform: translate(0, -50%);
+    }
   }
 
   @media screen and (min-width: ${breakpoint.S}) {
     height: 140px;
     :nth-child(2) {
-    transform: translate(0, 40%);
-  }
-  :nth-child(3) {
-    transform: translate(0, -30%);
-  }
+      transform: translate(0, 40%);
+    }
+    :nth-child(3) {
+      transform: translate(0, -30%);
+    }
   }
 
   @media screen and (min-width: ${breakpoint.M}) {
     height: 190px;
     :nth-child(2) {
-    transform: translate(0, 20%);
-  }
-  :nth-child(3) {
-    transform: translate(0, -40%);
-  }
+      transform: translate(0, 20%);
+    }
+    :nth-child(3) {
+      transform: translate(0, -40%);
+    }
   }
 
   @media screen and (min-width: ${breakpoint.L}) {
@@ -170,35 +171,39 @@ overflow: hidden;
   }
 `;
 
-const ProjectOnCubeBox = ({ title, images, upSideDown }) => (
-  <StyledContainer upSideDown={upSideDown}>
-    <StyledHeading>{title && title.toUpperCase()}</StyledHeading>
-    <StyledImgBox>
-      {images &&
-        images.length !== 0 &&
-        images.slice(0, 3).map(({ id, img }) => (
-          <ImageWrapper key={id}>
-            <Image
-              src={img}
-              alt=" "
-              layout="responsive"
-              placeholder="blur"
-              sizes={`(max-width: ${breakpoint.L}) 50vw, (max-width: ${breakpoint.XL}) 40vw, 22vw`}
-            />
-          </ImageWrapper>
-        ))}
-    </StyledImgBox>
-  </StyledContainer>
-);
+const ProjectOnCubeBox = ({ title, images, upSideDown }) => {
+  const { locale } = useRouter();
+
+  return (
+    <StyledContainer upSideDown={upSideDown}>
+      <StyledHeading>{title?.[locale]?.toUpperCase()}</StyledHeading>
+      <StyledImgBox>
+        {images &&
+          images.length !== 0 &&
+          images.slice(0, 3).map(({ id, img }) => (
+            <ImageWrapper key={id}>
+              <Image
+                src={img}
+                alt=" "
+                layout="responsive"
+                placeholder="blur"
+                sizes={`(max-width: ${breakpoint.L}) 50vw, (max-width: ${breakpoint.XL}) 40vw, 22vw`}
+              />
+            </ImageWrapper>
+          ))}
+      </StyledImgBox>
+    </StyledContainer>
+  );
+};
 
 ProjectOnCubeBox.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.objectOf(PropTypes.string).isRequired,
   images: PropTypes.arrayOf(PropTypes.object),
   upSideDown: PropTypes.bool,
 };
 
 ProjectOnCubeBox.defaultProps = {
-  title: '',
+  title: { en: '', pl: '' },
   images: [],
   upSideDown: null,
 };

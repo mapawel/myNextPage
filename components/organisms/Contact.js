@@ -71,7 +71,7 @@ const Contact = () => {
           {contactIcons?.map((icon) => (
             <StyledImg
               key={icon.id}
-              src={icon.icon.url}
+              src={icon.icon}
               alt="contact"
               onClick={() => window.open(icon.link, '_blank')}
             />
