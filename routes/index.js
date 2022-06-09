@@ -30,8 +30,8 @@ const routes = [
   {
     path: '/contact',
     name: {
-      en: '<kontakt />',
-      pl: '<contact us />',
+      en: '<contact us />',
+      pl: '<kontakt />',
     },
   },
 ];

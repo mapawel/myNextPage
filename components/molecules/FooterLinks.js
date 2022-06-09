@@ -6,15 +6,22 @@ import routes from 'routes';
 
 const FooterLinksWrapper = styled.div`
   width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
   display: flex;
   flex-direction: column;
-  margin-bottom: 4rem;
+  align-items: start;
   @media screen and (min-width: ${breakpoint.M}) {
-    width: 38%;
+    width: 35%;
+    margin-bottom: 0;
+  }
+
+  @media screen and (min-width: ${breakpoint.L}) {
+    width: 30%;
   }
 
   @media screen and (min-width: ${breakpoint.XL}) {
-    width: 40%;
+    width: 35%;
   }
 `;
 
@@ -25,6 +32,7 @@ const StyledLogo = styled.img`
 `;
 
 const FooterListContainer = styled.div`
+align-self: center;
   display: flex;
   justify-content: center;
   @media screen and (max-width: ${breakpoint.L}) {
@@ -46,19 +54,24 @@ const FooterLinksList = styled.ul`
   font-size: ${({ theme }) => theme.fontSize.s};
   margin-top: 10px;
   margin-left: 20px;
-  cursor: pointer;
-  li {
-    line-height: 1.5;
-    padding: 1rem 0;
 
-    &:hover {
-      color: ${({ theme }) => theme.color.textPrimary};
-    }
-  }
   @media screen and (max-width: ${breakpoint.L}) {
     font-size: ${({ theme }) => theme.fontSize.xs};
     margin-top: 5px;
     margin-left: 10px;
+  }
+`;
+
+const StyledAtag = styled.a`
+  display: inline-block;
+  text-decoration: none;
+  color: ${({ theme }) => theme.color.textSecondary};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  padding: 1rem 0;
+  line-height: 1.5;
+  cursor: pointer;
+  &:hover {
+    color: ${({ theme }) => theme.color.textPrimary};
   }
 `;
 
@@ -67,14 +80,19 @@ const FooterLinks = () => {
 
   return (
     <FooterLinksWrapper>
-      <StyledLogo src="/icons/devconelogo.svg" />
+      <Link href="/">
+        <a>
+          <StyledLogo src="/icons/devconelogo.svg" />
+        </a>
+      </Link>
       <FooterListContainer>
         <FooterListWrapper>
           <FooterLinksList>
             {routes?.map(({ name, path }) => (
               <li key={path}>
-                {/* <Link href={path}>{name?.[locale]}</Link> */}
-                <p href={path}>{name?.[locale]}</p>
+                <Link href={path} passHref>
+                  <StyledAtag>{name?.[locale]}</StyledAtag>
+                </Link>
               </li>
             ))}
           </FooterLinksList>

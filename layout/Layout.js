@@ -7,6 +7,7 @@ import Footer from 'components/organisms/Footer';
 import useMainConsents from 'hooks/useMainConsents';
 
 const Wrapper = styled.div`
+  overflow: hidden;
   position: relative;
   z-index: 0;
   background-color: ${({ theme }) => theme.color.back};

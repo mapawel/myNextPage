@@ -169,7 +169,6 @@ const MessageForm = ({ data }) => {
             >
               <ErrorMessage component={StyledError} name="acceptTerms" />
             </Input>
-            {console.log('isSubmitting', isSubmitting)}
             <StyledButtonBox>
               <StyledSubmitButtonBox submitting={isSubmitting}>
                 <Button

@@ -14,20 +14,24 @@ import { uiSubs } from 'assets/data/uiSubs';
 gsap.registerPlugin(ScrollTrigger);
 
 const ButtonContainer = styled.div`
+  margin-left: auto;
   display: flex;
   flex-direction: column;
   @media screen and (min-width: ${breakpoint.S}) {
     flex-direction: row;
-    justify-content: end;
+    justify-content: space-between;
     margin-right: 2rem;
   }
 
   @media screen and (min-width: ${breakpoint.M}) {
+    justify-content: end;
     margin-right: 5rem;
   }
 
   @media screen and (min-width: ${breakpoint.L}) {
+    justify-content: space-between;
     margin-right: 10rem;
+    width: 70rem;
   }
 
   @media screen and (min-width: ${breakpoint.XL}) {
@@ -68,14 +72,10 @@ const SolutionExamples = () => {
       />
       <ButtonContainer>
         <Link href="/solutions" passHref>
-          <StyledButton >
-            {uiSubs?.ourSolutions?.[locale]}
-          </StyledButton>
+          <StyledButton>{uiSubs?.ourSolutions?.[locale]}</StyledButton>
         </Link>
         <Link href="/projects" passHref>
-          <StyledButton >
-            {uiSubs?.ourProjects?.[locale]}
-          </StyledButton>
+          <StyledButton>{uiSubs?.ourProjects?.[locale]}</StyledButton>
         </Link>
       </ButtonContainer>
     </Wrapper>

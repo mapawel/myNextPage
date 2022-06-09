@@ -7,41 +7,41 @@ const FooterSocialWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
+  order: 2;
 
+  @media screen and (min-width: ${breakpoint.S}) {
+    margin-bottom: 0;
+  }
   @media screen and (min-width: ${breakpoint.XL}) {
-    order: 0;
-    width: 10%;
+    order: 1;
+    align-self: center;
+    width: 15%;
     flex-direction: column;
   }
 `;
 
 const StyledImg = styled.img`
   width: 5rem;
-  margin: 0 3rem 2rem;
+  margin: 2rem 3rem 2rem;
   transition: opacity 0.3s;
   cursor: pointer;
   :hover {
     opacity: 0.5;
-  }
-
-  @media screen and (min-width: ${breakpoint.S}) {
-    margin: 1rem 1rem 5rem;
-  }
-  @media screen and (min-width: ${breakpoint.XL}) {
-    width: 7rem;
   }
 `;
 
 const FiiterSocial = () => (
   <FooterSocialWrapper>
     {contactIcons?.map((icon) => (
-      <StyledImg
+      <a
         key={icon.id}
-        src={icon.icon}
-        alt="contact"
-        onClick={() => window.open(icon.link, '_blank')}
-      />
+        href={icon.link}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <StyledImg src={icon.icon} alt="contact" />
+      </a>
     ))}
   </FooterSocialWrapper>
 );

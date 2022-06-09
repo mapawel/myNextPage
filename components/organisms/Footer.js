@@ -12,11 +12,11 @@ import FooterSocial from 'components/molecules/FooterSocial';
 const Footerwrapper = styled.footer`
   z-index: -1;
   position: relative;
-  bottom: 0;
   width: 100%;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   background: ${({ theme }) => theme.color.backSecondary};
   ::before,
   ::after {
@@ -32,10 +32,13 @@ const Footerwrapper = styled.footer`
   }
   ::before {
     left: 5%;
-    border-bottom: ${({ theme }) => `6rem solid ${theme.color.primaryOpacity}`};
+    border-bottom: ${({ theme }) => `6rem solid ${theme.color.particles}`};
+    opacity: 0.1;
   }
   ::after {
-    border-top: ${({ theme }) => `6rem solid ${theme.color.primaryOpacity}`};
+    z-index: -1;
+    border-top: ${({ theme }) => `6rem solid ${theme.color.particles}`};
+    opacity: 0.2;
   }
 
   & + div {
@@ -46,22 +49,25 @@ const Footerwrapper = styled.footer`
   @media screen and (min-width: ${breakpoint.M}) {
     position: fixed;
     bottom: 0;
-    height: 67rem;
+    height: 58rem;
     width: 100%;
     z-index: -1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
 
     & + div {
-      height: 67rem;
+      height: 58rem;
     }
   }
 `;
 
+const StyledWrapper = styled(Wrapper)`
+  height: 100%;
+`
 const Container = styled.div`
+  height: 100%;
   display: flex;
-  /* padding: 15px; */
+  flex-shrink: 0;
   flex-direction: column;
   align-items: center;
 
@@ -69,12 +75,12 @@ const Container = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: flex-start;
   }
 `;
 
 const FooterBar = styled.div`
-  margin-top: auto;
+  /* margin-top: auto; */
   position: relative;
   height: 6rem;
   background-color: ${({ theme }) => theme.color.back};
@@ -145,13 +151,13 @@ const StyledUpTxt = styled(StyledParagraph)`
 const Footer = () => {
   return (
     <Footerwrapper>
-      <Wrapper>
+      <StyledWrapper>
         <Container>
-          <FooterContacts />
           <FooterLinks />
+          <FooterContacts />
           <FooterSocial />
         </Container>
-      </Wrapper>
+      </StyledWrapper>
       <FooterBar>
         <StyledParagraph>
           &copy; {new Date().getFullYear()}{' '}

@@ -6,37 +6,43 @@ import Button from 'components/atoms/Button';
 import { uiSubs } from 'assets/data/uiSubs';
 
 const FooterContactsWrapper = styled.div`
-  /* border: 1px solid red; */
+  order: -1;
   display: flex;
   flex-direction: column;
   width: 100%;
 
   @media screen and (min-width: ${breakpoint.M}) {
-    /* width: 58%; */
+    width: 60%;
+    order: 1;
+  }
+
+  @media screen and (min-width: ${breakpoint.L}) {
+    width: 70%;
   }
 
   @media screen and (min-width: ${breakpoint.XL}) {
-    order: 1;
-    /* width: 40%; */
+    width: 45%;
+    order: 2;
   }
 `;
 
 const ButtonContainer = styled.div`
-align-self: stretch;
-/* border: 1px solid lime; */
-display: flex;
-flex-direction: column;
-@media screen and (min-width: ${breakpoint.S}) {
-    align-self: end;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: ${breakpoint.S}) {
     margin-right: 2rem;
   }
 
   @media screen and (min-width: ${breakpoint.M}) {
+    /* align-self: end; */
     margin-right: 5rem;
   }
 
   @media screen and (min-width: ${breakpoint.L}) {
+    align-self: end;
     margin-right: 10rem;
+    width: 70rem;
   }
 
   @media screen and (min-width: ${breakpoint.XL}) {
@@ -66,8 +72,8 @@ const FooterContacts = () => {
   return (
     <FooterContactsWrapper>
       <ButtonContainer>
-        <Link href="/solutions" passHref>
-          <StyledButton>{uiSubs?.ourSolutions?.[locale]}</StyledButton>
+        <Link href="/contact" passHref>
+          <StyledButton variant="cta">{uiSubs?.contact?.[locale]?.toUpperCase()}</StyledButton>
         </Link>
       </ButtonContainer>
     </FooterContactsWrapper>

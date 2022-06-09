@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import styled from 'styled-components';
 import Wrapper from 'components/templates/Wrapper';
-import SectionHeading from 'components/atoms/SectionHeading';
 import Heading from 'components/atoms/Heading';
 import MessageForm from 'components/molecules/MessageForm';
 import TwoColumns from 'components/templates/TwoColumns';
@@ -25,11 +25,12 @@ const StyledMediaBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 5rem;
 
   @media screen and (min-width: ${breakpoint.S}) {
     flex-direction: column;
+    gap: 4rem;
   }
 `;
 
@@ -39,7 +40,7 @@ const StyledHeading = styled(Heading)`
 
 const StyledImg = styled.img`
   width: 5rem;
-  margin: 0 3rem 2rem;
+  margin: 2rem 3rem 2rem;
   transition: opacity 0.3s;
   cursor: pointer;
   :hover {
@@ -47,15 +48,11 @@ const StyledImg = styled.img`
   }
 
   @media screen and (min-width: ${breakpoint.S}) {
-    margin: 1rem 1rem 5rem;
+    margin: 1rem;
   }
   @media screen and (min-width: ${breakpoint.XL}) {
     width: 7rem;
   }
-`;
-
-const StyledSection = styled.section`
-  min-height: 100vh;
 `;
 
 const Contact = () => {
@@ -67,12 +64,14 @@ const Contact = () => {
       <TwoColumns>
         <StyledMediaBox>
           {contactIcons?.map((icon) => (
-            <StyledImg
+            <a
               key={icon.id}
-              src={icon.icon}
-              alt="contact"
-              onClick={() => window.open(icon.link, '_blank')}
-            />
+              href={icon.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <StyledImg src={icon.icon} alt="contact" />
+            </a>
           ))}
         </StyledMediaBox>
         <StyledMessageBox>

@@ -67,13 +67,17 @@ const StyledListContainer = styled.div`
 const StyledList = styled.ul`
   list-style: none;
   margin: auto;
+  display: flex;
+  flex-direction: column;
 `;
 
 const StyledListElement = styled.a`
+  display: inline-block;
   padding: 2rem 0;
   font-size: ${({ theme }) => theme.fontSize.m};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   color: ${({ theme }) => theme.color.textPrimary};
+  text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
 
@@ -200,7 +204,7 @@ const Menu = () => {
               onMouseOut={(e) => hoverMenuElAnim(e, false)}
               key={path}
             >
-              <Link href={path}>
+              <Link href={path} passHref>
                 <StyledListElement className="menuLink">
                   {name?.[locale]}
                 </StyledListElement>
