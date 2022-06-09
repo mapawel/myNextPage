@@ -52,7 +52,7 @@ export const uiSubs = {
     pl: 'Opis:',
   },
   contact: {
-    en: 'ask about cooperation',
+    en: 'ask about a cooperation',
     pl: 'zapytaj o współpracę',
   },
 

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { breakpoint } from 'breakpoints';
-import Button from 'components/atoms/Button';
+import ButtonLink from 'components/atoms/ButtonLink';
 import { uiSubs } from 'assets/data/uiSubs';
 
 const FooterContactsWrapper = styled.div`
@@ -50,7 +50,7 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const StyledButton = styled(Button)`
+const StyledButtonLink = styled(ButtonLink)`
   margin-top: 1rem;
   margin-bottom: 1rem;
 
@@ -62,9 +62,6 @@ const StyledButton = styled(Button)`
     padding: 2.5rem 3rem;
   }
 
-  @media screen and (min-width: ${breakpoint.XL}) {
-    font-size: ${({ theme }) => theme.fontSize.s};
-  }
 `;
 
 const FooterContacts = () => {
@@ -73,7 +70,7 @@ const FooterContacts = () => {
     <FooterContactsWrapper>
       <ButtonContainer>
         <Link href="/contact" passHref>
-          <StyledButton variant="cta">{uiSubs?.contact?.[locale]?.toUpperCase()}</StyledButton>
+          <StyledButtonLink variant="cta">{uiSubs?.contact?.[locale]?.toUpperCase()}</StyledButtonLink>
         </Link>
       </ButtonContainer>
     </FooterContactsWrapper>

@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import Wrapper from 'components/templates/Wrapper';
@@ -6,7 +7,7 @@ import TwoColumns from 'components/templates/TwoColumns';
 import SectionHeading from 'components/atoms/SectionHeading';
 import IconInfo from 'components/atoms/IconInfo';
 import TextBox from 'components/molecules/TextBox';
-import Button from 'components/atoms/Button';
+import ButtonLink from 'components/atoms/ButtonLink';
 import { breakpoint } from 'breakpoints';
 import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -46,7 +47,7 @@ const StyledColumn = styled.div`
   }
 `;
 
-const StyledButton = styled(Button)`
+const StyledButtonLink = styled(ButtonLink)`
   margin-top: 3rem;
   margin-bottom: 3rem;
 
@@ -67,7 +68,6 @@ const StyledButton = styled(Button)`
   }
 
   @media screen and (min-width: ${breakpoint.XL}) {
-    font-size: ${({ theme }) => theme.fontSize.s};
     margin-right: 15rem;
   }
 `;
@@ -84,10 +84,6 @@ const AboutHome = () => {
   const sectionId = sectiontitles?.[2]?.titleMenuId;
 
   const iconsArrRef = useRef(null);
-
-  const handleClick = () => {
-    router.push('/about')
-  }
 
   useEffect(() => {
     const iconsAnimTarget = (triggerElement) => ({
@@ -123,9 +119,11 @@ const AboutHome = () => {
           ))}
         </StyledColumn>
       </StyledTwoColumns>
-      <StyledButton variant="cta" onClick={handleClick}>
-        {uiSubs?.aboutMore?.[locale]}
-      </StyledButton>
+      <Link href="/about" passHref>
+        <StyledButtonLink>
+          {uiSubs?.aboutMore?.[locale]}
+        </StyledButtonLink>
+      </Link>
     </StyledWrapper>
   );
 };

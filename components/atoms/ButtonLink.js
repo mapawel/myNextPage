@@ -43,8 +43,10 @@ const StyledButton = styled.a`
   border: ${({ theme }) => `2px solid ${theme.color.textPrimary}`};
   padding: 1.5rem 2rem;
   font-size: ${({ theme }) => theme.fontSize.xxs};
-  font-family: ${({ theme }) => theme.fontFamily.secondary}
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
   text-align: center;
+  line-height: 1.5;
+
   ${({ variant }) => {
     switch (variant) {
       case 'noborder':
@@ -90,6 +92,7 @@ const StyledButton = styled.a`
       }
     }
   }
+
 `;
 
 const ButtonLink = React.forwardRef(

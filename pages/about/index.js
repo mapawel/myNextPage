@@ -8,7 +8,7 @@ import TwoColumns from 'components/templates/TwoColumns';
 import SectionHeading from 'components/atoms/SectionHeading';
 import IconInfo from 'components/atoms/IconInfo';
 import Rect from 'components/atoms/Rect';
-import Button from 'components/atoms/Button';
+import ButtonLink from 'components/atoms/ButtonLink';
 import TextBox from 'components/molecules/TextBox';
 import Heading from 'components/atoms/Heading';
 import useBrowser from 'hooks/useBrowser';
@@ -34,14 +34,44 @@ const StyledTwoColumns = styled(TwoColumns)`
   }
 `;
 
-const StyledButton = styled(Button)`
-  margin: 2rem 0;
-  line-height: 1.35;
+const ButtonContainer = styled.div`
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: ${breakpoint.S}) {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 2rem;
+  }
 
   @media screen and (min-width: ${breakpoint.M}) {
-    font-size: ${({ theme }) => theme.fontSize.xs};
+    justify-content: end;
+    margin-right: 5rem;
+  }
+
+  @media screen and (min-width: ${breakpoint.L}) {
+    justify-content: space-between;
+    margin-right: 10rem;
+    width: 70rem;
+  }
+
+  @media screen and (min-width: ${breakpoint.XL}) {
+    margin-right: 14rem;
+  }
+`;
+
+const StyledButtonLink = styled(ButtonLink)`
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  @media screen and (min-width: ${breakpoint.S}) {
+    margin: 1rem;
+  }
+
+  @media screen and (min-width: ${breakpoint.M}) {
     padding: 2.5rem 3rem;
   }
+
 `;
 
 const StyledColumn = styled.div`
@@ -72,38 +102,25 @@ const Arrows = styled.img`
 
 const StyledListContainer = styled.div`
   position: relative;
-  max-width: 40rem;
-  margin: 20rem auto 10rem;
-  
-  @media screen and (min-width: ${breakpoint.M}) {
-    max-width: 60rem;
-    margin: 35rem auto 10rem;
-  }
-`;
-
-const StyledList = styled.ul`
-  width: 90%;
-  margin: 0 auto;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  align-content: start;
 `;
 
 const StyledRect = styled(Rect)`
   position: absolute;
-  width: 40rem;
-  height: 40rem;
-  top: -20%;
-  left: 0;
+  width: 50rem;
+  height: 50rem;
+  top: -50%;
+  right: 10%;
   transform: rotate(10deg);
-  
-  @media screen and (min-width: ${breakpoint.M}) {
-    top: -30%;
+
+  @media screen and (min-width: ${breakpoint.S}) {
+    top: -100%;
     width: 60rem;
     height: 60rem;
+  }
+
+  @media screen and (min-width: ${breakpoint.M}) {
+    width: 70rem;
+    height: 70rem;
   }
 `;
 
@@ -173,17 +190,18 @@ const AboutPage = () => {
             )}
           </StyledCarouselContainer>
           <StyledListContainer>
-            <StyledList>
-              <Link href="/contact" passHref>
-                <StyledButton variant="cta">{uiSubs?.contact?.[locale]}</StyledButton>
+            <ButtonContainer>
+              <Link href="/" passHref>
+                <StyledButtonLink>
+                  {uiSubs?.home?.[locale]}
+                </StyledButtonLink>
               </Link>
               <Link href="/projects" passHref>
-                <StyledButton>{uiSubs?.ourProjects?.[locale]}</StyledButton>
+                <StyledButtonLink>
+                  {uiSubs?.ourProjects?.[locale]}
+                </StyledButtonLink>
               </Link>
-              <Link href="/" passHref>
-                <StyledButton>{uiSubs?.home?.[locale]}</StyledButton>
-              </Link>
-            </StyledList>
+            </ButtonContainer>
             <StyledRect />
           </StyledListContainer>
         </Wrapper>

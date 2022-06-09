@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import Wrapper from 'components/templates/Wrapper';
 import SectionHeading from 'components/atoms/SectionHeading';
-import Button from 'components/atoms/Button';
+import ButtonLink from 'components/atoms/ButtonLink';
 import Paragraph from 'components/atoms/Paragraph';
 import { breakpoint } from 'breakpoints';
 import { gsap } from 'gsap/dist/gsap';
@@ -27,7 +28,7 @@ const StyledContainer = styled.div`
   align-items: center;
 `;
 
-const StyledButton = styled(Button)`
+const StyledButtonLink = styled(ButtonLink)`
   margin-top: 3rem;
   margin-bottom: 3rem;
 
@@ -48,7 +49,6 @@ const StyledButton = styled(Button)`
   }
 
   @media screen and (min-width: ${breakpoint.XL}) {
-    font-size: ${({ theme }) => theme.fontSize.s};
     margin-right: 15rem;
   }
 `;
@@ -107,11 +107,6 @@ const RecentProjectsCube = () => {
     return () => st.kill();
   });
 
-  const handleDetailsClick = () => {
-    router.push('/projects');
-    window.scrollTo(0, 0);
-  };
-
   return (
     <StyledWrapper as="section" id={sectionId}>
       <SectionHeading nomargin>{title}</SectionHeading>
@@ -127,9 +122,11 @@ const RecentProjectsCube = () => {
           setInstructionVisible={setInstructionVisible}
         />
       </StyledContainer>
-      <StyledButton variant="cta" onClick={handleDetailsClick}>
-        {uiSubs?.moreProjects?.[locale]}
-      </StyledButton>
+      <Link href="/projects" passHref>
+        <StyledButtonLink>
+          {uiSubs?.moreProjects?.[locale]}
+        </StyledButtonLink>
+      </Link>
     </StyledWrapper>
   );
 };

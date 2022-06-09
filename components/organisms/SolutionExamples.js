@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Wrapper from 'components/templates/Wrapper';
 import SectionHeading from 'components/atoms/SectionHeading';
 import List from 'components/molecules/List';
-import Button from 'components/atoms/Button';
+import ButtonLink from 'components/atoms/ButtonLink';
 import { breakpoint } from 'breakpoints';
 import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -39,7 +39,7 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const StyledButton = styled(Button)`
+const StyledButtonLink = styled(ButtonLink)`
   margin-top: 1rem;
   margin-bottom: 1rem;
 
@@ -49,10 +49,6 @@ const StyledButton = styled(Button)`
 
   @media screen and (min-width: ${breakpoint.M}) {
     padding: 2.5rem 3rem;
-  }
-
-  @media screen and (min-width: ${breakpoint.XL}) {
-    font-size: ${({ theme }) => theme.fontSize.s};
   }
 `;
 
@@ -72,10 +68,14 @@ const SolutionExamples = () => {
       />
       <ButtonContainer>
         <Link href="/solutions" passHref>
-          <StyledButton>{uiSubs?.ourSolutions?.[locale]}</StyledButton>
+          <StyledButtonLink>
+            {uiSubs?.ourSolutions?.[locale]}
+          </StyledButtonLink>
         </Link>
         <Link href="/projects" passHref>
-          <StyledButton>{uiSubs?.ourProjects?.[locale]}</StyledButton>
+          <StyledButtonLink>
+            {uiSubs?.ourProjects?.[locale]}
+          </StyledButtonLink>
         </Link>
       </ButtonContainer>
     </Wrapper>

@@ -366,7 +366,6 @@ const DetailProjectPage = ({ selectedProject }) => {
       </Head>
       <main>
         <Wrapper as="section">
-          <h1>{title}</h1>
           <h2>{asPath}</h2>
         </Wrapper>
       </main>
