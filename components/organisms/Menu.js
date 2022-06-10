@@ -206,11 +206,14 @@ const Menu = () => {
   }, [manuOpen]);
 
   useEffect(() => {
-    // const handleRouteChange = () => toggleMenu();
+    const handleRouteChange = () => {
+      if (!manuOpen) return null;
+      toggleMenu();
+    };
 
-    router.events.on('routeChangeComplete', toggleMenu);
+    router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
-      router.events.off('routeChangeComplete', toggleMenu);
+      router.events.off('routeChangeComplete', handleRouteChange);
     };
   }, [toggleMenu, router.events]);
 
