@@ -1,3 +1,5 @@
+import piotrPimg from 'public/images/piotrp.jpeg';
+
 export const aboutPage = {
   top: {
     title: {
@@ -16,5 +18,17 @@ export const aboutPage = {
         'Nie u nas! My zajmiemy się rozwiązaniem od A do Z, od potrzeby po jej wypełnienie dzięki rozwiązaniom webowym.',
       ],
     },
+  },
+  quote: {
+    author: 'Piotr Parys, Bluechip',
+    text: {
+      en: [
+        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis aliquam esse facilis impedit hic! Minima, doloremque ea! Officiis dignissimos nam vero commodi quos repellat molestias voluptates asperiores eveniet vel? Adipisci!',
+      ],
+      pl: [
+        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis aliquam esse facilis impedit hic! Minima, doloremque ea! Officiis dignissimos nam vero commodi quos repellat molestias voluptates asperiores eveniet vel? Adipisci!',
+      ],
+    },
+    img: piotrPimg,
   },
 };

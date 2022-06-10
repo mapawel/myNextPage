@@ -60,8 +60,14 @@ const StyledError = styled.p`
   text-decoration: underline;
 `;
 
-const StyledLink = styled.a`
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+const StyledButton = styled.button`
+  border: none;
+  background: none;
+  color: ${({ theme }) => theme.color.particles};
+  font-weight: ${({ theme }) => theme.fontWeight.semibold};
+  font-family: ${({ theme }) => theme.fontFamily.main};
+  font-size: ${({ theme }) => theme.fontSize.xs};
+  font-style: italic;
   text-decoration: underline;
   cursor: pointer;
 `;
@@ -156,7 +162,7 @@ const MessageForm = ({ data }) => {
               value={values.acceptTerms}
               labelTxt="I agree to the"
               labelComponent={
-                <StyledLink onClick={togglePolicy}>
+                <StyledButton onClick={togglePolicy}>
                   Privacy Policy
                   {isPolicyVisible && (
                     <TextModal
@@ -164,7 +170,7 @@ const MessageForm = ({ data }) => {
                       closeModal={togglePolicy}
                     />
                   )}
-                </StyledLink>
+                </StyledButton>
               }
             >
               <ErrorMessage component={StyledError} name="acceptTerms" />

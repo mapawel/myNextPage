@@ -5,7 +5,7 @@ import { breakpoint } from 'breakpoints';
 import useBrowser from 'hooks/useBrowser';
 
 const TrianglesBox = styled.div`
-  z-index: 10;
+  z-index: 1000;
   position: fixed;
   transform: translate(-27px, -5px);
   opacity: ${({ manuBarVisible }) => (manuBarVisible ? 1 : 0)};

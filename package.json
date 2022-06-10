@@ -14,6 +14,7 @@
     "next": "12.1.6",
     "particlesjs": "^2.2.3",
     "react": "18.1.0",
+    "react-a11y-dialog": "^6.1.5",
     "react-dom": "18.1.0",
     "react-portal": "^4.2.2",
     "styled-components": "^5.3.5",

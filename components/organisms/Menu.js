@@ -4,8 +4,8 @@ import { useRouter } from 'next/router';
 import styled, { css, keyframes } from 'styled-components';
 import { gsap } from 'gsap/dist/gsap';
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
+import { useA11yDialog } from 'react-a11y-dialog';
 import { breakpoint } from 'breakpoints';
-// import Switch from 'templates/Switch';
 import MenuBar from 'components/molecules/MenuBar';
 import routes from 'routes';
 import LocaleSwitch from 'components/molecules/LocaleSwitch';
@@ -51,20 +51,20 @@ const StyledBlend = styled.div`
 `;
 
 const StyledListContainer = styled.div`
-  position: fixed;
   z-index: 1000;
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
   display: ${({ manuOpen }) => (manuOpen ? 'flex' : 'none')};
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  align-items: start;
+  position: fixed;
+  justify-content: start;
+  overflow-y: auto;
+  gap: 5vh;
 `;
 
 const StyledList = styled.ul`
+  position: relative;
   list-style: none;
   margin: auto;
   display: flex;
@@ -98,13 +98,28 @@ const StyledListElement = styled.a`
   }
 `;
 
+const StyledLogo = styled.img``;
+
+const StyledAtag = styled.a`
+  display: block;
+  width: 70vw;
+  max-width: 50rem;
+  margin-top: 10vh;
+  margin-left: 10vw;
+`;
+
 const Menu = () => {
   const router = useRouter();
   const { locale } = router;
   const [manuOpen, setMenuOpen] = useState(false);
   const [manuBarVisible, setMenuBarVisible] = useState(false);
   const menuListRef = useRef(null);
-  const switchRef = useRef(null);
+  const logoRef = useRef(null);
+  const [instance, attr] = useA11yDialog({
+    id: 'menu',
+    role: 'dialog',
+    title: 'menu',
+  });
 
   const menuElementsAnim = () => {
     tl.clear();
@@ -124,12 +139,12 @@ const Menu = () => {
         stagger: 0.15,
       }
     ).fromTo(
-      switchRef.current,
+      logoRef.current,
       { opacity: 0 },
       {
         opacity: 1,
-        duration: 0.3,
-        delay: 0.3,
+        duration: 1.7,
+        delay: '-0.9',
       }
     );
   };
@@ -160,30 +175,44 @@ const Menu = () => {
     else tl2.seek(0).pause().clear();
   };
 
-  const closeMenu = () => {
+  const toggleMenu = () => {
     setMenuOpen((prevState) => !prevState);
+    if (!manuOpen) {
+      instance.show();
+    }
+    if (manuOpen) {
+      instance.hide();
+    }
     menuElementsAnim();
+  };
+
+  const checkEsc = (e) => {
+    if (e.code === 'Escape') {
+      toggleMenu();
+    }
   };
 
   const handleClick = (e) => {
     if (e.target.closest('.menuLink')) return null;
-    if (e.target.closest('#switch')) return setTimeout(closeMenu, 300);
-    closeMenu();
+    toggleMenu();
   };
 
   useEffect(() => {
-    if (manuOpen) document.body.style.overflowY = 'hidden';
-    else document.body.style.overflowY = 'auto';
+    if (manuOpen) {
+      document.body.style.overflowY = 'hidden';
+    } else {
+      document.body.style.overflowY = 'auto';
+    }
   }, [manuOpen]);
 
   useEffect(() => {
-    const handleRouteChange = () => setMenuOpen(false);
+    // const handleRouteChange = () => toggleMenu();
 
-    router.events.on('routeChangeComplete', handleRouteChange);
+    router.events.on('routeChangeComplete', toggleMenu);
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
+      router.events.off('routeChangeComplete', toggleMenu);
     };
-  }, [closeMenu, router.events]);
+  }, [toggleMenu, router.events]);
 
   useEffect(() => {
     const showMenuBar = () => {
@@ -193,10 +222,24 @@ const Menu = () => {
     return () => window.removeEventListener('scroll', showMenuBar);
   }, []);
 
+  useEffect(() => {
+    if (instance) window.addEventListener('keydown', checkEsc);
+    return () => window.removeEventListener('keydown', checkEsc);
+  }, [instance, checkEsc, toggleMenu]);
+
   return (
-    <menu>
+    <menu {...attr.container}>
       <StyledBlend manuOpen={manuOpen} />
-      <StyledListContainer manuOpen={manuOpen} onClick={(e) => handleClick(e)}>
+      <StyledListContainer
+        id="menu"
+        manuOpen={manuOpen}
+        onClick={(e) => handleClick(e)}
+      >
+        <Link href="/" passHref>
+          <StyledAtag ref={logoRef}>
+            <StyledLogo src="/icons/devconelogo.svg" />
+          </StyledAtag>
+        </Link>
         <StyledList ref={menuListRef}>
           {routes?.map(({ name, path }) => (
             <li
@@ -205,22 +248,22 @@ const Menu = () => {
               key={path}
             >
               <Link href={path} passHref>
-                <StyledListElement className="menuLink">
+                <StyledListElement className="menuLink" {...attr.title}>
                   {name?.[locale]}
                 </StyledListElement>
               </Link>
             </li>
           ))}
         </StyledList>
-        {/* <Switch ref={switchRef} /> */}
       </StyledListContainer>
-      <LocaleSwitch manuBarVisible={manuBarVisible} />
       <MenuBar
         handleClick={handleClick}
         manuOpen={manuOpen}
         manuBarVisible={manuBarVisible}
         setMenuBarVisible={setMenuBarVisible}
+        dialog={attr}
       />
+      <LocaleSwitch manuBarVisible={manuBarVisible} />
     </menu>
   );
 };

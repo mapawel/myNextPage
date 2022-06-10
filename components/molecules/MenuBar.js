@@ -118,7 +118,12 @@ const StyledButton = styled.button`
     `}
 `;
 
-const MenuBar = ({ handleClick, manuOpen, manuBarVisible, setMenuBarVisible }) => {
+const MenuBar = ({
+  handleClick,
+  manuOpen,
+  manuBarVisible,
+  setMenuBarVisible,
+}) => {
   const { pathname } = useRouter();
   const [manuBarWide, setMenuBarWide] = useState(true);
 

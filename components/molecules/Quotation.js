@@ -2,7 +2,6 @@ import Image from 'next/image';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { breakpoint } from 'breakpoints';
-import piotrPimg from 'public/images/piotrp.jpeg';
 
 const QuotWrapper = styled.div`
   position: relative;
@@ -103,7 +102,7 @@ const Quotation = ({ text, img, author }) => (
     </StyledQuotationTxtBox>
     <ImageWrapper>
       <Image
-        src={piotrPimg}
+        src={img}
         alt=" "
         layout="responsive"
         placeholder="blur"

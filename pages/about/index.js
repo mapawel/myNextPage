@@ -185,9 +185,9 @@ const AboutPage = () => {
             <TextBox data={aboutPage?.top} triangle />
             <StyledColumn>
               <Quotation
-                text="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis aliquam esse facilis impedit hic! Minima, doloremque ea! Officiis dignissimos nam vero commodi quos repellat molestias voluptates asperiores eveniet vel? Adipisci!"
-                // img=""
-                author="Piotr Parys, Bluechip"
+                text={aboutPage?.quote?.text?.[locale]}
+                img={aboutPage?.quote?.img}
+                author={aboutPage?.quote?.author}
               />
             </StyledColumn>
           </StyledTwoColumns>
