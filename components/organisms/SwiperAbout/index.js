@@ -15,7 +15,7 @@ const Card = styled.div`
   justify-content: center;
 `;
 
-const SwiperAbout = ({ slides }) => {
+const SwiperAbout = ({ slides, setSwiper }) => {
   SwiperCore.use([Autoplay, Navigation]);
 
   return (
@@ -38,6 +38,7 @@ const SwiperAbout = ({ slides }) => {
           slidesPerView: 3,
         },
       }}
+      onSwiper={(swiper) => setSwiper(swiper)}
     >
       {slides?.map(({ id, icon, title, content }, index) => (
         <SwiperSlide id={id} tag="li" key={id} style={swiperSlideStyle}>

@@ -1,7 +1,7 @@
 export const aboutPageIcons = {
   title: {
     en: 'how we work:',
-    pl: 'schemat działania:',
+    pl: 'jak działamy:',
   },
   listed: [
   {

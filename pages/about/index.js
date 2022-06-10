@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
@@ -13,15 +14,16 @@ import TextBox from 'components/molecules/TextBox';
 import Heading from 'components/atoms/Heading';
 import useBrowser from 'hooks/useBrowser';
 import { breakpoint } from 'breakpoints';
-import { sectiontitles } from 'assets/data/sectiontitles';
 import { aboutPage } from 'assets/data/aboutPage';
 import { aboutPageIcons } from 'assets/data/aboutPageIcons';
 import SwiperAbout from 'components/organisms/SwiperAbout';
 import { uiSubs } from 'assets/data/uiSubs';
 import routes from 'routes';
+import Quotation from 'components/molecules/Quotation';
 
 const StyledTwoColumns = styled(TwoColumns)`
   margin: 2rem 0 5rem;
+  gap: 4rem;
   :last-child {
     margin-bottom: 0;
   }
@@ -71,14 +73,13 @@ const StyledButtonLink = styled(ButtonLink)`
   @media screen and (min-width: ${breakpoint.M}) {
     padding: 2.5rem 3rem;
   }
-
 `;
 
 const StyledColumn = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: flex-end;
+  align-items: flex-end;
   margin: 0 auto;
 
   @media screen and (min-width: ${breakpoint.L}) {
@@ -91,13 +92,15 @@ const StyledCarouselContainer = styled.div`
   position: relative;
   width: 100%;
   margin-bottom: 10rem;
+  @media screen and (min-width: ${breakpoint.L}) {
+    margin-bottom: 15rem;
+  }
 `;
 
 const Arrows = styled.img`
   display: block;
   transform: scaleX(1.5) rotate(45deg);
   height: 1.5rem;
-  margin: 0 auto;
 `;
 
 const StyledListContainer = styled.div`
@@ -125,7 +128,8 @@ const StyledRect = styled(Rect)`
 `;
 
 const StyledHeading = styled(Heading)`
-  margin-bottom: 9rem;
+  margin-bottom: 4rem;
+  margin-top: 10rem;
   font-size: ${({ theme }) => theme.fontSize.m};
 
   @media screen and (max-width: 390px) {
@@ -137,12 +141,31 @@ const StyledHeading = styled(Heading)`
   }
 
   @media screen and (min-width: ${breakpoint.M}) {
+    margin-top: 14rem;
+    margin-bottom: 9rem;
     font-size: 6.8rem;
   }
+
+  @media screen and (min-width: ${breakpoint.L}) {
+    margin-top: 10rem;
+  }
+`;
+
+const StyledButtonBlank = styled.button`
+  border: none;
+  background: none;
+  margin: 0 auto;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  cursor: pointer;
 `;
 
 const AboutPage = () => {
   const isBrowser = useBrowser();
+  const [swiper, setSwiper] = useState(null);
   const { locale } = useRouter();
   const title = routes?.[2]?.name?.[locale];
 
@@ -160,7 +183,13 @@ const AboutPage = () => {
           <SectionHeading nomargin>{title}</SectionHeading>
           <StyledTwoColumns>
             <TextBox data={aboutPage?.top} triangle />
-            <StyledColumn></StyledColumn>
+            <StyledColumn>
+              <Quotation
+                text="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis aliquam esse facilis impedit hic! Minima, doloremque ea! Officiis dignissimos nam vero commodi quos repellat molestias voluptates asperiores eveniet vel? Adipisci!"
+                // img=""
+                author="Piotr Parys, Bluechip"
+              />
+            </StyledColumn>
           </StyledTwoColumns>
           <StyledCarouselContainer id="swiper">
             <StyledHeading bold>
@@ -169,8 +198,13 @@ const AboutPage = () => {
 
             {isBrowser ? (
               <>
-                <SwiperAbout slides={aboutPageIcons?.listed} />
-                <Arrows src="/icons/arrows.svg" />
+                <SwiperAbout
+                  slides={aboutPageIcons?.listed}
+                  setSwiper={setSwiper}
+                />
+                <StyledButtonBlank onClick={() => swiper?.slideNext()}>
+                  <Arrows src="/icons/arrows.svg" />
+                </StyledButtonBlank>
               </>
             ) : (
               <>
@@ -192,9 +226,7 @@ const AboutPage = () => {
           <StyledListContainer>
             <ButtonContainer>
               <Link href="/" passHref>
-                <StyledButtonLink>
-                  {uiSubs?.home?.[locale]}
-                </StyledButtonLink>
+                <StyledButtonLink>{uiSubs?.home?.[locale]}</StyledButtonLink>
               </Link>
               <Link href="/projects" passHref>
                 <StyledButtonLink>
