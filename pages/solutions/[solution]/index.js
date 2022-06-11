@@ -9,7 +9,7 @@ import SectionHeading from 'components/atoms/SectionHeading';
 import { breakpoint } from 'breakpoints';
 import Button from 'components/atoms/Button';
 import ButtonLink from 'components/atoms/ButtonLink';
-import { projects } from 'assets/data/projects';
+import { solutions } from 'assets/data/solutions';
 import { uiSubs } from 'assets/data/uiSubs';
 import Rect from 'components/atoms/Rect';
 import Image from 'next/image';
@@ -266,7 +266,7 @@ const ImageWrapper = styled.div`
   padding: 28% 0;
 `;
 
-const DetailProjectPage = ({ selectedProject }) => {
+const DetailSolutionPage = ({ selectedSolution }) => {
   const router = useRouter();
   const { locale, asPath } = router;
   const { openImage, closeImage, isModalOpen, imageUrl } = useImageModal();
@@ -275,10 +275,11 @@ const DetailProjectPage = ({ selectedProject }) => {
   const imagesBoxRef = useRef(null);
 
   const {
-    images,
+    title,
     live,
-    detailProjectView: { title, scopeList, descriptionsForProject, mainImage },
-  } = selectedProject;
+    images,
+    detailSolutionView: { bulletsList, longDescription },
+  } = selectedSolution;
 
   useEffect(() => {
     gsap.fromTo(
@@ -341,24 +342,24 @@ const DetailProjectPage = ({ selectedProject }) => {
   return (
     <>
       <Head>
-        <title>{headSubs?.projectDetails?.title?.[locale]+title?.[locale]}</title>
+        <title>{headSubs?.solutionDetails?.title?.[locale]+title?.[locale]}</title>
         <meta
           name="description"
-          content={headSubs?.projectDetails?.description?.[locale?.[locale]]+title}
+          content={headSubs?.solutionDetails?.description?.[locale?.[locale]]+title}
         />
       </Head>
       <main>
         <Wrapper as="section">
           <StyledContainer>
             <SectionHeading nomargin component="span">
-              {pageTites?.projectDetails?.[locale]}
+              {pageTites?.solutionDetails?.[locale]}
             </SectionHeading>
             <Link href="/projects" passHref>
               <StyledButton>{uiSubs?.allProjects?.[locale]}</StyledButton>
             </Link>
           </StyledContainer>
           <StyledHeading>{title?.[locale]}</StyledHeading>
-          <ImageWrapper key={title?.[locale]}>
+          {/* <ImageWrapper key={title?.[locale]}>
             <Image
               src={mainImage}
               alt={`image of project ${title?.[locale]} on different devices`}
@@ -366,12 +367,14 @@ const DetailProjectPage = ({ selectedProject }) => {
               placeholder="blur"
               objectFit="contain"
             />
-          </ImageWrapper>
+          </ImageWrapper> */}
 
-          <StyledSubheading>{scopeList?.listTitle?.[locale]}</StyledSubheading>
+          <StyledSubheading>
+            {bulletsList?.listTitle?.[locale]}
+          </StyledSubheading>
           <StyledListContainer>
             <StyledList ref={stackList}>
-              {scopeList?.scopeTxts?.[locale]?.map((techName, index) => (
+              {bulletsList?.listed?.[locale]?.map((techName, index) => (
                 <li key={techName + index}>{techName}</li>
               ))}
             </StyledList>
@@ -381,12 +384,9 @@ const DetailProjectPage = ({ selectedProject }) => {
 
           <StyledBox>
             <div>
-              {descriptionsForProject?.map(({ id, title, description }) => (
-                <div key={id} className="descriptionToAnim">
-                  <StyledParTitle>{title?.[locale]}</StyledParTitle>
-                  {description?.[locale]?.map((text, index) => (
-                    <StyledPar key={text + index}>{text}</StyledPar>
-                  ))}
+              {longDescription?.[locale]?.map((description, i) => (
+                <div key={i} className="descriptionToAnim">
+                  <StyledPar>{description}</StyledPar>
                 </div>
               ))}
               <StyledBtnBox>
@@ -409,7 +409,7 @@ const DetailProjectPage = ({ selectedProject }) => {
                 <StyledSmallImg key={id} onClick={() => openImage(img)}>
                   <Image
                     src={img}
-                    alt={`image of project ${title?.[locale]} on different devices`}
+                    alt={`image of solution ${title?.[locale]}`}
                     layout="responsive"
                     placeholder="blur"
                     sizes={`(max-width: ${breakpoint.M}) 90vw, (max-width: ${breakpoint.L}) 50vw, 25vw`}
@@ -425,15 +425,15 @@ const DetailProjectPage = ({ selectedProject }) => {
   );
 };
 
-export default DetailProjectPage;
+export default DetailSolutionPage;
 
 export function getStaticPaths({ locales }) {
   let paths = [];
 
-  projects.forEach(({ slug }) => {
+  solutions.forEach(({ slug }) => {
     for (const locale of locales) {
       paths.push({
-        params: { project: slug },
+        params: { solution: slug },
         locale,
       });
     }
@@ -446,11 +446,11 @@ export function getStaticPaths({ locales }) {
 }
 
 export function getStaticProps({ params }) {
-  const { project } = params || {};
-  const selectedProject = projects.find(({ slug }) => slug === project);
+  const { solution } = params || {};
+  const selectedSolution = solutions.find(({ slug }) => slug === solution);
   return {
     props: {
-      selectedProject,
+      selectedSolution,
     },
   };
 }

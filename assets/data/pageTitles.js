@@ -7,4 +7,8 @@ export const pageTites = {
     en: '<technical details />',
     pl: '<szczegóły techniczne />',
   },
+  solutionDetails: {
+    en: '<solution details />',
+    pl: '<szczegóły rozwiązania />',
+  },
 }

@@ -59,5 +59,9 @@ export const uiSubs = {
     en: 'about us',
     pl: 'o nas',
   },
+  watchMovie: {
+    en: 'watch movie',
+    pl: 'obejrzyj film',
+  },
 
 }
