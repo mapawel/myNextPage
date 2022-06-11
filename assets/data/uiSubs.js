@@ -55,5 +55,9 @@ export const uiSubs = {
     en: 'ask about a cooperation',
     pl: 'zapytaj o współpracę',
   },
+  about: {
+    en: 'about us',
+    pl: 'o nas',
+  },
 
 }

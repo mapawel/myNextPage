@@ -11,7 +11,7 @@ import { contactForm } from 'assets/data/contactForm';
 import { contactIcons } from 'assets/data/contactIcons';
 
 const StyledMessageBox = styled.div`
-  margin: 0 auto;
+  margin: 0 auto 8rem;
   width: 90%;
   max-width: 90rem;
 

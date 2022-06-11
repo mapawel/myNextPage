@@ -12,6 +12,8 @@ import Heading from 'components/atoms/Heading';
 import { breakpoint } from 'breakpoints';
 import Contact from 'components/organisms/Contact';
 import routes from 'routes';
+import BottomButtons from 'components/molecules/bottomButtons';
+import { uiSubs } from 'assets/data/uiSubs';
 
 const AboutPage = () => {
   const { locale } = useRouter();
@@ -30,6 +32,16 @@ const AboutPage = () => {
         <Wrapper as="section">
           <SectionHeading nomargin>{title}</SectionHeading>
           <Contact />
+          <BottomButtons
+            linkOne={{
+              href: '/',
+              label: uiSubs?.home,
+            }}
+            linkTwo={{
+              href: '/about',
+              label: uiSubs?.about,
+            }}
+          />
         </Wrapper>
       </main>
     </>
