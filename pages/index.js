@@ -1,11 +1,9 @@
-import { useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Header from 'components/organisms/Header';
 import RecentProjectsCube from 'components/organisms/RecentProjectsCube';
 import AboutHome from 'components/organisms/AboutHome';
 import SolutionExamples from 'components/organisms/SolutionExamples';
-import Contact from 'components/organisms/Contact';
 import { headSubs } from 'assets/data/headSubs';
 
 const HomePage = () => {
@@ -25,7 +23,6 @@ const HomePage = () => {
         <RecentProjectsCube />
         <AboutHome />
         <SolutionExamples />
-        {/* <Contact /> */}
       </main>
     </>
   );

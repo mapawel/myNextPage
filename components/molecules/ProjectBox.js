@@ -320,7 +320,7 @@ const StyledButtonBox = styled.div`
   transform: rotate(-5deg);
 `;
 
-const StyledStandardButton = styled.button`
+const CrossButton = styled.button`
   position: absolute;
   top: 4rem;
   right: 0;
@@ -328,7 +328,10 @@ const StyledStandardButton = styled.button`
   height: 6rem;
   background: none;
   border: none;
+  padding: 0;
   cursor: pointer;
+  transform: translateX(0);
+
   ::after,
   ::before {
     content: '';
@@ -336,21 +339,33 @@ const StyledStandardButton = styled.button`
     width: 80%;
     height: 1px;
     top: 50%;
-    left: 0;
+    left: 50%;
     background-color: ${({ theme }) => theme.color.textPrimary};
     opacity: 1;
     transition: opacity 0.3s;
   }
   ::after {
-    transform: rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
   }
   ::before {
-    transform: rotate(-45deg);
+    transform: translate(-50%, -50%) rotate(-45deg);
   }
   :hover::after,
   :hover::before {
     opacity: 0.5;
   }
+`;
+
+const StyledButtonBlank = styled.button`
+  border: none;
+  background: none;
+  margin: 0 auto;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  cursor: pointer;
 `;
 
 const ProjectBox = ({ slug, title, images, description, live }) => {
@@ -380,7 +395,9 @@ const ProjectBox = ({ slug, title, images, description, live }) => {
 
   return (
     <StyledContainer ref={containerRef} onClick={() => setToolVisible(true)}>
-      <StyledHeading>{title?.[locale]?.toUpperCase()}</StyledHeading>
+      <StyledButtonBlank onFocus={() => setToolVisible(true)} aria-label="open project toolbox with links">
+        <StyledHeading>{title?.[locale]?.toUpperCase()}</StyledHeading>
+      </StyledButtonBlank>
       <StyledImgBox>
         {images?.length !== 0 &&
           images?.slice(0, 3).map(({ id, img }, index) => (
@@ -406,19 +423,23 @@ const ProjectBox = ({ slug, title, images, description, live }) => {
         onMouseLeave={() => setToolVisible(false)}
       >
         <StyledButtonBox>
-          <StyledStandardButton
+          <CrossButton
             onClick={(e) => {
               e.stopPropagation();
               setToolVisible(false);
             }}
-            aria-label="close toolbox"
+            aria-label="close project toolbox with links"
           />
           <Link href={`/projects/${slug}`} passHref>
-            <StyledButton variant="cta">
+            <StyledButtonLink
+              variant="cta"
+              onFocus={() => setToolVisible(true)}
+            >
               {uiSubs?.details?.[locale]}
-            </StyledButton>
+            </StyledButtonLink>
           </Link>
           <StyledButtonLink
+            onFocus={() => setToolVisible(true)}
             href={live}
             target="_blank"
             rel="noopener noreferrer"

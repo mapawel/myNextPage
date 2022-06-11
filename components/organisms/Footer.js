@@ -49,21 +49,21 @@ const Footerwrapper = styled.footer`
   @media screen and (min-width: ${breakpoint.M}) {
     position: fixed;
     bottom: 0;
-    height: 58rem;
+    height: ${({ footerHeight }) => footerHeight};
     width: 100%;
     z-index: -1;
     display: flex;
     flex-direction: column;
 
     & + div {
-      height: 58rem;
+      height: ${({ footerHeight }) => footerHeight};
     }
   }
 `;
 
 const StyledWrapper = styled(Wrapper)`
   height: 100%;
-`
+`;
 const Container = styled.div`
   height: 100%;
   display: flex;
@@ -148,9 +148,9 @@ const StyledUpTxt = styled(StyledParagraph)`
   color: ${({ theme }) => theme.color.textSecondary};
 `;
 
-const Footer = () => {
+const Footer = ({ footerHeight }) => {
   return (
-    <Footerwrapper>
+    <Footerwrapper footerHeight={footerHeight}>
       <StyledWrapper>
         <Container>
           <FooterLinks />

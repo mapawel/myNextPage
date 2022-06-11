@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import styled from 'styled-components';
 import Wrapper from 'components/templates/Wrapper';
 import Heading from 'components/atoms/Heading';

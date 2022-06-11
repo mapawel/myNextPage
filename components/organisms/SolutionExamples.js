@@ -5,6 +5,7 @@ import Wrapper from 'components/templates/Wrapper';
 import SectionHeading from 'components/atoms/SectionHeading';
 import List from 'components/molecules/List';
 import ButtonLink from 'components/atoms/ButtonLink';
+import BottomButtons from 'components/molecules/bottomButtons';
 import { breakpoint } from 'breakpoints';
 import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -66,18 +67,17 @@ const SolutionExamples = () => {
         title={solutionExamples?.title?.[locale]}
         content={solutionExamples?.listed}
       />
-      <ButtonContainer>
-        <Link href="/solutions" passHref>
-          <StyledButtonLink>
-            {uiSubs?.ourSolutions?.[locale]}
-          </StyledButtonLink>
-        </Link>
-        <Link href="/projects" passHref>
-          <StyledButtonLink>
-            {uiSubs?.ourProjects?.[locale]}
-          </StyledButtonLink>
-        </Link>
-      </ButtonContainer>
+      <BottomButtons
+        noDecoration
+        linkOne={{
+          href: '/solutions',
+          label: uiSubs?.ourSolutions,
+        }}
+        linkTwo={{
+          href: '/projects',
+          label: uiSubs?.ourProjects,
+        }}
+      />
     </Wrapper>
   );
 };

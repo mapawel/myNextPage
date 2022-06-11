@@ -6,7 +6,10 @@ import Footer from 'components/organisms/Footer';
 // import Mainconsents from 'components/molecules/MainConsents';
 import useMainConsents from 'hooks/useMainConsents';
 
+const footerHeight = '58rem';
+
 const Wrapper = styled.div`
+  min-height: calc(100vh - ${({ footerHeight }) => footerHeight});
   overflow: hidden;
   position: relative;
   z-index: 0;
@@ -60,8 +63,8 @@ const Layout = ({ children }) => {
       </Head>
       <div style={style}>
         <Menu />
-        <Wrapper>{children}</Wrapper>
-        <Footer />
+        <Wrapper footerHeight={footerHeight}>{children}</Wrapper>
+        <Footer footerHeight={footerHeight} />
         <div />
 
         {/*{!isAccepted && <Mainconsents onClick={handleAccept} />} */}

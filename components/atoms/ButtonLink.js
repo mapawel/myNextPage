@@ -107,6 +107,7 @@ const ButtonLink = React.forwardRef(
       href,
       target,
       rel,
+      onFocus
     },
     ref
   ) => (
@@ -120,6 +121,7 @@ const ButtonLink = React.forwardRef(
       href={href}
       target={target}
       rel={rel}
+      onFocus={onFocus}
     >
       {children}
     </StyledButton>

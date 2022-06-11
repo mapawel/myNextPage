@@ -68,7 +68,7 @@ const StyledRect = styled(Rect)`
   }
 `;
 
-const BottomButtons = ({linkOne, linkTwo}) => {
+const BottomButtons = ({ linkOne, linkTwo, noDecoration }) => {
   const { locale } = useRouter();
 
   return (
@@ -81,7 +81,7 @@ const BottomButtons = ({linkOne, linkTwo}) => {
           <StyledButtonLink>{linkTwo?.label?.[locale]}</StyledButtonLink>
         </Link>
       </ButtonContainer>
-      <StyledRect />
+      {!noDecoration && <StyledRect />}
     </StyledListContainer>
   );
 };

@@ -8,9 +8,9 @@ import routes from 'routes';
 import BottomButtons from 'components/molecules/bottomButtons';
 import { uiSubs } from 'assets/data/uiSubs';
 
-const AboutPage = () => {
+const SolutionsPage = () => {
   const { locale } = useRouter();
-  const title = routes?.[4]?.name?.[locale];
+  const title = routes?.[3]?.name?.[locale];
 
   return (
     <>
@@ -24,7 +24,6 @@ const AboutPage = () => {
       <main>
         <Wrapper as="section">
           <SectionHeading nomargin>{title}</SectionHeading>
-          <Contact />
           <BottomButtons
             linkOne={{
               href: '/',
@@ -41,4 +40,4 @@ const AboutPage = () => {
   );
 };
 
-export default AboutPage;
+export default SolutionsPage;
