@@ -17,7 +17,7 @@ import SwiperAbout from 'components/organisms/SwiperAbout';
 import { uiSubs } from 'assets/data/uiSubs';
 import routes from 'routes';
 import Quotation from 'components/molecules/Quotation';
-import BottomButtons from 'components/molecules/bottomButtons';
+import BottomButtons from 'components/molecules/BottomButtons';
 
 const StyledTwoColumns = styled(TwoColumns)`
   margin: 2rem 0 5rem;

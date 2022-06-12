@@ -18,6 +18,7 @@ import { useImageModal } from 'hooks/useImageModal';
 import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { pageTites } from 'assets/data/pageTitles';
+import BottomButtons from 'components/molecules/BottomButtons';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({
@@ -51,26 +52,6 @@ const StyledContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 8rem;
-`;
-
-const StyledButton = styled(Button)`
-  margin: 2rem 1rem 3rem;
-  line-height: 1.4;
-
-  @media screen and (min-width: ${breakpoint.M}) {
-    align-self: flex-start;
-    font-size: ${({ theme }) => theme.fontSize.xs};
-    padding: 2.5rem 3rem;
-    margin-left: 6rem;
-  }
-
-  @media screen and (min-width: ${breakpoint.L}) {
-    margin-left: 11rem;
-  }
-
-  @media screen and (min-width: ${breakpoint.XL}) {
-    margin-left: 15rem;
-  }
 `;
 
 const StyledButtonLink = styled(ButtonLink)`
@@ -132,7 +113,7 @@ const StyledImageBox = styled.div`
 `;
 
 const StyledHeading = styled.h1`
-  margin: 12rem 0 7rem;
+  margin: 0 0 7rem;
   text-align: center;
   font-size: ${({ theme }) => theme.fontSize.m};
   color: ${({ theme }) => theme.color.textSecondary};
@@ -278,6 +259,7 @@ const DetailSolutionPage = ({ selectedSolution }) => {
     title,
     live,
     images,
+    shortDescription,
     detailSolutionView: { bulletsList, longDescription },
   } = selectedSolution;
 
@@ -342,22 +324,21 @@ const DetailSolutionPage = ({ selectedSolution }) => {
   return (
     <>
       <Head>
-        <title>{headSubs?.solutionDetails?.title?.[locale]+title?.[locale]}</title>
+        <title>
+          {headSubs?.solutionDetails?.title?.[locale] + title?.[locale]}
+        </title>
         <meta
           name="description"
-          content={headSubs?.solutionDetails?.description?.[locale?.[locale]]+title}
+          content={
+            shortDescription?.[locale]
+          }
         />
       </Head>
       <main>
         <Wrapper as="section">
-          <StyledContainer>
-            <SectionHeading nomargin component="span">
-              {pageTites?.solutionDetails?.[locale]}
-            </SectionHeading>
-            <Link href="/projects" passHref>
-              <StyledButton>{uiSubs?.allProjects?.[locale]}</StyledButton>
-            </Link>
-          </StyledContainer>
+          <SectionHeading nomargin component="span">
+            {pageTites?.solutionDetails?.[locale]}
+          </SectionHeading>
           <StyledHeading>{title?.[locale]}</StyledHeading>
           {/* <ImageWrapper key={title?.[locale]}>
             <Image
@@ -397,10 +378,10 @@ const DetailSolutionPage = ({ selectedSolution }) => {
                 >
                   {uiSubs?.live?.[locale]}
                 </StyledButtonLink>
-                <Link href={`${asPath}/technicals`} passHref>
-                  <StyledButton>
-                    {uiSubs?.technicalDetails?.[locale]}
-                  </StyledButton>
+                <Link href={`${asPath}/movie`} passHref>
+                  <StyledButtonLink>
+                    {uiSubs?.watchMovie?.[locale]}
+                  </StyledButtonLink>
                 </Link>
               </StyledBtnBox>
             </div>
@@ -418,6 +399,16 @@ const DetailSolutionPage = ({ selectedSolution }) => {
               ))}
             </StyledImageBox>
           </StyledBox>
+          <BottomButtons
+            linkOne={{
+              href: '/',
+              label: uiSubs?.home,
+            }}
+            linkTwo={{
+              href: '/solutions',
+              label: uiSubs?.ourSolutions,
+            }}
+          />
         </Wrapper>
       </main>
       {isModalOpen && <ImageModal src={imageUrl} closeModal={closeImage} />}

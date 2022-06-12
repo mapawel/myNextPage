@@ -11,4 +11,8 @@ export const pageTites = {
     en: '<solution details />',
     pl: '<szczegóły rozwiązania />',
   },
+  solutionDetailsMovie: {
+    en: '<solution - movie />',
+    pl: '<rozwiązanie - film />',
+  },
 }

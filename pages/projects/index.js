@@ -10,7 +10,7 @@ import ProjectBox from 'components/molecules/ProjectBox';
 import { projects } from 'assets/data/projects';
 import { uiSubs } from 'assets/data/uiSubs';
 import Paragraph from 'components/atoms/Paragraph';
-import BottomButtons from 'components/molecules/bottomButtons';
+import BottomButtons from 'components/molecules/BottomButtons';
 
 const StyledContainer = styled.div`
   display: flex;

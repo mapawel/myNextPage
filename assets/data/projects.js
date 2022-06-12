@@ -98,7 +98,9 @@ export const projects = [
           },
           description: {
             en: ['Single Page App with CMS abd Blog, Responsive Web Design.'],
-            pl: ['pl Single Page App with CMS abd Blog, Responsive Web Design.'],
+            pl: [
+              'pl Single Page App with CMS abd Blog, Responsive Web Design.',
+            ],
           },
         },
         {
@@ -124,7 +126,9 @@ export const projects = [
           },
           description: {
             en: ['Single Page App with CMS abd Blog, Responsive Web Design.'],
-            pl: ['pl Single Page App with CMS abd Blog, Responsive Web Design.'],
+            pl: [
+              'pl Single Page App with CMS abd Blog, Responsive Web Design.',
+            ],
           },
         },
         {
@@ -144,6 +148,58 @@ export const projects = [
         },
       ],
       mainImage: bluechipMain,
+    },
+    technicalDetailsView: {
+      techStact: {
+        en: [
+          'React',
+          'React Router',
+          'Redux with Thunk',
+          'Styled Components',
+          'GSAP',
+          'Moment',
+          'Swiper',
+          'GraphCMS',
+          'Axios & GraphQL',
+        ],
+        pl: [
+          'React',
+          'React Router',
+          'Redux with Thunk',
+          'Styled Components',
+          'GSAP',
+          'Moment',
+          'Swiper',
+          'GraphCMS',
+          'Axios & GraphQL',
+        ],
+      },
+      techDescriptions: [
+        {
+          id: 'ckp49iww072ud0b04f98tikrs',
+          title: { en: 'type', pl: 'typ' },
+          description: {
+            en: ['Single Page App with CMS abd Blog, Responsive Web Design.'],
+            pl: ['PLSingle Page App with CMS abd Blog, Responsive Web Design.'],
+          },
+        },
+        {
+          id: 'ckp49fahk71nt0b03v7a2janq',
+          title: { en: 'solutions', pl: 'rozwiązania' },
+          description: {
+            en: [
+              "Website's front was created with use of React what gave static files after project build which can be hosted on customer's hosting. \nThe use of React Router gave the website speed. GSAP was used for animations giving some dynamic experience on the website. All components are cusom ones (even the accordion in the offer view and pagination in the blog view) - Styled Components was used to prepare them. The website uses underneath Redux which collects data from CMS / data-base. Redux gets the data using Axios, Thunk, GraphQL and prevents multiple data fetch when data is present (to save API Calls).",
+              'For backend / CMS the GraphCMS and their free plan was used. It gives rapid text changing possibility, adding new information in all sections and views, new cards, new elements by puting just some text in GraphCMS Content. Also design of some elements can be easily change in CMS by some meta-data change.',
+              'Customer have a possibility of adding blog posts in CMS, deleting old posts etc.',
+            ],
+            pl: [
+              "Website's front was created with use of React what gave static files after project build which can be hosted on customer's hosting. \nThe use of React Router gave the website speed. GSAP was used for animations giving some dynamic experience on the website. All components are cusom ones (even the accordion in the offer view and pagination in the blog view) - Styled Components was used to prepare them. The website uses underneath Redux which collects data from CMS / data-base. Redux gets the data using Axios, Thunk, GraphQL and prevents multiple data fetch when data is present (to save API Calls).",
+              'For backend / CMS the GraphCMS and their free plan was used. It gives rapid text changing possibility, adding new information in all sections and views, new cards, new elements by puting just some text in GraphCMS Content. Also design of some elements can be easily change in CMS by some meta-data change.',
+              'Customer have a possibility of adding blog posts in CMS, deleting old posts etc.',
+            ],
+          },
+        },
+      ],
     },
   },
   {

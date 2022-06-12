@@ -5,7 +5,7 @@ import { headSubs } from 'assets/data/headSubs';
 import Wrapper from 'components/templates/Wrapper';
 import SectionHeading from 'components/atoms/SectionHeading';
 import routes from 'routes';
-import BottomButtons from 'components/molecules/bottomButtons';
+import BottomButtons from 'components/molecules/BottomButtons';
 import { uiSubs } from 'assets/data/uiSubs';
 import SolutionBox from 'components/molecules/SolutionBox';
 import { breakpoint } from 'breakpoints';

@@ -47,6 +47,10 @@ export const uiSubs = {
     en: 'technical details',
     pl: 'szczegóły techniczne',
   },
+  techStack: {
+    en: 'Tech stack:',
+    pl: 'Użyte technologie:',
+  },
   description: {
     en: 'Description:',
     pl: 'Opis:',
@@ -62,6 +66,10 @@ export const uiSubs = {
   watchMovie: {
     en: 'watch movie',
     pl: 'obejrzyj film',
+  },
+  projectDetails: {
+    en: 'back to the project',
+    pl: 'wróć do projektu',
   },
 
 }

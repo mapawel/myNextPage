@@ -35,18 +35,28 @@ export const headSubs = {
       pl: 'DEV.DEFER | PROJEKT: ',
     },
     description: {
-      en: 'Description of the selected project: ',
-      pl: 'Opis wybranego projektu: ',
+      en: '',
+      pl: '',
+    },
+  },
+  projectDetailsTech: {
+    title: {
+      en: 'DEV.DEFER | TECHNOLOGY for:  ',
+      pl: 'DEV.DEFER | TECHNOLOGIA dla: ',
+    },
+    description: {
+      en: 'Web-technology used for project: ',
+      pl: 'Użyta technologia webowa dla projektu: ',
     },
   },
   solutions: {
     title: {
       en: 'DEV.DEFER | WEB-SOLUTIONS',
-      pl: 'DEV.DEFER | ROZWIĄZANIA',
+      pl: 'DEV.DEFER | ROZWIĄZANIA WEBOWE',
     },
     description: {
       en: 'Check out some examples of solutions for our customers to fulfill their needs.',
-      pl: 'Sprawdź przykłądowe rozwiązania wdrożone aby spełnić potrzeby naszych klientów.',
+      pl: 'Sprawdź przykładowe rozwiązania wdrożone aby spełnić potrzeby naszych klientów.',
     },
   },
   solutionDetails: {
@@ -55,8 +65,18 @@ export const headSubs = {
       pl: 'DEV.DEFER | ROZWIĄZANIE: ',
     },
     description: {
-      en: 'Description of the selected web-solution: ',
-      pl: 'Opis wybranego rozwiązania: ',
+      en: '',
+      pl: '',
+    },
+  },
+  solutionDetailsMovie: {
+    title: {
+      en: 'DEV.DEFER | WEB-SOLUTION ON MOVIE ',
+      pl: 'DEV.DEFER | ROZWIĄZANIE WEBOWE - FILM ',
+    },
+    description: {
+      en: 'A movie with example web-solution.',
+      pl: 'Film z wybranym rozwiązaniem dla klienta.',
     },
   },
 };

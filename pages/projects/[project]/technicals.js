@@ -7,16 +7,15 @@ import { headSubs } from 'assets/data/headSubs';
 import Wrapper from 'components/templates/Wrapper';
 import SectionHeading from 'components/atoms/SectionHeading';
 import { breakpoint } from 'breakpoints';
-import Button from 'components/atoms/Button';
 import ButtonLink from 'components/atoms/ButtonLink';
 import { projects } from 'assets/data/projects';
 import { uiSubs } from 'assets/data/uiSubs';
 import Rect from 'components/atoms/Rect';
-import Image from 'next/image';
-import ImageModal from 'components/organisms/ImageModal';
-import { useImageModal } from 'hooks/useImageModal';
 import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { pageTites } from 'assets/data/pageTitles';
+import BottomButtons from 'components/molecules/BottomButtons';
+import Paragraph from 'components/atoms/Paragraph';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({
@@ -45,38 +44,11 @@ const StyledRect = styled(Rect)`
   }
 `;
 
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 8rem;
-`;
-
-const StyledButton = styled(Button)`
-  margin: 2rem 1rem 3rem;
-
-  @media screen and (min-width: ${breakpoint.M}) {
-    align-self: flex-start;
-    font-size: ${({ theme }) => theme.fontSize.s};
-    padding: 2.5rem 3rem;
-    margin-left: 6rem;
-  }
-
-  @media screen and (min-width: ${breakpoint.L}) {
-    margin-left: 11rem;
-  }
-
-  @media screen and (min-width: ${breakpoint.XL}) {
-    margin-left: 15rem;
-  }
-`;
-
 const StyledButtonLink = styled(ButtonLink)`
   margin: 2rem 1rem 3rem;
 
   @media screen and (min-width: ${breakpoint.M}) {
     align-self: flex-start;
-    font-size: ${({ theme }) => theme.fontSize.s};
     padding: 2.5rem 3rem;
     margin-left: 6rem;
   }
@@ -113,23 +85,8 @@ const StyledBtnBox = styled.div`
   }
 `;
 
-const StyledImageBox = styled.div`
-  margin-left: 0;
-  margin-bottom: 6rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-
-  @media screen and (min-width: ${breakpoint.L}) {
-    width: 30%;
-    flex-shrink: 0;
-    margin-left: 6rem;
-  }
-`;
-
 const StyledHeading = styled.h1`
-  margin: 12rem 0 7rem;
+  margin: 0 0 7rem;
   text-align: center;
   font-size: ${({ theme }) => theme.fontSize.m};
   color: ${({ theme }) => theme.color.textSecondary};
@@ -181,72 +138,6 @@ const StyledPar = styled.p`
   }
 `;
 
-const StyledSmallImg = styled.div`
-  position: relative;
-  margin: 2rem 0;
-  width: 100%;
-  height: 0;
-  padding: 28% 0;
-  > span {
-    transform: translateY(-50%);
-  }
-  cursor: pointer;
-  border: 1px solid black;
-
-  ::before,
-  ::after {
-    position: absolute;
-    opacity: 0;
-    transition: opacity 0.15s;
-  }
-
-  ::before {
-    content: '';
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: #000000d4;
-  }
-
-  ::after {
-    content: 'click';
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: ${({ theme }) => theme.color.textPrimary};
-  }
-
-  :hover {
-    border: ${({ theme }) => `1px solid ${theme.color.textPrimary}`};
-
-    ::before,
-    ::after {
-      opacity: 1;
-    }
-  }
-
-  @media screen and (min-width: ${breakpoint.XS}) {
-    width: 90%;
-    padding: 25% 0;
-  }
-
-  @media screen and (min-width: ${breakpoint.S}) {
-    width: 70%;
-    padding: 19% 0;
-  }
-
-  @media screen and (min-width: ${breakpoint.M}) {
-    width: 55%;
-    padding: 15% 0;
-  }
-
-  @media screen and (min-width: ${breakpoint.L}) {
-    width: 100%;
-    padding: 28% 0;
-  }
-`;
-
 const StyledListContainer = styled.div`
   position: relative;
 `;
@@ -264,116 +155,143 @@ const StyledList = styled.ul`
   }
 `;
 
-const ImageWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  max-width: 1500px;
-  margin: 0 auto;
-  height: 0;
-  padding: 28% 0;
-`;
-
-const DetailProjectPage = ({ selectedProject }) => {
+const TechnicalDetailsPage = ({ selectedProject }) => {
   const router = useRouter();
-  const { locale, asPath } = router;
-  // const { projectId } = useParams();
-  const { openImage, closeImage, isModalOpen, imageUrl } = useImageModal();
+  const { locale } = router;
 
   const stackList = useRef(null);
-  const imagesBoxRef = useRef(null);
 
   const {
-    images,
+    slug,
     live,
-    detailProjectView: {
-      title,
-      techUsedList,
-      descriptionsForProject,
-      mainImage,
-    },
+    detailProjectView: { title },
+    technicalDetailsView,
+    technicalDetailsView: { techStact, techDescriptions } = {},
   } = selectedProject;
 
-  const handleBackClick = () => {
-    router.push('/projects');
-  };
+  useEffect(() => {
+    if (technicalDetailsView) {
+      gsap.fromTo(
+        stackList.current.children,
+        {
+          x: '-=100',
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.2,
+          stagger: 0.05,
+          scrollTrigger: {
+            trigger: stackList.current,
+            start: 'top 70%',
+          },
+        }
+      );
 
-  // useEffect(() => {
-  //   gsap.fromTo(
-  //     stackList.current.children,
-  //     {
-  //       x: '-=100',
-  //       opacity: 0,
-  //     },
-  //     {
-  //       x: 0,
-  //       opacity: 1,
-  //       duration: 0.2,
-  //       stagger: 0.05,
-  //       scrollTrigger: {
-  //         trigger: stackList.current,
-  //         start: 'top 70%',
-  //       },
-  //     }
-  //   );
-
-  //   const imagesToAnim = gsap.utils.toArray(imagesBoxRef.current.children);
-  //   imagesToAnim.forEach((child) => {
-  //     gsap.fromTo(
-  //       child,
-  //       {
-  //         x: '+=50',
-  //         opacity: 0,
-  //       },
-  //       {
-  //         x: 0,
-  //         opacity: 1,
-  //         duration: 0.3,
-  //         scrollTrigger: {
-  //           trigger: child,
-  //           start: 'top 70%',
-  //         },
-  //       }
-  //     );
-  //   });
-
-  //   const descriptionsToAnim = gsap.utils.toArray('.descriptionToAnim');
-  //   descriptionsToAnim.forEach((child) => {
-  //     gsap.fromTo(
-  //       child,
-  //       {
-  //         opacity: 0,
-  //       },
-  //       {
-  //         opacity: 1,
-  //         duration: 1,
-  //         scrollTrigger: {
-  //           trigger: child,
-  //           start: 'top 70%',
-  //         },
-  //       }
-  //     );
-  //   });
-  // }, []);
+      const descriptionsToAnim = gsap.utils.toArray('.descriptionToAnim');
+      descriptionsToAnim.forEach((child) => {
+        gsap.fromTo(
+          child,
+          {
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            duration: 1,
+            scrollTrigger: {
+              trigger: child,
+              start: 'top 70%',
+            },
+          }
+        );
+      });
+    }
+  }, [technicalDetailsView]);
 
   return (
     <>
       <Head>
-        <title>{headSubs?.projects?.title?.[locale]}</title>
+        <title>
+          {headSubs?.projectDetailsTech?.title?.[locale] + title?.[locale]}
+        </title>
         <meta
           name="description"
-          content={headSubs?.projects?.description?.[locale]}
+          content={
+            headSubs?.projectDetailsTech?.description?.[locale] +
+            title?.[locale]
+          }
         />
       </Head>
       <main>
         <Wrapper as="section">
-          <h2>{asPath}</h2>
+          <SectionHeading nomargin component="span">
+            {pageTites?.projectTechnicalDetails?.[locale]}
+          </SectionHeading>
+          <StyledHeading>{title?.[locale]}</StyledHeading>
+
+          {!technicalDetailsView ? (
+            <Paragraph>Technical desription in preperation...</Paragraph>
+          ) : (
+            <>
+              <StyledSubheading>{uiSubs?.techStack?.[locale]}</StyledSubheading>
+              <StyledListContainer>
+                <StyledList ref={stackList}>
+                  {techStact?.[locale]?.map((techName, index) => (
+                    <li key={techName + index}>{techName}</li>
+                  ))}
+                </StyledList>
+                <StyledRect />
+              </StyledListContainer>
+              <StyledSubheading>
+                {uiSubs?.description?.[locale]}
+              </StyledSubheading>
+
+              <StyledBox>
+                <div>
+                  {techDescriptions?.map(({ id, title, description }) => (
+                    <div key={id} className="descriptionToAnim">
+                      <StyledParTitle>{title?.[locale]}</StyledParTitle>
+                      {description?.[locale]?.map((text, index) => (
+                        <StyledPar key={text + index}>{text}</StyledPar>
+                      ))}
+                    </div>
+                  ))}
+                  <StyledBtnBox>
+                    <StyledButtonLink
+                      href={live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {uiSubs?.live?.[locale]}
+                    </StyledButtonLink>
+                    <Link href={`/projects/${slug}`} passHref>
+                      <StyledButtonLink>
+                        {uiSubs?.projectDetails?.[locale]}
+                      </StyledButtonLink>
+                    </Link>
+                  </StyledBtnBox>
+                </div>
+              </StyledBox>
+            </>
+          )}
+          <BottomButtons
+            linkOne={{
+              href: '/',
+              label: uiSubs?.home,
+            }}
+            linkTwo={{
+              href: '/projects',
+              label: uiSubs?.allProjects,
+            }}
+          />
         </Wrapper>
       </main>
     </>
   );
 };
 
-export default DetailProjectPage;
+export default TechnicalDetailsPage;
 
 export function getStaticPaths({ locales }) {
   let paths = [];

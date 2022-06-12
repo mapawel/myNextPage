@@ -5,7 +5,7 @@ import Wrapper from 'components/templates/Wrapper';
 import SectionHeading from 'components/atoms/SectionHeading';
 import List from 'components/molecules/List';
 import ButtonLink from 'components/atoms/ButtonLink';
-import BottomButtons from 'components/molecules/bottomButtons';
+import BottomButtons from 'components/molecules/BottomButtons';
 import { breakpoint } from 'breakpoints';
 import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';

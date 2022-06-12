@@ -18,6 +18,7 @@ import { useImageModal } from 'hooks/useImageModal';
 import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { pageTites } from 'assets/data/pageTitles';
+import BottomButtons from 'components/molecules/BottomButtons';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({
@@ -53,33 +54,12 @@ const StyledContainer = styled.div`
   margin-bottom: 8rem;
 `;
 
-const StyledButton = styled(Button)`
-  margin: 2rem 1rem 3rem;
-  line-height: 1.4;
-
-  @media screen and (min-width: ${breakpoint.M}) {
-    align-self: flex-start;
-    font-size: ${({ theme }) => theme.fontSize.xs};
-    padding: 2.5rem 3rem;
-    margin-left: 6rem;
-  }
-
-  @media screen and (min-width: ${breakpoint.L}) {
-    margin-left: 11rem;
-  }
-
-  @media screen and (min-width: ${breakpoint.XL}) {
-    margin-left: 15rem;
-  }
-`;
-
 const StyledButtonLink = styled(ButtonLink)`
   margin: 2rem 1rem 3rem;
   line-height: 1.4;
 
   @media screen and (min-width: ${breakpoint.M}) {
     align-self: flex-start;
-    font-size: ${({ theme }) => theme.fontSize.xs};
     padding: 2.5rem 3rem;
     margin-left: 6rem;
   }
@@ -132,7 +112,7 @@ const StyledImageBox = styled.div`
 `;
 
 const StyledHeading = styled.h1`
-  margin: 12rem 0 7rem;
+  margin: 0 0 7rem;
   text-align: center;
   font-size: ${({ theme }) => theme.fontSize.m};
   color: ${({ theme }) => theme.color.textSecondary};
@@ -277,6 +257,7 @@ const DetailProjectPage = ({ selectedProject }) => {
   const {
     images,
     live,
+    description,
     detailProjectView: { title, scopeList, descriptionsForProject, mainImage },
   } = selectedProject;
 
@@ -341,22 +322,21 @@ const DetailProjectPage = ({ selectedProject }) => {
   return (
     <>
       <Head>
-        <title>{headSubs?.projectDetails?.title?.[locale]+title?.[locale]}</title>
+        <title>
+          {headSubs?.projectDetails?.title?.[locale] + title?.[locale]}
+        </title>
         <meta
           name="description"
-          content={headSubs?.projectDetails?.description?.[locale?.[locale]]+title}
+          content={
+            description?.[locale]
+          }
         />
       </Head>
       <main>
         <Wrapper as="section">
-          <StyledContainer>
-            <SectionHeading nomargin component="span">
-              {pageTites?.projectDetails?.[locale]}
-            </SectionHeading>
-            <Link href="/projects" passHref>
-              <StyledButton>{uiSubs?.allProjects?.[locale]}</StyledButton>
-            </Link>
-          </StyledContainer>
+          <SectionHeading nomargin component="span">
+            {pageTites?.projectDetails?.[locale]}
+          </SectionHeading>
           <StyledHeading>{title?.[locale]}</StyledHeading>
           <ImageWrapper key={title?.[locale]}>
             <Image
@@ -398,9 +378,9 @@ const DetailProjectPage = ({ selectedProject }) => {
                   {uiSubs?.live?.[locale]}
                 </StyledButtonLink>
                 <Link href={`${asPath}/technicals`} passHref>
-                  <StyledButton>
+                  <StyledButtonLink>
                     {uiSubs?.technicalDetails?.[locale]}
-                  </StyledButton>
+                  </StyledButtonLink>
                 </Link>
               </StyledBtnBox>
             </div>
@@ -418,6 +398,16 @@ const DetailProjectPage = ({ selectedProject }) => {
               ))}
             </StyledImageBox>
           </StyledBox>
+          <BottomButtons
+            linkOne={{
+              href: '/',
+              label: uiSubs?.home,
+            }}
+            linkTwo={{
+              href: '/projects',
+              label: uiSubs?.allProjects,
+            }}
+          />
         </Wrapper>
       </main>
       {isModalOpen && <ImageModal src={imageUrl} closeModal={closeImage} />}

@@ -5,7 +5,7 @@ import Wrapper from 'components/templates/Wrapper';
 import SectionHeading from 'components/atoms/SectionHeading';
 import Contact from 'components/organisms/Contact';
 import routes from 'routes';
-import BottomButtons from 'components/molecules/bottomButtons';
+import BottomButtons from 'components/molecules/BottomButtons';
 import { uiSubs } from 'assets/data/uiSubs';
 
 const AboutPage = () => {
