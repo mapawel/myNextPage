@@ -1,23 +1,18 @@
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import Wrapper from 'components/templates/Wrapper';
 import TwoColumns from 'components/templates/TwoColumns';
 import Triangle from 'components/atoms/Triangle';
 import Button from 'components/atoms/Button';
-import { gsap, Power3 } from 'gsap/dist/gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
 import { breakpoint } from 'breakpoints';
 import { headings } from 'assets/data/headings';
 import { uiSubs } from 'assets/data/uiSubs';
 import mainImg from 'public/images/headerImage.jpg';
 import { sectiontitles } from 'assets/data/sectiontitles';
 import { scrollToSection } from 'helpers/scrollToSection';
-
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(ScrollToPlugin);
+import headerAnim from 'gsapanims/headerAnim';
 
 const StyledTwoColumns = styled(TwoColumns)`
   flex-direction: row;
@@ -195,57 +190,12 @@ const Header = () => {
   const sectionId = sectiontitles?.[0]?.titleMenuId;
 
   useEffect(() => {
-    const tl = gsap.timeline();
-    tl.fromTo(
+    headerAnim(
       logoRef.current,
-      {
-        opacity: 0,
-      },
-      {
-        duration: 0.5,
-        opacity: 1,
-      }
-    )
-      .to(logoRef.current, {
-        ease: Power3.easeOut,
-        delay: 1,
-        duration: 0.5,
-        marginTop: '10%',
-        marginBottom: 0,
-        width: '70%',
-      })
-      .fromTo(
-        headinTxtRef.current.children,
-        { x: '+=200', opacity: 0 },
-        {
-          x: '0',
-          opacity: 1,
-          stagger: 0.4,
-          duration: 0.3,
-        }
-      )
-      .fromTo(
-        imgRef.current,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 3,
-        }
-      )
-      .to(btnRef.current, {
-        display: 'block',
-        opacity: 1,
-        delay: -1.5,
-        duration: 0.5,
-      });
-
-    gsap.fromTo(
-      triangleRef.current,
-      { opacity: 0 },
-      {
-        opacity: 1,
-        duration: 5,
-      }
+      headinTxtRef.current.children,
+      imgRef.current,
+      btnRef.current,
+      triangleRef.current
     );
   }, []);
 
@@ -268,9 +218,7 @@ const Header = () => {
             </StyledHeadingContainer>
             <StyledButton
               ref={btnRef}
-              onClick={() =>
-                scrollToSection(sectiontitles?.[1]?.titleMenuId)
-              }
+              onClick={() => scrollToSection(sectiontitles?.[1]?.titleMenuId)}
             >
               {uiSubs?.welcomeBtn?.[locale]}
             </StyledButton>

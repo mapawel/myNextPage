@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Header from 'components/organisms/Header';
 import RecentProjectsCube from 'components/organisms/RecentProjectsCube';
 import AboutHome from 'components/organisms/AboutHome';
-import SolutionExamples from 'components/organisms/SolutionExamples';
+import ScopeHome from 'components/organisms/ScopeHome';
 import { headSubs } from 'assets/data/headSubs';
 
 const HomePage = () => {
@@ -22,7 +22,7 @@ const HomePage = () => {
       <main>
         <RecentProjectsCube />
         <AboutHome />
-        <SolutionExamples />
+        <ScopeHome />
       </main>
     </>
   );

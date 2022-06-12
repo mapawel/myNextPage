@@ -13,6 +13,7 @@ import Cube from 'components/organisms/Cube';
 import { sectiontitles } from 'assets/data/sectiontitles';
 import { projects } from 'assets/data/projects';
 import { uiSubs } from 'assets/data/uiSubs';
+import sectionHeadingAnim from 'gsapanims/sectionHeadingAnim';
 
 gsap.registerPlugin(ScrollTrigger);
 const tl = gsap.timeline({ repeat: -1 });
@@ -73,6 +74,7 @@ const RecentProjectsCube = () => {
   const data = projects;
   const sectionId = sectiontitles?.[1]?.titleMenuId;
 
+  const headingRef = useRef(null);
   const instrucionsRef = useRef(null);
   const [instructionVisible, setInstructionVisible] = useState(true);
 
@@ -107,9 +109,13 @@ const RecentProjectsCube = () => {
     return () => st.kill();
   });
 
+  useEffect(()=> {
+    sectionHeadingAnim(headingRef.current)
+  }, [])
+
   return (
     <StyledWrapper as="section" id={sectionId}>
-      <SectionHeading nomargin>{title}</SectionHeading>
+      <SectionHeading ref={headingRef} nomargin>{title}</SectionHeading>
       <StyledContainer>
         {instructionVisible && (
           <StyledParagraph ref={instrucionsRef}>
@@ -123,9 +129,7 @@ const RecentProjectsCube = () => {
         />
       </StyledContainer>
       <Link href="/projects" passHref>
-        <StyledButtonLink>
-          {uiSubs?.moreProjects?.[locale]}
-        </StyledButtonLink>
+        <StyledButtonLink>{uiSubs?.moreProjects?.[locale]}</StyledButtonLink>
       </Link>
     </StyledWrapper>
   );

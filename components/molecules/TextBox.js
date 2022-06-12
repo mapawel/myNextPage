@@ -10,6 +10,7 @@ import Rect from 'components/atoms/Rect';
 import { breakpoint } from 'breakpoints';
 import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import arrayTextsAnim from 'gsapanims/arrayTextsAnim';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -102,13 +103,15 @@ const TextBox = ({ rect, triangle, data }) => {
   useEffect(() => {
     gsap.fromTo(rectRef.current, ...pulseAnim);
     gsap.fromTo(triangleRef.current, ...pulseAnim);
+    const textsToAnim = gsap.utils.toArray('.textToAnim');
+    arrayTextsAnim(textsToAnim);
   }, []);
 
   return (
     <StyledContainer>
       <StyledHeading bold>{data?.title?.[locale]?.toUpperCase()}</StyledHeading>
       {data?.content?.[locale]?.map((content, index) => (
-        <StyledParagraph id={index} key={content}>
+        <StyledParagraph id={index} key={content} className="textToAnim">
           {content}
         </StyledParagraph>
       ))}

@@ -188,15 +188,13 @@ const SolutionBox = ({ solution }) => {
 };
 
 SolutionBox.propTypes = {
-  slug: PropTypes.string.isRequired,
-  title: PropTypes.objectOf(PropTypes.string).isRequired,
-  images: PropTypes.arrayOf(PropTypes.object),
-  description: PropTypes.string.isRequired,
-  live: PropTypes.string.isRequired,
-};
-
-SolutionBox.defaultProps = {
-  images: [],
+  solution: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+      PropTypes.arrayOf(PropTypes.object),
+    ])
+  ).isRequired,
 };
 
 export default SolutionBox;

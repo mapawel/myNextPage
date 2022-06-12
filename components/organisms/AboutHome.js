@@ -15,6 +15,7 @@ import { sectiontitles } from 'assets/data/sectiontitles';
 import { aboutHome } from 'assets/data/aboutHome';
 import { aboutHomeIcons } from 'assets/data/aboutHomeIcons';
 import { uiSubs } from 'assets/data/uiSubs';
+import sectionHeadingAnim from 'gsapanims/sectionHeadingAnim';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({
@@ -83,6 +84,7 @@ const AboutHome = () => {
   const title = sectiontitles?.[2]?.title?.[locale];
   const sectionId = sectiontitles?.[2]?.titleMenuId;
 
+  const headingRef = useRef(null);
   const iconsArrRef = useRef(null);
 
   useEffect(() => {
@@ -103,9 +105,14 @@ const AboutHome = () => {
       iconsAnimTarget(iconsArrRef.current)
     );
   });
+
+  useEffect(() => {
+    sectionHeadingAnim(headingRef.current);
+  });
+
   return (
     <StyledWrapper as="section" id={sectionId}>
-      <SectionHeading>{title}</SectionHeading>
+      <SectionHeading ref={headingRef}>{title}</SectionHeading>
       <StyledTwoColumns>
         <TextBox data={aboutHome} rect />
         <StyledColumn ref={iconsArrRef}>
@@ -120,9 +127,7 @@ const AboutHome = () => {
         </StyledColumn>
       </StyledTwoColumns>
       <Link href="/about" passHref>
-        <StyledButtonLink>
-          {uiSubs?.aboutMore?.[locale]}
-        </StyledButtonLink>
+        <StyledButtonLink>{uiSubs?.aboutMore?.[locale]}</StyledButtonLink>
       </Link>
     </StyledWrapper>
   );

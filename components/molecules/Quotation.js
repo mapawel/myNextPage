@@ -116,7 +116,7 @@ const Quotation = ({ text, img, author }) => (
 );
 
 Quotation.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.arrayOf(PropTypes.string).isRequired,
   img: PropTypes.object,
   author: PropTypes.string.isRequired,
 };

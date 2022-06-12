@@ -19,6 +19,7 @@ import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { pageTites } from 'assets/data/pageTitles';
 import BottomButtons from 'components/molecules/BottomButtons';
+import arrayTextsAnim from 'gsapanims/arrayTextsAnim';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({
@@ -301,22 +302,7 @@ const DetailProjectPage = ({ selectedProject }) => {
     });
 
     const descriptionsToAnim = gsap.utils.toArray('.descriptionToAnim');
-    descriptionsToAnim.forEach((child) => {
-      gsap.fromTo(
-        child,
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          duration: 1,
-          scrollTrigger: {
-            trigger: child,
-            start: 'top 70%',
-          },
-        }
-      );
-    });
+    arrayTextsAnim(descriptionsToAnim);
   }, []);
 
   return (
@@ -325,12 +311,7 @@ const DetailProjectPage = ({ selectedProject }) => {
         <title>
           {headSubs?.projectDetails?.title?.[locale] + title?.[locale]}
         </title>
-        <meta
-          name="description"
-          content={
-            description?.[locale]
-          }
-        />
+        <meta name="description" content={description?.[locale]} />
       </Head>
       <main>
         <Wrapper as="section">
