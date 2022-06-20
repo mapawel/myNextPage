@@ -102,7 +102,7 @@ const AboutPage = () => {
   const isBrowser = useBrowser();
   const [swiper, setSwiper] = useState(null);
   const { locale } = useRouter();
-  const title = routes?.[2]?.name?.[locale];
+  const title = routes?.[3]?.name?.[locale];
 
   return (
     <>

@@ -32,7 +32,7 @@ const StyledLogo = styled.img`
 `;
 
 const FooterListContainer = styled.div`
-align-self: center;
+  align-self: center;
   display: flex;
   justify-content: center;
   @media screen and (max-width: ${breakpoint.L}) {
@@ -82,7 +82,7 @@ const FooterLinks = () => {
     <FooterLinksWrapper>
       <Link href="/">
         <a>
-          <StyledLogo src="/icons/devconelogo.svg" />
+          <StyledLogo src="/icons/devdeferlogo.svg" />
         </a>
       </Link>
       <FooterListContainer>

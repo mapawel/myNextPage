@@ -162,7 +162,7 @@ const Footer = ({ footerHeight }) => {
         <StyledParagraph>
           &copy; {new Date().getFullYear()}{' '}
           <Link href="https://devdefer.com" passHref>
-            <StyledA>dev.defer</StyledA>
+            <StyledA>devdefer</StyledA>
           </Link>
           , All rights reserved
         </StyledParagraph>

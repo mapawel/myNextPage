@@ -31,12 +31,12 @@ const ScopeHome = () => {
       <BottomButtons
         noDecoration
         linkOne={{
-          href: '/solutions',
-          label: uiSubs?.ourSolutions,
-        }}
-        linkTwo={{
           href: '/projects',
           label: uiSubs?.ourProjects,
+        }}
+        linkTwo={{
+          href: '/solutions',
+          label: uiSubs?.ourSolutions,
         }}
       />
     </Wrapper>

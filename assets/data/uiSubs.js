@@ -55,6 +55,10 @@ export const uiSubs = {
     en: 'Description:',
     pl: 'Opis:',
   },
+  brief: {
+    en: 'brief:',
+    pl: 'w skrócie:',
+  },
   contact: {
     en: 'ask about a cooperation',
     pl: 'zapytaj o współpracę',

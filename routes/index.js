@@ -14,17 +14,17 @@ const routes = [
     },
   },
   {
-    path: '/about',
-    name: {
-      en: '<about us />',
-      pl: '<o nas />',
-    },
-  },
-  {
     path: '/solutions',
     name: {
       en: '<our solutions />',
       pl: '<przykłady rozwiązań />',
+    },
+  },
+  {
+    path: '/about',
+    name: {
+      en: '<about us />',
+      pl: '<o nas />',
     },
   },
   {

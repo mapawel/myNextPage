@@ -240,7 +240,7 @@ const Menu = () => {
       >
         <Link href="/" passHref>
           <StyledAtag ref={logoRef}>
-            <StyledLogo src="/icons/devconelogo.svg" />
+            <StyledLogo src="/icons/devdeferlogo.svg" />
           </StyledAtag>
         </Link>
         <StyledList ref={menuListRef}>

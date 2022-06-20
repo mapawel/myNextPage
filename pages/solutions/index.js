@@ -30,7 +30,7 @@ const SolutionsContainer = styled.div`
 
 const SolutionsPage = () => {
   const { locale } = useRouter();
-  const title = routes?.[3]?.name?.[locale];
+  const title = routes?.[2]?.name?.[locale];
 
   return (
     <>

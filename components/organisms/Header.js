@@ -205,7 +205,7 @@ const Header = () => {
         <StyledTwoColumns>
           <StyledTxtBox>
             <StyledTriangle ref={triangleRef} />
-            <StyledLogo ref={logoRef} src="/icons/devconelogo.svg" />
+            <StyledLogo ref={logoRef} src="/icons/devdeferlogo.svg" />
             <StyledHeadingContainer ref={headinTxtRef}>
               <StyledHeaderTxt>
                 {headings?.[locale]?.[0]}

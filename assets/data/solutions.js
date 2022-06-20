@@ -1,6 +1,6 @@
-import bluechip1Img from 'public/images/bluechip/bluechip1.jpg';
-import bluechip2Img from 'public/images/bluechip/bluechip2.jpg';
-import bluechip3Img from 'public/images/bluechip/bluechip3.jpg';
+import interactive1 from 'public/images/solutions/interactive-handling/solution-interactive1.png';
+import interactive2 from 'public/images/solutions/interactive-handling/solution-interactive2.png';
+import interactive3 from 'public/images/solutions/interactive-handling/solution-interactive3.png';
 
 export const solutions = [
   {
@@ -18,15 +18,15 @@ export const solutions = [
     images: [
       {
         id: 'tredfg543',
-        img: bluechip1Img,
+        img: interactive3,
       },
       {
         id: 'dfgtre543',
-        img: bluechip2Img,
+        img: interactive2,
       },
       {
         id: 'jhgert735',
-        img: bluechip3Img,
+        img: interactive1,
       },
     ],
     detailSolutionView: {
