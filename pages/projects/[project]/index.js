@@ -326,6 +326,7 @@ const DetailProjectPage = ({ selectedProject }) => {
               layout="fill"
               placeholder="blur"
               objectFit="contain"
+              priority
             />
           </ImageWrapper>
 
