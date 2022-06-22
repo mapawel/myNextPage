@@ -97,10 +97,17 @@ const MessageForm = ({ data }) => {
         validationSchema={validatorSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           setSubmitting(true);
-          const test = new Promise((res, rej) => {
-            setTimeout(() => res('ok'), 1000);
+
+          const response = await fetch('/api/sendmail', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
           });
-          await test;
+
+          const responseObject = await response.json();
+          console.log(responseObject);
           // resetForm();
           setSubmitting(false);
         }}
