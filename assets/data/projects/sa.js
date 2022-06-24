@@ -250,6 +250,7 @@ const sa = {
             'On the portal pages, on the product subpages, a custom infinite scroll type solution was implemented, which "adds" new products with the API at the moment of the appropriate scroll position.',
             'The private correspondence view (secured with a token) has also been implemented, which allows you to follow messages in one place like in a chat, but the entire message exchange is carried out using Nodemailer. Messages can be exchanged both in relation to individual products and in general. The correspondence is stored in the database. ',
             'Portal users receive e-mails with notifications on e-mail templates made individually in Mjml.',
+            'The application has been carefully managed with errors - the user is never left without information about what is happening in the portal or if something has gone wrong.',
             'API / backend adds full mechanics relevant to data management by the administrator, which is described as a separate project. Sever application is also the data base for this portal. ',
           ],
           pl: [
@@ -260,6 +261,7 @@ const sa = {
             'Na stronach portalu na podstronach produktowych wdrożono customowe rozwiązanie typu infinite scroll, które "dogrywa" kolejne produkty z API w momencie odpowiedniej pozycji scrolla.',
             'Wdrożono także widok prywatnej korespondencji (zabezpieczony tokenem), który daje możliwość śledzenia wątków w jednym miejscu jak w czacie, jednak cała wymiana wiadomości realizowana jest za pomocą Nodemailera. Wiadomości można wymieniać zarówno w odniesieniu do poszczególnych produktów jak i ogólnie. Korespondencje przechowywane są w bazie danych.',
             'Użytkownicy portalu otrzymują maile z powiadomieniami na szablonach mailowych wykonanych indywidualnie w Mjml.',
+            'W aplikacji wykonano starannie zarządzanie błędami - użytkownik nigdy nie pozostaje bez informacji o tym, co się dzieje w poratlu lub czy coś poszło nie tak.',
             'API/backend dodaje pełną mechanikę istotną dla zarządzania danymi przez administratora, co jest opisane jako odrębny projekt. Aplikacja ta też stanowi zaplecze danych dla niniejszego poralu.',
           ],
         },
