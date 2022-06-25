@@ -5,7 +5,7 @@ import SectionHeading from 'components/atoms/SectionHeading';
 import List from 'components/molecules/List';
 import BottomButtons from 'components/molecules/BottomButtons';
 import { sectiontitles } from 'assets/data/sectiontitles';
-import { solutionExamples } from 'assets/data/SolutionExamples';
+import { solutionExamples } from 'assets/data/solutionExamples';
 import { uiSubs } from 'assets/data/uiSubs';
 import sectionHeadingAnim from 'gsapanims/sectionHeadingAnim';
 
