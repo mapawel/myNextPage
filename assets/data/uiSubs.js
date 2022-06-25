@@ -75,5 +75,13 @@ export const uiSubs = {
     en: 'back to the project',
     pl: 'wróć do projektu',
   },
+  mailSent: {
+    en: 'Your message\'s been sent successfully. Thank you.',
+    pl: 'Twoja wiadomość została wysłana pomyślnie. Dziękuję.',
+  },
+  mailNotSent: {
+    en: 'Sorry, mail\'s not been delivered. Please try again or use Messanger. Thank you.',
+    pl: 'Przykro mi, nie można dostarczyć wiadomości. Spróbuj ponownie lub użyj Messengera.',
+  },
 
 }

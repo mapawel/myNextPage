@@ -8,6 +8,7 @@ import { Formik, ErrorMessage } from 'formik';
 import { validatorSchema } from 'validators/validatorSchema';
 import SentMailPopUp from 'components/organisms/SentMailPopUp';
 import TextModal from 'components/organisms/TextModal';
+import { Portal } from 'react-portal';
 
 const spin = keyframes`
   from {
@@ -74,7 +75,7 @@ const StyledButton = styled.button`
 
 const MessageForm = ({ data }) => {
   const { locale } = useRouter();
-  const [sentMailStatus, setSentMailStatus] = useState(0);
+  const [sentMailStatus, setSentMailStatus] = useState(null);
   const [isPolicyVisible, setShowPolicy] = useState(false);
   const handleSentMailFeedback = (status) => {
     setSentMailStatus(status);
@@ -99,7 +100,7 @@ const MessageForm = ({ data }) => {
           setSubmitting(true);
 
           const response = await fetch('/api/sendmail', {
-            method: 'GET',
+            method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
@@ -107,7 +108,7 @@ const MessageForm = ({ data }) => {
           });
 
           const responseObject = await response.json();
-          console.log(responseObject);
+          setSentMailStatus(responseObject.status);
           // resetForm();
           setSubmitting(false);
         }}
@@ -201,11 +202,14 @@ const MessageForm = ({ data }) => {
           </StyledForm>
         )}
       </Formik>
-      {sentMailStatus !== 0 ? (
-        <SentMailPopUp
-          togglePopup={handleSentMailFeedback}
-          sentStatus={sentMailStatus}
-        />
+      {console.log(sentMailStatus)}
+      {sentMailStatus !== null ? (
+        <Portal>
+          <SentMailPopUp
+            togglePopup={handleSentMailFeedback}
+            sentStatus={sentMailStatus}
+          />
+        </Portal>
       ) : null}
     </>
   );

@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { gsap } from 'gsap/dist/gsap';
 import Paragraph from 'components/atoms/Paragraph';
+import { uiSubs } from 'assets/data/uiSubs';
 
 const tl = gsap.timeline({ delay: 0 });
 
@@ -28,7 +30,8 @@ const StyledParagraph = styled(Paragraph)`
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  color: ${({ theme, sentStatus }) => (sentStatus === 400 ? 'red' : theme.color.textPrimary)};
+  color: ${({ theme, sentStatus }) =>
+    sentStatus === 400 ? 'red' : theme.color.textPrimary};
   opacity: 0;
 `;
 
@@ -66,10 +69,10 @@ const StyledSpan = styled.div`
   height: 100%;
   background-color: black;
   margin-right: 5px;
-  :nth-child(2n){
+  :nth-child(2n) {
     height: 80%;
   }
-  :nth-child(2){
+  :nth-child(2) {
     margin-right: 1rem;
   }
 `;
@@ -77,8 +80,8 @@ const StyledSpan = styled.div`
 const StyledEnTop = styled.div`
   position: relative;
   z-index: 5;
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 6rem solid transparent;
   border-right: 6rem solid transparent;
   border-bottom: 5.5rem solid #999999;
@@ -90,8 +93,8 @@ const StyledEnTop2 = styled.div`
   position: relative;
   z-index: 20;
   top: 5.5rem;
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 6rem solid transparent;
   border-right: 6rem solid transparent;
   border-bottom: 5.5rem solid #dddddd;
@@ -103,8 +106,8 @@ const StyledEnTop2 = styled.div`
 const StyledEnInside = styled.div`
   position: relative;
   z-index: 5;
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 6rem solid transparent;
   border-right: 6rem solid transparent;
   border-top: 5rem solid #939393;
@@ -114,8 +117,8 @@ const StyledEnMain = styled.div`
   position: relative;
   z-index: 20;
   top: -5rem;
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 6rem solid #cccccc;
   border-right: 6rem solid #cccccc;
   border-top: 5rem solid transparent;
@@ -125,7 +128,7 @@ const StyledEnBottom = styled.div`
   position: relative;
   top: -5rem;
   z-index: 20;
-  width: 12rem; 
+  width: 12rem;
   height: 3rem;
   background-color: #cccccc;
 `;
@@ -141,6 +144,7 @@ const StyledBox = styled.div`
 `;
 
 const SentMailPopUp = ({ togglePopup, sentStatus }) => {
+  const { locale } = useRouter();
   const letterRef = useRef(null);
   const envelopeTopRef = useRef(null);
   const envelopeTop2Ref = useRef(null);
@@ -151,14 +155,18 @@ const SentMailPopUp = ({ togglePopup, sentStatus }) => {
   useEffect(() => {
     const isBackAnim = (sentStatus) => {
       const animTarget = {
-        duration: 1, x: '0', y: '0', scale: 0.6, opacity: 0.4, rotate: -30,
+        duration: 1,
+        x: '0',
+        y: '0',
+        scale: 0.6,
+        opacity: 0.4,
+        rotate: -30,
       };
       const animBlank = {};
-      if (sentStatus === 400) return animTarget;
+      if (sentStatus !== 'OK') return animTarget;
       return animBlank;
     };
-    tl
-      .to(wrapperRef.current, { duration: 0.5, opacity: 1 })
+    tl.to(wrapperRef.current, { duration: 0.5, opacity: 1 })
       .to(envelopeRef.current, { duration: 0.5, opacity: 1 })
       .to(letterRef.current, { duration: 0.3, opacity: 1 })
       .to(letterRef.current, { duration: 0.2, rotation: 50 })
@@ -169,19 +177,37 @@ const SentMailPopUp = ({ togglePopup, sentStatus }) => {
       .to(envelopeTop2Ref.current, { duration: 0.2, rotationX: 180 })
       .to(envelopeTop2Ref.current, { duration: 0.3, rotationX: 180 })
       .to(envelopeRef.current, {
-        duration: 1, x: '+=100', y: '-=100', scale: 0.1, opacity: 0, rotate: 720,
+        duration: 1,
+        x: '+=100',
+        y: '-=100',
+        scale: 0.1,
+        opacity: 0,
+        rotate: 720,
       })
       .to(envelopeRef.current, isBackAnim(sentStatus))
       .to(paragraphRef.current, { duration: 0.5, opacity: 1 })
-      .to(paragraphRef.current, { duration: sentStatus === 400 ? 4 : 2, opacity: 1 })
-      .to(wrapperRef.current, { duration: 0.5, opacity: 0, onComplete: () => togglePopup(0) });
+      .to(paragraphRef.current, {
+        duration: sentStatus !== 'OK' ? 4 : 2,
+        opacity: 1,
+      })
+      .to(wrapperRef.current, {
+        duration: 0.5,
+        opacity: 0,
+        onComplete: () => {
+          tl.clear()
+          togglePopup(null);
+        },
+      });
   });
 
   return (
     <StyledShadowWrapper ref={wrapperRef}>
+      {console.log('JESTEM RENTEROWANY')}
       <StyledContainer>
         <StyledParagraph sentStatus={sentStatus} ref={paragraphRef}>
-          {sentStatus === 200 ? 'Your message\'s been sent. Thank you.' : 'Sorry, mail is not delivered. Please use Messanger or LinkedIn. Thank you.'}
+          {sentStatus === 'OK'
+            ? `${uiSubs?.mailSent?.[locale]}`
+            : `${uiSubs?.mailNotSent?.[locale]}`}
         </StyledParagraph>
         <StyledBox ref={envelopeRef}>
           <StyledLetter ref={letterRef}>
@@ -207,7 +233,7 @@ const SentMailPopUp = ({ togglePopup, sentStatus }) => {
 
 SentMailPopUp.propTypes = {
   togglePopup: PropTypes.func.isRequired,
-  sentStatus: PropTypes.number.isRequired,
+  sentStatus: PropTypes.string.isRequired,
 };
 
 export default SentMailPopUp;
