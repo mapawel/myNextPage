@@ -73,7 +73,7 @@ const pudlopanel = {
           'zaprojektowanie i wykonianie narzędzi zarządzania koszykami i zamówieniami',
           'stworzenie narzędzia optymalizującego zdjęcia produktów oraz umieszczającego ich w chmurze (AWS) do dalszego wykorzystania',
           'zadbanie o bezpieczeństwo danych, system autentykacji i autoryzacji',
-          'stworzenie walidatorów danych ora obsługi błędów',
+          'stworzenie walidatorów danych oraz obsługi błędów',
           'hosting aplikacji sklepu i panelu',
         ],
       },
@@ -117,10 +117,10 @@ const pudlopanel = {
         },
         description: {
           en: [
-            "The look is to be attractive, modern and minimalist. It should not dominate the photos of fashion designs presented in the store. Two separate themes were used depending on the subpage that is displayed - the home page is in a dark tone, the store's sub-site is to emphasize the products, and a light tone was used.",
+            "The design of the panel is not the priority here, but the views are neat and clear, focusing on clearly displaying data in tables or tabs. Tables include the possibility of sorting data, as well as searching and sorting them. The panel is responsive.",
           ],
           pl: [
-            'Wygląd ma być atrakcyjny, nowoczesnym minimalistyczny. Nie powinien dominować nad zdjęciami projektów modowych prezentowanych w sklepie. Zastosowano dwa odrębne motywy zależne od podstrony, która jest wyświetlana - home page jest w tonacji ciemnej, podstorna sklepu ma uwydatniać produkty, zastosowano tonację jasną.',
+            'Wygląd panelu nie jest tu kluczowy jednak widoki są schludne i czytelne, skupiają się na przejrzystym wyświetlaniu danych w tabelach lub w kartach. Tabele zawierają możliwość sortowania danych oraz ich wyszukiwania i sortowania. Panel jest responsywny.',
           ],
         },
       },
@@ -135,7 +135,7 @@ const pudlopanel = {
             "The store engine communicates with a very fast database located in the cloud, where all information about products, customers, baskets and orders is stored. Large static files, i.e. photos of products, are stored in the AWS cloud, from which they can then be instantly served to users' browsers.",
             'Product photos are properly optimized on the server before they go to the cloud. The data passing through the server are fully validated and their correctness is checked. ',
             "The store engine is proprietary and fully customized to the customer's requirements, but it is so versatile that it can serve as the backbone of other stores after customization. It includes a number of facilities for the administrator that can be used in the admin panel. ",
-            'The panel aggregates and displays data in the following views: products, product groups, customers, baskets, orders. In each of these views, the data is displayed in easy-to-read tables, and the landing area can be slightly adapted to your own requirements. This is implemented data sorting and filtering as well as pagination. An interesting solution is the implementation of collective changes, i.e. the possibility of introducing the same change of the selected parameter, but in many positions at once. For example, you can change the order fulfillment status for multiple orders at once instead of each separately. You can also, for example, with a few clicks, change the assignment to a product group of many products at once (e.g. throw 30 products at the same time into a discounted outlet group) instead of making many changes separately. ',
+            'The panel aggregates and displays data in the following views: products, product groups, customers, baskets, orders. In each of these views, the data is displayed in easy-to-read tables, and the landing area can be slightly adapted to your own requirements. There is implemented data sorting and filtering as well as pagination. An interesting solution is the implementation of collective changes, i.e. the possibility of introducing the same change of the selected parameter, but in many positions at once. For example, you can change the order fulfillment status for multiple orders at once instead of each separately. You can also, for example, with a few clicks, change the assignment to a product group of many products at once (e.g. throw 30 products at the same time into a discounted outlet group) instead of making many changes separately. ',
             'Tools for changing the currently existing baskets or orders have also been implemented - the administrator may propose a change of the terms of the contract if necessary (e.g. when there is a lack of a product during the execution of the order or the price was wrong). In such a situation, we will also take care of the customer of the store, who must confirm the acceptance of such changes by clicking on a private link. ',
             'The store engine automatically sends e-mails to customers regarding the status of order fulfillment, etc., and to the administrator in the case of a new order.',
           ],
@@ -143,7 +143,7 @@ const pudlopanel = {
             'Silnik sklepu komunikuje się z bardzo szybką bazą danych umieszczoną w chmurze, w której przechowywane są wszelkie informacje o produktach, klientach, koszykach i zamówieniach. Duże pliki statyczne, czyli zdjęcia produktów, przechowywane są w chmurze AWS, z której następnie mogą być błyskawicznie serwowane do przeglądarek użytkowników.',
             'Zdjęcia produktów zanim trafią do chmury są odpowiednio optymalizowane na serwerze. Dane przechodzące przez serwer są w pełni walidowane a ich poprawność sprawdzana.',
             'Silnik sklepu jest autorski i w pełni dostosowany do wymogów klient, jest jednak na tyle wszechstronny, że może służyć jako szkielet innych sklepów po dostosowaniu. Zawiera szereg udogodnień dla administratora, z których można korzystać w admin panelu.',
-            'Panel agreguje i wyświetla dane w następujących widokach: produkty, grupy produktowe, klienci, koszyki, zamówienia. W każdym z tych widoków dane wyświetlane są w czytelnych tabelach, k†órych wydląd można nieco dostosować do włąsnych wymogów. Zaimplementowanu to sortowanie i filtorwanie danych oraz paginację. Ciekawym rozwiązaniem jest wdrożenie zmian zbiorczych, czyli możliwość wporwadzenia takiej samej zmiany wybranego parametru ale w wielu pozycjach na raz. Przykładowo można zmienić status realziacji zamówienia dla wielu zamówień na raz zamiast każdego odzielnie. Można też przykładowo paroma kliknięciami zmienić przypisanie do grupy towarowej wielu produktów na raz (np. wrzucenie 30 produktów jednocześnie do grupy wyprzedażowej z rabatem) zamiast dokonywać wielu zmian oddzielnie.',
+            'Panel agreguje i wyświetla dane w następujących widokach: produkty, grupy produktowe, klienci, koszyki, zamówienia. W każdym z tych widoków dane wyświetlane są w czytelnych tabelach, k†órych wydląd można nieco dostosować do włąsnych wymogów. Zaimplementowanu sortowanie i filtorwanie danych oraz paginację. Ciekawym rozwiązaniem jest wdrożenie zmian zbiorczych, czyli możliwość wporwadzenia takiej samej zmiany wybranego parametru ale w wielu pozycjach na raz. Przykładowo można zmienić status realziacji zamówienia dla wielu zamówień na raz zamiast każdego odzielnie. Można też przykładowo paroma kliknięciami zmienić przypisanie do grupy towarowej wielu produktów na raz (np. wrzucenie 30 produktów jednocześnie do grupy wyprzedażowej z rabatem) zamiast dokonywać wielu zmian oddzielnie.',
             'Wrożono także narzędzia do zmian aktualnie istniejących koszyków lub zamówień - administrator może zaproponować zmianę warunków realizaji zamówienia w razie potrzeby (np. gdy podczas realizacji zamówienia wystąpi brak produktu lub cena była omyłkowa). W takiej sytuacji zadabno też o klienta sklepu, który akceptację takich zmian musi potwierdzoć klikając w prywatny link.',
             'Silnik sklepu automatycznie wysyłam maile do klientów dot. statusów realizacji zamówienia itp. oraz do administratora w wypadku nowego zamówienia.',
           ],
@@ -163,7 +163,6 @@ const pudlopanel = {
         'SERVER: sharp',
         'SERVER: jsonwebtoken',
         'SERVER: Express validator',
-        'SERVER: mjml',
         'React',
         'Redux & Thunk',
         'Axios',
@@ -181,7 +180,6 @@ const pudlopanel = {
         'SERVER: sharp',
         'SERVER: jsonwebtoken',
         'SERVER: Express validator',
-        'SERVER: mjml',
         'React',
         'Redux & Thunk',
         'Axios',
@@ -193,11 +191,11 @@ const pudlopanel = {
     },
     techDescriptions: [
       {
-        id: 'techsa1',
+        id: 'techpudlopanel1',
         title: { en: 'technicals', pl: 'technikalia' },
         description: {
           en: [
-            'The store engine is a fullstack project. It includes the Node.js / Express.js application on the server side and the front-end application in React which is the administration panel. All data is stored in the MongoDB cloud database, during the upload static image files are processed by the server using Sharp and, after optimization, uploaded to the AWS cloud in several resolutions, so that they can be served from there in a resolution appropriate for a given device, improving the speed of loading views.',
+            'The store engine is a fullstack project. It includes the Node.js / Express.js application on the server side and the front-end application in React which is the administration panel. To speed up the work in the panel views, Material-UI components were used, but mostly heavily modified. All data is stored in the MongoDB cloud database, during the upload static image files are processed by the server using Sharp and, after optimization, uploaded to the AWS cloud in several resolutions, so that they can be served from there in a resolution appropriate for a given device, improving the speed of loading views.',
             'All data is validated on the server. A user and administrator authentication and authorization system was made, both the data and routes on the front were dependent on the level of authorization.',
             'Data from the database via API on the server are sent to the panel and stored in Redux. The panel admin views are always updated with the current data from the server. ',
             'All store management and sales activities in the panel are related to asynchronous actions changing the data on the server, always give full feedback and are connected with error handling, the user is not left without information while performing operations in the panel.',
@@ -205,11 +203,11 @@ const pudlopanel = {
             'Some interesting solutions - e.g. collective change of the object parameters described on the general page of this project and e.g. confirmation of the price each time it is to be displayed somewhere in the browser by the server, so that it is always up-to-date about the calculation of discounts resulting from various discount groups and the purpose of its verification.',
           ],
           pl: [
-            'Silnik sklepu jest projektem typu fullstack. Zawiera aplikację Node.js / Express.js po stronie serwera oraz fronotową aplikację w React będącą panelem administracyjnym. Wszelkie dane przechowywane są w chmurowej bazie MongoDB, statyczne pliki graficzne podczas uploadu obrabiane są przez serwer za pomocą Sharp i po optymalizacji ładowane do chmury AWS w kilku rozdzielczościach, aby potem stamtąd mogły być serwowane w odpowiedniej dla danego urządzenia rozdzielczości poprawiającej prędkość ładowania widoków.',
+            'Silnik sklepu jest projektem typu fullstack. Zawiera aplikację Node.js / Express.js po stronie serwera oraz fronotową aplikację w React będącą panelem administracyjnym. Dla przyśpieszenia prac w widokach panelu wykorzystano komponenty Material-UI jednak w większości mocno zmodyfikowane. Wszelkie dane przechowywane są w chmurowej bazie MongoDB, statyczne pliki graficzne podczas uploadu obrabiane są przez serwer za pomocą Sharp i po optymalizacji ładowane do chmury AWS w kilku rozdzielczościach, aby potem stamtąd mogły być serwowane w odpowiedniej dla danego urządzenia rozdzielczości poprawiającej prędkość ładowania widoków.',
             'Wszelkie dane są walidowane na serwerze. Wykonano system autentykacji i autoryzacji użytkowników oraz administratora, zarówno dane jak i widoki na froncie uzależniono od poziomu uprawnień.',
             'Dane z bazy poprzez API na serwerze przesyłane są do panelu a w nim przechowywane w Redux. Widoki admin panelu zawsze uaktualniane są o bieżące dane z serwera.',
             'Wszystkie działania zarządzania sklepem i sprzedażą w panelu powiązane są z asynchronicznymi akcjami zmieniającymi dane na serwerze, dają zawsze pełny feedback oraz połączone są z obsługą błędów, użytkownik nie jest pozostawiony bez informacji podczas wykonywania operacji w panelu.',
-            'Do obsługi wiadkomości mailowych wykorzystano Nodemailera.',
+            'Do obsługi wiadomości mailowych wykorzystano Nodemailera.',
             'Kilka ciekawych rozwiązań - np. zbiorcza zmiana parametrów obiektu opisana na stronie ogólnej tego projektu oraz np. potwierdzanie ceny każdorazowo gdy ma być wyświetlona gdzieś w przeglądarde przez serwer, aby zawsze była aktualne o kalkulacje rabatów wynikających z różnuch grup rabatowych oraz celem jej weryfikacji.',
           ],
         },
