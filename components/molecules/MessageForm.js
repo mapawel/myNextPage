@@ -75,10 +75,11 @@ const StyledButton = styled.button`
 
 const MessageForm = ({ data }) => {
   const { locale } = useRouter();
-  const [sentMailStatus, setSentMailStatus] = useState(null);
+  const [mailResponse, setMailResponse] = useState(null);
   const [isPolicyVisible, setShowPolicy] = useState(false);
+
   const handleSentMailFeedback = (status) => {
-    setSentMailStatus(status);
+    setMailResponse(status);
   };
 
   const togglePolicy = () => {
@@ -95,7 +96,7 @@ const MessageForm = ({ data }) => {
           content: '',
           acceptTerms: false,
         }}
-        validationSchema={validatorSchema}
+        // validationSchema={validatorSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           setSubmitting(true);
 
@@ -108,7 +109,7 @@ const MessageForm = ({ data }) => {
           });
 
           const responseObject = await response.json();
-          setSentMailStatus(responseObject.status);
+          setMailResponse(responseObject);
           // resetForm();
           setSubmitting(false);
         }}
@@ -202,12 +203,11 @@ const MessageForm = ({ data }) => {
           </StyledForm>
         )}
       </Formik>
-      {console.log(sentMailStatus)}
-      {sentMailStatus !== null ? (
+      {mailResponse !== null ? (
         <Portal>
           <SentMailPopUp
             togglePopup={handleSentMailFeedback}
-            sentStatus={sentMailStatus}
+            mailResponse={mailResponse}
           />
         </Portal>
       ) : null}

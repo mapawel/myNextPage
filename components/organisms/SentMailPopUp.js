@@ -1,12 +1,19 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { gsap } from 'gsap/dist/gsap';
 import Paragraph from 'components/atoms/Paragraph';
 import { uiSubs } from 'assets/data/uiSubs';
+import Button from 'components/atoms/Button';
 
 const tl = gsap.timeline({ delay: 0 });
+
+const StyledButton = styled(Button)`
+  visibility: ${({buttonVisible}) => buttonVisible ? 'visible' : 'hidden'};
+  margin: 3rem;
+  align-self: end;
+`;
 
 const StyledShadowWrapper = styled.div`
   position: fixed;
@@ -30,16 +37,24 @@ const StyledParagraph = styled(Paragraph)`
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  color: ${({ theme, sentStatus }) =>
-    sentStatus === 400 ? 'red' : theme.color.textPrimary};
+  color: ${({ theme, mailResponse }) =>
+    mailResponse !== 'OK' ? 'red' : theme.color.textPrimary};
   opacity: 0;
+
+  > span {
+    display: block;
+    font-size: ${({ theme }) => theme.fontSize.xxs};
+    text-align: left;
+    margin-top: 2rem;
+    line-height: 1;
+  }
 `;
 
 const StyledContainer = styled.div`
   position: relative;
   width: 85%;
   max-width: 600px;
-  height: 35rem;
+  min-height: 35rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -143,7 +158,7 @@ const StyledBox = styled.div`
   opacity: 0;
 `;
 
-const SentMailPopUp = ({ togglePopup, sentStatus }) => {
+const SentMailPopUp = ({ togglePopup, mailResponse }) => {
   const { locale } = useRouter();
   const letterRef = useRef(null);
   const envelopeTopRef = useRef(null);
@@ -151,9 +166,16 @@ const SentMailPopUp = ({ togglePopup, sentStatus }) => {
   const envelopeRef = useRef(null);
   const paragraphRef = useRef(null);
   const wrapperRef = useRef(null);
+  const [buttonVisible, setButtonVisible] = useState(false);
+
+  const resetAnim = () => {
+    setButtonVisible(false);
+    tl.clear();
+    togglePopup(null);
+  };
 
   useEffect(() => {
-    const isBackAnim = (sentStatus) => {
+    const isBackAnim = (mailResponse) => {
       const animTarget = {
         duration: 1,
         x: '0',
@@ -163,7 +185,7 @@ const SentMailPopUp = ({ togglePopup, sentStatus }) => {
         rotate: -30,
       };
       const animBlank = {};
-      if (sentStatus !== 'OK') return animTarget;
+      if (mailResponse?.status !== 'OK') return animTarget;
       return animBlank;
     };
     tl.to(wrapperRef.current, { duration: 0.5, opacity: 1 })
@@ -184,30 +206,36 @@ const SentMailPopUp = ({ togglePopup, sentStatus }) => {
         opacity: 0,
         rotate: 720,
       })
-      .to(envelopeRef.current, isBackAnim(sentStatus))
-      .to(paragraphRef.current, { duration: 0.5, opacity: 1 })
+      .to(envelopeRef.current, isBackAnim(mailResponse))
       .to(paragraphRef.current, {
-        duration: sentStatus !== 'OK' ? 4 : 2,
+        duration: 0.5,
+        opacity: 1,
+        onComplete: () => setButtonVisible(true),
+      })
+      .to(paragraphRef.current, {
+        duration: mailResponse?.status !== 'OK' ? 10 : 2,
         opacity: 1,
       })
       .to(wrapperRef.current, {
         duration: 0.5,
         opacity: 0,
-        onComplete: () => {
-          tl.clear()
-          togglePopup(null);
-        },
+        onComplete: resetAnim,
       });
   });
 
   return (
     <StyledShadowWrapper ref={wrapperRef}>
-      {console.log('JESTEM RENTEROWANY')}
       <StyledContainer>
-        <StyledParagraph sentStatus={sentStatus} ref={paragraphRef}>
-          {sentStatus === 'OK'
-            ? `${uiSubs?.mailSent?.[locale]}`
-            : `${uiSubs?.mailNotSent?.[locale]}`}
+        {console.log('RESPONSE: ', mailResponse)}
+        <StyledParagraph mailResponse={mailResponse?.status} ref={paragraphRef}>
+          {mailResponse?.status === 'OK' ? (
+            `${uiSubs?.mailSent?.[locale]}`
+          ) : (
+            <>
+              {uiSubs?.mailNotSent?.[locale]}
+              <span>{mailResponse?.message}</span>
+            </>
+          )}
         </StyledParagraph>
         <StyledBox ref={envelopeRef}>
           <StyledLetter ref={letterRef}>
@@ -226,6 +254,13 @@ const SentMailPopUp = ({ togglePopup, sentStatus }) => {
           <StyledEnMain />
           <StyledEnBottom />
         </StyledBox>
+        <StyledButton
+          buttonVisible={buttonVisible}
+          variant="noborder"
+          onClick={resetAnim}
+        >
+          OK
+        </StyledButton>
       </StyledContainer>
     </StyledShadowWrapper>
   );
@@ -233,7 +268,7 @@ const SentMailPopUp = ({ togglePopup, sentStatus }) => {
 
 SentMailPopUp.propTypes = {
   togglePopup: PropTypes.func.isRequired,
-  sentStatus: PropTypes.string.isRequired,
+  mailResponse: PropTypes.object.isRequired,
 };
 
 export default SentMailPopUp;
