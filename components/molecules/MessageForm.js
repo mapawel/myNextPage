@@ -96,7 +96,7 @@ const MessageForm = ({ data }) => {
           content: '',
           acceptTerms: false,
         }}
-        // validationSchema={validatorSchema}
+        validationSchema={validatorSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           setSubmitting(true);
 
@@ -105,7 +105,13 @@ const MessageForm = ({ data }) => {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(values),
+            body: JSON.stringify({
+              name: values.name?.trim().toUpperCase(),
+              mail: values.mail?.trim().toLowerCase(),
+              category: values.category?.trim().toLowerCase(),
+              content: values.content?.trim(),
+              acceptTerms: !!values.acceptTerms,
+            }),
           });
 
           const responseObject = await response.json();

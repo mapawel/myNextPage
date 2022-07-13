@@ -20,6 +20,7 @@
     "react-portal": "^4.2.2",
     "styled-components": "^5.3.5",
     "swiper": "^8.2.2",
+    "xss": "^1.0.13",
     "yup": "^0.32.11"
   },
   "devDependencies": {
