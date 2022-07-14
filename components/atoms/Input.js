@@ -101,6 +101,7 @@ const Input = ({
   children,
   name,
   headerTxt,
+  onBlur,
   ...props
 }) => {
   let Tag = select ? StyledSelect : StyledInput;
@@ -126,6 +127,7 @@ const Input = ({
           placeholder=" "
           autoComplete="none"
           onChange={onChange}
+          onBlur={onBlur}
           value={value}
           {...props}
         >

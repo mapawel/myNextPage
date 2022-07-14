@@ -24,8 +24,8 @@ export const contactForm = {
     pl: 'kategoria',
   },
   placeholder3: {
-    en: ['cooperation', 'opinion', 'inquiry'],
-    pl: ['cooperation', 'opinion', 'inquiry'],
+    en: ['cooperation', 'opinion', 'inquiry', 'other'],
+    pl: ['stała współpraca', 'opinia', 'zapytanie ofertowe', 'inna'],
   },
   title4: {
     en: 'contents',

@@ -12,7 +12,7 @@ const StyledPortalContainer = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #000000F2;
+  background-color: #000000f2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,23 +21,41 @@ const StyledPortalContainer = styled.div`
 const TextContainer = styled.div`
   width: 95vw;
   max-width: 800px;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 2rem 3rem;
   border: ${({ theme }) => `1px solid ${theme.color.textPrimary}`};
   border-radius: 3px;
-  
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: ${({ theme }) =>
+    `${theme.color.textPrimary} ${theme.color.backSecondary}`};
+
+  &::-webkit-scrollbar {
+    width: 1vw;
+    max-width: 15px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.color.textPrimary};
+  }
+  &::-webkit-scrollbar-track {
+    background-color: ${({ theme }) => theme.color.backSecondary};
+  }
+
   @media screen and (min-width: ${breakpoint.M}) {
     padding: 3rem 4rem;
-    }
+  }
 `;
 
 const TxtParagraph = styled.p`
   margin: 0.5rem 0;
   font-size: ${({ theme }) => theme.fontSize.xxs};
   color: ${({ theme }) => theme.color.black};
-  :last-of-type{
+  :last-of-type {
     margin-bottom: 2rem;
   }
 
@@ -45,30 +63,20 @@ const TxtParagraph = styled.p`
     margin: 1rem 0;
     font-size: ${({ theme }) => theme.fontSize.xs};
     line-height: 1.5;
-    :last-of-type{
+    :last-of-type {
       margin-bottom: 3rem;
     }
-    }
+  }
 `;
 
 const TextModal = ({ txt = [], closeModal }) => (
   <Portal>
-    <StyledPortalContainer
-      onClick={closeModal}
-    >
+    <StyledPortalContainer onClick={closeModal}>
       <TextContainer>
         {txt.map((par) => (
-          <TxtParagraph
-            key={par}
-          >
-            {par}
-          </TxtParagraph>
+          <TxtParagraph key={par}>{par}</TxtParagraph>
         ))}
-        <Button
-          onClick={closeModal}
-        >
-          close
-        </Button>
+        <Button onClick={closeModal}>close</Button>
       </TextContainer>
     </StyledPortalContainer>
   </Portal>

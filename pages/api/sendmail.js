@@ -4,9 +4,8 @@ import { validatorSchema } from 'validators/validatorSchema';
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
-      console.log('body: ', req.body);
-
-      await validatorSchema.validate(req.body, { abortEarly: false });
+      const schema = validatorSchema(req.headers?.locale)
+      await schema.validate(req.body, { abortEarly: false });
       await sendMailToAdmin(req.body);
       res.status(201).json({
         status: 'OK',

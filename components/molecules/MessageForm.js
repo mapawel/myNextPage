@@ -57,8 +57,7 @@ const StyledError = styled.p`
   left: 1rem;
   font-size: ${({ theme }) => theme.fontSize.xxs};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  color: ${({ theme }) => theme.color.textSecondary};
-  text-decoration: underline;
+  color: tomato;
 `;
 
 const StyledButton = styled.button`
@@ -96,7 +95,7 @@ const MessageForm = ({ data }) => {
           content: '',
           acceptTerms: false,
         }}
-        validationSchema={validatorSchema}
+        validationSchema={validatorSchema(locale)}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           setSubmitting(true);
 
@@ -104,6 +103,7 @@ const MessageForm = ({ data }) => {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
+              locale: locale,
             },
             body: JSON.stringify({
               name: values.name?.trim().toUpperCase(),
@@ -116,16 +116,25 @@ const MessageForm = ({ data }) => {
 
           const responseObject = await response.json();
           setMailResponse(responseObject);
-          // resetForm();
+          resetForm();
           setSubmitting(false);
         }}
       >
-        {({ values, handleChange, handleSubmit, isSubmitting, resetForm }) => (
+        {({
+          values,
+          handleChange,
+          handleSubmit,
+          isSubmitting,
+          resetForm,
+          handleBlur,
+          touched,
+        }) => (
           <StyledForm onSubmit={(e) => e.preventDefault()}>
             <Input
               name="name"
               id="name"
               onChange={handleChange}
+              onBlur={handleBlur}
               value={values.name}
               labelTxt={data?.placeholder1?.[locale]}
               headerTxt={data?.title1?.[locale]}
@@ -136,6 +145,7 @@ const MessageForm = ({ data }) => {
               name="mail"
               id="mail"
               onChange={handleChange}
+              onBlur={handleBlur}
               value={values.mail}
               labelTxt={data?.placeholder2?.[locale]}
               headerTxt={data?.title2?.[locale]}
@@ -146,6 +156,7 @@ const MessageForm = ({ data }) => {
               name="category"
               id="category"
               onChange={handleChange}
+              onBlur={handleBlur}
               value={values.category}
               headerTxt={data?.title3?.[locale]}
               select={[
@@ -162,6 +173,7 @@ const MessageForm = ({ data }) => {
               name="content"
               id="content"
               onChange={handleChange}
+              onBlur={handleBlur}
               value={values.content}
               labelTxt={data?.placeholder4?.[locale]}
               headerTxt={data?.title4?.[locale]}

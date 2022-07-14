@@ -12,6 +12,21 @@ const GlobalStyle = createGlobalStyle`
     html {
         font-size: 62.5%;
         /* scroll-behavior:smooth; */
+        scrollbar-width: thin;
+        scrollbar-color: ${({ theme }) =>
+          `${theme.color.textPrimary} ${theme.color.backSecondary}`};
+
+        &::-webkit-scrollbar {
+            width: 1vw;
+            max-width: 15px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: ${({ theme }) => theme.color.particles};
+        }
+        &::-webkit-scrollbar-track {
+            background-color: ${({ theme }) => theme.color.backSecondary};
+        }
     }
 
     body {

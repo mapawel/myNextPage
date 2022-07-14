@@ -1,21 +1,20 @@
-import xss from 'xss';
 import transporter from 'helpers/transporter';
+import { sanitize } from 'helpers/sanitize';
 
 export const sendMailToAdmin = async ({ name, mail, category, content }) => {
-  const finalContent = content
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+  const finalContent = sanitize(content);
+  const finalName = sanitize(name);
 
   return await transporter.sendMail({
     from: `"DEVDEFER Development" <${process.env.MAIL_USER}>`,
-    to: 'dupa@',
-    // to: `${process.env.MAIL_USER}`,
+    to: `${process.env.MAIL_USER}`,
     subject: `NOWA WIADOMOŚĆ ZE STRONY DEVDEFER`,
     html: `
-  <h1>TAK TAK</h1>
-  <h4>${finalContent}</h4>
+      <h1>WIADOMOŚĆ OD: ${finalName}</h1>
+      <h2>E-MAIL: ${mail}</h2>
+      <h4>Kategoria: ${category}</h4></br>
+      <p>Treść:</p>
+      <p>${finalContent}</p>
   `,
   });
 };
