@@ -16,10 +16,6 @@ const expenses = {
     pl: 'Front-end użytkowej aplikacji do zarządzania wydatkami.',
   },
   live: {
-    message: {
-      en: 'NOTE, the project is in production on the final domain and with the customers product data. However, you can view it on the test server with the test database attached. Due to the hosting of the trial version in the free plan, after the first entry into the project, you should wait up to 30 seconds until everything is built and the data is fully fetched.',
-      pl: 'UWAGA, projekt w trakcie produkcji na finalnej domenie i z danymi produktowymi klienta. Możesz go jednak obejrzeć na serwerze testowym i z podpiętą testową bazą danych. Ze względu na hostowanie wersji testowej w darmowym planie, po pierwszym wejściu w projekt należy odczekać do 30 sekund aż wszystko zostanie zbudowane a dane w pełni wyświetlone.',
-    },
     url: 'https://stoic-leavitt-bd046f.netlify.app/dashboard',
   },
   creationDate: '2020-11-01',

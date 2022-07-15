@@ -18,7 +18,19 @@ const sapanel = {
     en: "CRM app and CMS for company's portal with catalog.",
     pl: 'System CRM oraz CMS dla portalu z katalogiem produktowym firmy.',
   },
-  live: '',
+  live: {
+    message: {
+      en: [
+        'NOTE, for security reasons, we do not provide anonymous users with a test version of this product.',
+        'Contact us, we will be happy to arrange an individual presentation.',
+      ],
+      pl: [
+        'UWAGA, ze względów bezpieczeństwa nie udostępniamy aninimowym użytkownikom testowej wersji tego produktu.',
+        'Skontaktuj się z nami, z przyjemnością umówimy się na indywidualną prezentację.',
+      ],
+    },
+    url: null,
+  },
   creationDate: '2022-06-30',
   images: [
     {
@@ -149,15 +161,15 @@ const sapanel = {
         },
         description: {
           en: [
-            'The server application communicates with a very fast database located in the cloud, in which all information about products, metadata about displaying pages and customers are stored. Large static files, i.e. photos of products, are stored in the AWS cloud, from which they can then be instantly served to users\' browsers.',
+            "The server application communicates with a very fast database located in the cloud, in which all information about products, metadata about displaying pages and customers are stored. Large static files, i.e. photos of products, are stored in the AWS cloud, from which they can then be instantly served to users' browsers.",
             'Product photos are properly optimized on the server before they go to the cloud. The data passing through the server are fully validated and their correctness is checked. ',
-            'The mechanics of the application are proprietary and fully adapted to the client\'s requirements. It includes a number of facilities for the administrator that can be used in the admin panel. ',
+            "The mechanics of the application are proprietary and fully adapted to the client's requirements. It includes a number of facilities for the administrator that can be used in the admin panel. ",
             'The panel aggregates and displays data in the following views: dashboard, products, product groups, brands, customers, sets of proposals, news, resale offers, subscribers. In each of these views, the data is displayed in easy-to-read tables, and the landing area can be slightly adapted to your own requirements. Data sorting, filtering and pagination are implemented. An interesting solution is the implementation of collective changes, i.e. the possibility of introducing the same change of the selected parameter, but in many positions at once. ',
             'Customer communication tools have been implemented: a complete mechanism for collecting customer requests for the resale of their products, storing those requests and making decisions to cooperate with those requests. The whole thing is aggregated in one view, where you can manage tickets, search for them, etc. ',
             'The message view, on the other hand, aggregates the correspondence with individual clients in the form of a chat, which contains information about the correspondence and the entire history of the conversation.',
             'An important part of the application is the ability to store customer data and photos / scans of contracts. If you want to display the contract in the CRM panel admin, the contracts are downloaded from the AWS cloud after server authorization and served only to be displayed in the panel, they are private. ',
             'The application also includes a dashboard view in which an alert system for service people has been implemented, which suggests what is currently happening in the area of ​​the portal, products, customers and communication. For example, is there a missing photo for the product added to the catalog, are the sliders in the portal correctly positioned, is there a new correspondence from the client or a proposal for cooperation and decisions should be made. ',
-            'The application automatically sends e-mails to clients and to the administrator\'s address, the e-mails are clearly formatted with graphic templates.',
+            "The application automatically sends e-mails to clients and to the administrator's address, the e-mails are clearly formatted with graphic templates.",
           ],
           pl: [
             'Aplikacja serwerowa komunikuje się z bardzo szybką bazą danych umieszczoną w chmurze, w której przechowywane są wszelkie informacje o produktach, meta dane dot. wyświetlania stron oraz klientów. Duże pliki statyczne, czyli zdjęcia produktów, przechowywane są w chmurze AWS, z której następnie mogą być błyskawicznie serwowane do przeglądarek użytkowników.',
@@ -220,7 +232,7 @@ const sapanel = {
         title: { en: 'technicals', pl: 'technikalia' },
         description: {
           en: [
-            'The CRM and CMS app is a full-stack project. It includes the Node.js / Express.js application on the server side and the front-end application in React which is the administration panel. To speed up the work in the panel views, Material-UI components were used, but mostly heavily modified. All data is stored in the MongoDB cloud database, static graphic files are processed by the server during the upload using Sharp and after optimization they are loaded into the AWS cloud in several resolutions, so that they can be served from there in a resolution appropriate for a given device, improving the speed of loading views.' ,
+            'The CRM and CMS app is a full-stack project. It includes the Node.js / Express.js application on the server side and the front-end application in React which is the administration panel. To speed up the work in the panel views, Material-UI components were used, but mostly heavily modified. All data is stored in the MongoDB cloud database, static graphic files are processed by the server during the upload using Sharp and after optimization they are loaded into the AWS cloud in several resolutions, so that they can be served from there in a resolution appropriate for a given device, improving the speed of loading views.',
             'All data is validated on the server. Authentication and authorization system for the administrator was made, both data and views on the front were dependent on the level of authorization. ',
             'Data from the database via API on the server are sent to the panel and stored in Redux. The panel admin views are always updated with the current data from the server. ',
             'All activities of managing products, clients, photos, etc. are related to asynchronous actions that change data on the server, always give full feedback and are connected with error handling, the user is not left without information while performing operations in the panel.',

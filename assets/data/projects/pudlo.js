@@ -16,7 +16,9 @@ const pudlo = {
     en: 'Pudłowska - an online shop with a home page.',
     pl: 'Pudłowska - sklep internetowy z witryną marki.',
   },
-  live: 'https://www.pudlowska.com',
+  live: {
+    url: 'https://www.pudlowska.com',
+  },
   creationDate: '2021-11-30',
   images: [
     {

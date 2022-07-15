@@ -15,7 +15,19 @@ const pudlopanel = {
     en: 'On-line shop engine and shop administration panel.',
     pl: 'Silnik sklepu internetowego oraz panel administracyjny do jego zarządzania.',
   },
-  live: '',
+  live: {
+    message: {
+      en: [
+        'NOTE, for security reasons, we do not provide anonymous users with a test version of this product.',
+        'Contact us, we will be happy to arrange an individual presentation.',
+      ],
+      pl: [
+        'UWAGA, ze względów bezpieczeństwa nie udostępniamy aninimowym użytkownikom testowej wersji tego produktu.',
+        'Skontaktuj się z nami, z przyjemnością umówimy się na indywidualną prezentację.',
+      ],
+    },
+    url: null,
+  },
   creationDate: '2021-11-30',
   images: [
     {
@@ -117,7 +129,7 @@ const pudlopanel = {
         },
         description: {
           en: [
-            "The design of the panel is not the priority here, but the views are neat and clear, focusing on clearly displaying data in tables or tabs. Tables include the possibility of sorting data, as well as searching and sorting them. The panel is responsive.",
+            'The design of the panel is not the priority here, but the views are neat and clear, focusing on clearly displaying data in tables or tabs. Tables include the possibility of sorting data, as well as searching and sorting them. The panel is responsive.',
           ],
           pl: [
             'Wygląd panelu nie jest tu kluczowy jednak widoki są schludne i czytelne, skupiają się na przejrzystym wyświetlaniu danych w tabelach lub w kartach. Tabele zawierają możliwość sortowania danych oraz ich wyszukiwania i sortowania. Panel jest responsywny.',

@@ -14,6 +14,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import Image from 'next/image';
 import { myBlurData } from 'helpers/myBlurData';
 import { uiSubs } from 'assets/data/uiSubs';
+import TextModal from 'components/organisms/TextModal';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({
@@ -372,6 +373,7 @@ const ProjectBox = ({ slug, title, images, description, live }) => {
   const router = useRouter();
   const { locale } = router;
   const [isToolVisible, setToolVisible] = useState(false);
+  const [isModal, setModalVisible] = useState(false);
 
   const containerRef = useRef(null);
 
@@ -395,7 +397,10 @@ const ProjectBox = ({ slug, title, images, description, live }) => {
 
   return (
     <StyledContainer ref={containerRef} onClick={() => setToolVisible(true)}>
-      <StyledButtonBlank onFocus={() => setToolVisible(true)} aria-label="open project toolbox with links">
+      <StyledButtonBlank
+        onFocus={() => setToolVisible(true)}
+        aria-label="open project toolbox with links"
+      >
         <StyledHeading>{title?.[locale]?.toUpperCase()}</StyledHeading>
       </StyledButtonBlank>
       <StyledImgBox>
@@ -438,14 +443,29 @@ const ProjectBox = ({ slug, title, images, description, live }) => {
               {uiSubs?.details?.[locale]}
             </StyledButtonLink>
           </Link>
-          <StyledButtonLink
-            onFocus={() => setToolVisible(true)}
-            href={live}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {uiSubs?.live?.[locale]}
-          </StyledButtonLink>
+          {live?.message ? (
+            <>
+              <Button onClick={() => setModalVisible(true)}>
+                {uiSubs?.live?.[locale]}
+              </Button>
+              {isModal && (
+                <TextModal
+                  txt={live?.message[locale]}
+                  closeModal={() => setModalVisible(false)}
+                  redirect={live?.url}
+                />
+              )}
+            </>
+          ) : (
+            <StyledButtonLink
+              onFocus={() => setToolVisible(true)}
+              href={live?.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {uiSubs?.live?.[locale]}
+            </StyledButtonLink>
+          )}
         </StyledButtonBox>
       </StyledToolBox>
     </StyledContainer>

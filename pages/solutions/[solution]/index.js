@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -19,6 +19,7 @@ import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { pageTites } from 'assets/data/pageTitles';
 import BottomButtons from 'components/molecules/BottomButtons';
+import TextModal from 'components/organisms/TextModal';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({
@@ -47,20 +48,12 @@ const StyledRect = styled(Rect)`
   }
 `;
 
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 8rem;
-`;
-
 const StyledButtonLink = styled(ButtonLink)`
   margin: 2rem 1rem 3rem;
   line-height: 1.4;
 
   @media screen and (min-width: ${breakpoint.M}) {
     align-self: flex-start;
-    font-size: ${({ theme }) => theme.fontSize.xs};
     padding: 2.5rem 3rem;
     margin-left: 6rem;
   }
@@ -238,19 +231,27 @@ const StyledList = styled.ul`
   }
 `;
 
-const ImageWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  max-width: 1500px;
-  margin: 0 auto;
-  height: 0;
-  padding: 28% 0;
+const StyledButton = styled(Button)`
+  margin: 2rem 1rem 3rem;
+
+  @media screen and (min-width: ${breakpoint.M}) {
+    margin-left: 6rem;
+  }
+
+  @media screen and (min-width: ${breakpoint.L}) {
+    margin-left: 11rem;
+  }
+
+  @media screen and (min-width: ${breakpoint.XL}) {
+    margin-left: 15rem;
+  }
 `;
 
 const DetailSolutionPage = ({ selectedSolution }) => {
   const router = useRouter();
   const { locale, asPath } = router;
   const { openImage, closeImage, isModalOpen, imageUrl } = useImageModal();
+  const [isModal, setModalVisible] = useState(false);
 
   const stackList = useRef(null);
   const imagesBoxRef = useRef(null);
@@ -327,12 +328,7 @@ const DetailSolutionPage = ({ selectedSolution }) => {
         <title>
           {headSubs?.solutionDetails?.title?.[locale] + title?.[locale]}
         </title>
-        <meta
-          name="description"
-          content={
-            shortDescription?.[locale]
-          }
-        />
+        <meta name="description" content={shortDescription?.[locale]} />
       </Head>
       <main>
         <Wrapper as="section">
@@ -371,13 +367,30 @@ const DetailSolutionPage = ({ selectedSolution }) => {
                 </div>
               ))}
               <StyledBtnBox>
-                <StyledButtonLink
-                  href={live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {uiSubs?.live?.[locale]}
-                </StyledButtonLink>
+                {live?.message ? (
+                  <>
+                    <StyledButton onClick={() => setModalVisible(true)}>
+                      {uiSubs?.live?.[locale]}
+                    </StyledButton>
+                    {isModal && (
+                      <TextModal
+                        txt={live?.message[locale]}
+                        closeModal={() => setModalVisible(false)}
+                        redirect={live?.url}
+                      />
+                    )}
+                  </>
+                ) : (
+                  <StyledButtonLink
+                    onFocus={() => setToolVisible(true)}
+                    href={live?.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {uiSubs?.live?.[locale]}
+                  </StyledButtonLink>
+                )}
+
                 <Link href={`${asPath}/movie`} passHref>
                   <StyledButtonLink>
                     {uiSubs?.watchMovie?.[locale]}

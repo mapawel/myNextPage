@@ -15,7 +15,9 @@ const bluechip = {
     en: 'Company home page with blog integrated with CMS.',
     pl: 'Strona firmowa z blogiem. Zarządzanie z CMS.',
   },
-  live: 'https://i-bluechip.pl/',
+  live: {
+    url: 'https://i-bluechip.pl/',
+  },
   creationDate: '2021-04-30',
   images: [
     {

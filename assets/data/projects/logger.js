@@ -15,7 +15,19 @@ const logger = {
     en: "Useful tool for monitoring traffic in clients' applications.",
     pl: 'Przydatne narzędzie do monitorowania ruchu w aplikacjach klientów.',
   },
-  live: '',
+  live: {
+    message: {
+      en: [
+        'NOTE, for security reasons, we do not provide anonymous users with a test version of this product.',
+        'Contact us, we will be happy to arrange an individual presentation.',
+      ],
+      pl: [
+        'UWAGA, ze względów bezpieczeństwa nie udostępniamy aninimowym użytkownikom testowej wersji tego produktu.',
+        'Skontaktuj się z nami, z przyjemnością umówimy się na indywidualną prezentację.',
+      ],
+    },
+    url: null,
+  },
   creationDate: '2022-05-01',
   images: [
     {
@@ -180,9 +192,10 @@ const logger = {
         description: {
           en: [
             'On the side of the application being watched, just implement the Morgan library and add a few lines of code. The Logger application receives logs of this application, saves them in the MongoDB database. It is then an API that serves the saved data to the browser-based React application which is a panel, where you can display this data in the correct form, filter. ',
-          'Thanks to Socket.IO, the browser panel can also receive data about new entries in the database in the push (live) mode.',
-          'Material UI was used for styling, the components were modified. The form (implemented Formik) of filters contains drop-downs, which are dynamic - the available options depend on the availability of the data (e.g. at what times the queries were made, these hours are presented in the filter so as not to display empty tables).',
-          'Tables have modifiable columns and expandable rows when their size is large. The labeling system described on the project\'s homepage will be implemented soon.'],
+            'Thanks to Socket.IO, the browser panel can also receive data about new entries in the database in the push (live) mode.',
+            'Material UI was used for styling, the components were modified. The form (implemented Formik) of filters contains drop-downs, which are dynamic - the available options depend on the availability of the data (e.g. at what times the queries were made, these hours are presented in the filter so as not to display empty tables).',
+            "Tables have modifiable columns and expandable rows when their size is large. The labeling system described on the project's homepage will be implemented soon.",
+          ],
           pl: [
             'Po stronie obserwowanej aplikacji wystarczy wdrożyć bibliotekę Morgan i dodać kila linii kodu. Aplikacja Logger otrzymuje logi tej aplikacji, zapisuje je w bazie MongoDB. Stanowi następnie API serwujące zapisane dane do przeglądarkowej aplikacji React będącej panelem, gdzie można wyświetlać te dane we właśiwej formie, filtrować.',
             'Dzięki Socket.IO panel przeglądarkowy może także otrzymywać dane o nowych zapisach w bazie w trypie push (live).',

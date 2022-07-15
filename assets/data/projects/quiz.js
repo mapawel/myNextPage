@@ -15,7 +15,17 @@ const quiz = {
     en: 'Quiz game app with statistics and users accounts.',
     pl: 'Gra webowa Quiz. Zawiera statystyki i strefy użytkowników.',
   },
-  live: 'https://warm-harbor-74468.herokuapp.com/',
+  live: {
+    message: {
+      en: [
+        'NOTE, due to the hosting of the trial version in the free plan, after the first entry into the project, you should wait up to 30 seconds until everything is built and the data is fully fetched.',
+      ],
+      pl: [
+        'UWAGA, ze względu na hostowanie wersji testowej w darmowym planie, po pierwszym wejściu w projekt należy odczekać do 30 sekund aż wszystko zostanie zbudowane a dane w pełni wyświetlone.',
+      ],
+    },
+    url: 'https://warm-harbor-74468.herokuapp.com/',
+  },
   creationDate: '2021-01-31',
   images: [
     {

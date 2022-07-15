@@ -1,9 +1,11 @@
-import React from 'react';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 // import PropTypes from 'prop-types';
 import { Portal } from 'react-portal';
 import Button from 'components/atoms/Button';
 import { breakpoint } from 'breakpoints';
+import ButtonLink from 'components/atoms/ButtonLink';
+import { uiSubs } from 'assets/data/uiSubs';
 
 const StyledPortalContainer = styled.div`
   position: fixed;
@@ -69,18 +71,39 @@ const TxtParagraph = styled.p`
   }
 `;
 
-const TextModal = ({ txt = [], closeModal }) => (
-  <Portal>
-    <StyledPortalContainer onClick={closeModal}>
-      <TextContainer>
-        {txt.map((par) => (
-          <TxtParagraph key={par}>{par}</TxtParagraph>
-        ))}
-        <Button onClick={closeModal}>close</Button>
-      </TextContainer>
-    </StyledPortalContainer>
-  </Portal>
-);
+const Buttons = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
+
+const TextModal = ({ txt = [], closeModal, redirect }) => {
+  const { locale } = useRouter();
+
+  return (
+    <Portal>
+      <StyledPortalContainer onClick={closeModal}>
+        <TextContainer>
+          {txt.map((par) => (
+            <TxtParagraph key={par}>{par}</TxtParagraph>
+          ))}
+          <Buttons>
+            <Button onClick={closeModal}>close</Button>
+            {redirect && (
+              <ButtonLink
+                href={redirect}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {uiSubs?.live?.[locale]}
+              </ButtonLink>
+            )}
+          </Buttons>
+        </TextContainer>
+      </StyledPortalContainer>
+    </Portal>
+  );
+};
 
 // TextModal.propTypes = {
 

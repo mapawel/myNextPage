@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -16,6 +16,8 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { pageTites } from 'assets/data/pageTitles';
 import BottomButtons from 'components/molecules/BottomButtons';
 import Paragraph from 'components/atoms/Paragraph';
+import Button from 'components/atoms/Button';
+import TextModal from 'components/organisms/TextModal'
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({
@@ -41,6 +43,22 @@ const StyledRect = styled(Rect)`
   }
 
   @media screen and (min-width: ${breakpoint.XL}) {
+  }
+`;
+
+const StyledButton = styled(Button)`
+  margin: 2rem 1rem 3rem;
+
+  @media screen and (min-width: ${breakpoint.M}) {
+    margin-left: 6rem;
+  }
+
+  @media screen and (min-width: ${breakpoint.L}) {
+    margin-left: 11rem;
+  }
+
+  @media screen and (min-width: ${breakpoint.XL}) {
+    margin-left: 15rem;
   }
 `;
 
@@ -158,6 +176,7 @@ const StyledList = styled.ul`
 const TechnicalDetailsPage = ({ selectedProject }) => {
   const router = useRouter();
   const { locale } = router;
+  const [isModal, setModalVisible] = useState(false);
 
   const stackList = useRef(null);
 
@@ -258,13 +277,30 @@ const TechnicalDetailsPage = ({ selectedProject }) => {
                     </div>
                   ))}
                   <StyledBtnBox>
-                    <StyledButtonLink
-                      href={live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {uiSubs?.live?.[locale]}
-                    </StyledButtonLink>
+                    {live?.message ? (
+                      <>
+                        <StyledButton onClick={() => setModalVisible(true)}>
+                          {uiSubs?.live?.[locale]}
+                        </StyledButton>
+                        {isModal && (
+                          <TextModal
+                            txt={live?.message[locale]}
+                            closeModal={() => setModalVisible(false)}
+                            redirect={live?.url}
+                          />
+                        )}
+                      </>
+                    ) : (
+                      <StyledButtonLink
+                        onFocus={() => setToolVisible(true)}
+                        href={live?.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {uiSubs?.live?.[locale]}
+                      </StyledButtonLink>
+                    )}
+
                     <Link href={`/projects/${slug}`} passHref>
                       <StyledButtonLink>
                         {uiSubs?.projectDetails?.[locale]}

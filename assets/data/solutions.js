@@ -13,7 +13,19 @@ export const solutions = [
       en: 'We have created a tool in which customers can submit sales proposals for their products. The operating company received a panel for managing inquiries so application can be filtered in one place, accepted or rejected in relation to each product. Customer automatically receives e-mail information with the status of his application and instructions and, if it is necessary, also automatically a cooperation agreement.',
       pl: 'Stworzyliśmy narzędzie, w którym klienci mogą zgłaszać propozycje sprzedaży swoich produktów. Firma obsługująca otrzymała panel do zarządzania zgłoszeniami. Zgłoszenia w jednym miejscu można filtrować, akceptować lub odrzucać w odniesieniu do każdego produktu. Klient otrzymuje automatycznie informacje mailowe ze statusem swojego zgłoszenia i instrukcjami oraz, jeśli firma uzna to za zasadne, również automatycznie umowę o współpracy.',
     },
-    live: 'https://i-bluechip.pl/',
+    live: {
+      message: {
+        en: [
+          'NOTE, the project is in production on the final domain and with the customers product data. However, you can view it on the test server with the test database attached.',
+          'Due to the hosting of the trial version in the free plan, after the first entry into the project, you should wait up to 30 seconds until everything is built and the data is fully fetched.',
+        ],
+        pl: [
+          'UWAGA, projekt w trakcie produkcji na finalnej domenie i z danymi produktowymi klienta. Możesz go jednak obejrzeć na serwerze testowym i z podpiętą testową bazą danych.',
+          'Ze względu na hostowanie wersji testowej w darmowym planie, po pierwszym wejściu w projekt należy odczekać do 30 sekund aż wszystko zostanie zbudowane a dane w pełni wyświetlone.',
+        ],
+      },
+      url: 'https://sa-ten.vercel.app/',
+    },
     creationDate: '2022-05-31',
     images: [
       {
