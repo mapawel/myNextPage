@@ -9,7 +9,7 @@ import Button from 'components/atoms/Button';
 import { breakpoint } from 'breakpoints';
 import { headings } from 'assets/data/headings';
 import { uiSubs } from 'assets/data/uiSubs';
-import mainImg from 'public/images/headerImage.jpg';
+import mainImg from 'public/images/headerImage4.png';
 import { sectiontitles } from 'assets/data/sectiontitles';
 import { scrollToSection } from 'helpers/scrollToSection';
 import headerAnim from 'gsapanims/headerAnim';
@@ -22,6 +22,7 @@ const StyledTwoColumns = styled(TwoColumns)`
 `;
 
 const StyledHeaderTxt = styled.h1`
+  opacity: 0;
   display: block;
   font-size: ${({ theme }) => theme.fontSize.m};
   line-height: 1.5;
@@ -46,6 +47,7 @@ const StyledHeaderTxt = styled.h1`
 `;
 
 const StyledHeaderTxtSpan = styled(StyledHeaderTxt)`
+  opacity: 0;
   color: ${({ theme }) => theme.color.textPrimary};
   margin-top: ${({ theme }) => theme.fontSize.s};
   margin-bottom: ${({ theme }) => theme.fontSize.s};
@@ -82,6 +84,7 @@ const StyledTxtBox = styled.div`
 `;
 
 const StyledLogo = styled.img`
+  opacity: 0;
   width: 95%;
   margin-top: 20%;
   margin-bottom: -40vh;
@@ -109,7 +112,7 @@ const StyledImgBox = styled.div`
   position: relative;
   width: 1%;
   height: 100vh;
-  opacity: 1;
+  opacity: 0;
 
   @media screen and (min-width: ${breakpoint.M}) {
     width: 30%;
@@ -175,8 +178,8 @@ const Blend = styled.div`
   left: 0;
   height: 100%;
   width: 100%;
-  background-image: linear-gradient(90deg, #010201f6 0%, rgba(0, 0, 0, 0.6) 60%),
-    linear-gradient(180deg, #01020100 80%, #010201f6 100%);
+  /* background: -webkit-linear-gradient(90deg, rgba(1, 2, 1, 0.96) 0%, rgba(0, 0, 0, 0.6) 60%), linear-gradient(180deg, rgba(1, 2, 1, 0.00) 80%, rgba(1, 2, 1, 0.96) 100%); */
+  /* background: -webkit-linear-gradient(180deg, rgba(1, 2, 1, 0) 80%, rgba(0, 1, 0, 0.8) 100%); */
 `;
 
 const Header = () => {
@@ -233,7 +236,7 @@ const Header = () => {
                 priority
                 sizes="200vw"
               />
-              <Blend />
+              {/* <Blend /> */}
             </ImageWrapper>
           </StyledImgBox>
         </StyledTwoColumns>
