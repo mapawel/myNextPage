@@ -172,15 +172,6 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const Blend = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  /* background: -webkit-linear-gradient(90deg, rgba(1, 2, 1, 0.96) 0%, rgba(0, 0, 0, 0.6) 60%), linear-gradient(180deg, rgba(1, 2, 1, 0.00) 80%, rgba(1, 2, 1, 0.96) 100%); */
-  /* background: -webkit-linear-gradient(180deg, rgba(1, 2, 1, 0) 80%, rgba(0, 1, 0, 0.8) 100%); */
-`;
 
 const Header = () => {
   const router = useRouter();
@@ -208,7 +199,7 @@ const Header = () => {
         <StyledTwoColumns>
           <StyledTxtBox>
             <StyledTriangle ref={triangleRef} />
-            <StyledLogo ref={logoRef} src="/icons/devdeferlogo.svg" />
+            <StyledLogo ref={logoRef} src="/icons/devdeferlogo.svg" alt="DEVDEFER" />
             <StyledHeadingContainer ref={headinTxtRef}>
               <StyledHeaderTxt>
                 {headings?.[locale]?.[0]}
@@ -236,7 +227,6 @@ const Header = () => {
                 priority
                 sizes="200vw"
               />
-              {/* <Blend /> */}
             </ImageWrapper>
           </StyledImgBox>
         </StyledTwoColumns>

@@ -331,7 +331,7 @@ const DetailProjectPage = ({ selectedProject }) => {
           <ImageWrapper key={title?.[locale]}>
             <Image
               src={mainImage}
-              alt={`image of project ${title?.[locale]} on different devices`}
+              alt={`image of project "${title?.[locale]}" on different devices`}
               layout="fill"
               placeholder="blur"
               objectFit="contain"
@@ -392,11 +392,11 @@ const DetailProjectPage = ({ selectedProject }) => {
               </StyledBtnBox>
             </div>
             <StyledImageBox ref={imagesBoxRef}>
-              {images.map(({ id, img }) => (
+              {images.map(({ id, img }, index) => (
                 <StyledSmallImg key={id} onClick={() => openImage(img)}>
                   <Image
                     src={img}
-                    alt={`image of project ${title?.[locale]} on different devices`}
+                    alt={`image of project "${title?.[locale]}" nr ${index + 1}`}
                     layout="responsive"
                     placeholder="blur"
                     sizes={`(max-width: ${breakpoint.M}) 90vw, (max-width: ${breakpoint.L}) 50vw, 25vw`}

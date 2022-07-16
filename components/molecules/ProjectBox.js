@@ -384,7 +384,7 @@ const ProjectBox = ({ slug, title, images, description, live }) => {
         opacity: 0,
       },
       {
-        y: '+=100',
+        y: '-=100',
         opacity: 1,
         duration: 0.5,
         scrollTrigger: {
@@ -409,7 +409,7 @@ const ProjectBox = ({ slug, title, images, description, live }) => {
             <ImageWrapper key={id}>
               <Image
                 src={img}
-                alt={`image nr ${index + 1} of project: ${title}`}
+                alt={`image nr ${index + 1} of project "${title}"`}
                 layout="fill"
                 placeholder="blur"
                 sizes={`(max-width: ${breakpoint.L}) 70vw, (max-width: ${breakpoint.XL}) 30vw, 20vw`}

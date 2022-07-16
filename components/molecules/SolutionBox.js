@@ -175,7 +175,7 @@ const SolutionBox = ({ solution }) => {
         <ImageWrapper>
           <Image
             src={images?.[0]?.img}
-            alt={`Photo of our solution: ${title?.[locale]}`}
+            alt={`Image of our solution: "${title?.[locale]}"`}
             layout="responsive"
             placeholder="blur"
             sizes={`(max-width: ${breakpoint.M}) 100vw, (max-width: ${breakpoint.XL}) 50vw, 30vw`}

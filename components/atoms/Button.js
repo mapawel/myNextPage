@@ -41,7 +41,8 @@ const StyledButton = styled.button`
   color: ${({ theme }) => theme.color.textPrimary};
   border: ${({ theme }) => `2px solid ${theme.color.textPrimary}`};
   padding: 1.5rem 2rem;
-  font-family: ${({ theme }) => theme.fontFamily.secondary}
+  font-size: ${({ theme }) => theme.fontSize.xxs};
+  font-family: ${({ theme }) => theme.fontFamily.secondary};
   ${({ variant }) => {
     switch (variant) {
       case 'noborder':
@@ -51,6 +52,14 @@ const StyledButton = styled.button`
       case 'cta':
         return css`
           border: ${({ theme }) => `5px solid ${theme.color.textPrimary}`};
+        `;
+      case 'link':
+        return css`
+          border: ${({ theme }) => `0px solid ${theme.color.textPrimary}`};
+          font-family: ${({ theme }) => theme.fontFamily.main};
+          font-style: italic;
+          padding: 0.2rem 0.5rem;
+          margin: 0;
         `;
       default:
         return css`

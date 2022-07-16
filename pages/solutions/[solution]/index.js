@@ -399,11 +399,11 @@ const DetailSolutionPage = ({ selectedSolution }) => {
               </StyledBtnBox>
             </div>
             <StyledImageBox ref={imagesBoxRef}>
-              {images.map(({ id, img }) => (
+              {images.map(({ id, img }, index) => (
                 <StyledSmallImg key={id} onClick={() => openImage(img)}>
                   <Image
                     src={img}
-                    alt={`image of solution ${title?.[locale]}`}
+                    alt={`image of solution "${title?.[locale]}" nr ${index + 1}`}
                     layout="responsive"
                     placeholder="blur"
                     sizes={`(max-width: ${breakpoint.M}) 90vw, (max-width: ${breakpoint.L}) 50vw, 25vw`}

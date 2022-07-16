@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Head from 'next/head';
 import Menu from 'components/organisms/Menu';
 import Footer from 'components/organisms/Footer';
-// import Mainconsents from 'components/molecules/MainConsents';
+import Mainconsents from 'components/molecules/MainConsents';
 import useMainConsents from 'hooks/useMainConsents';
 
 const footerHeight = '58rem';
@@ -42,19 +42,19 @@ const Layout = ({ children }) => {
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/apple-touch-icon.png"
+          href="/images/apple-touch-icon.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href="/favicon-32-32.png"
+          href="/images/favicon-32-32.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href="/favicon-16-16.png"
+          href="/images/favicon-16-16.png"
         />
         <meta
           name="viewport"
@@ -67,7 +67,7 @@ const Layout = ({ children }) => {
         <Footer footerHeight={footerHeight} />
         <div />
 
-        {/*{!isAccepted && <Mainconsents onClick={handleAccept} />} */}
+        {!isAccepted && <Mainconsents onClick={handleAccept} />}
       </div>
     </>
   );

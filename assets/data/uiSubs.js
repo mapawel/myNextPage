@@ -76,12 +76,21 @@ export const uiSubs = {
     pl: 'wróć do projektu',
   },
   mailSent: {
-    en: 'Your message\'s been sent successfully. Thank you.',
+    en: "Your message's been sent successfully. Thank you.",
     pl: 'Twoja wiadomość została wysłana pomyślnie. Dziękuję.',
   },
   mailNotSent: {
-    en: 'Sorry, mail\'s not been delivered. Please try again or use Messanger. Thank you.',
+    en: "Sorry, mail's not been delivered. Please try again or use Messanger. Thank you.",
     pl: 'Przykro mi, nie można dostarczyć wiadomości. Spróbuj ponownie lub użyj Messengera.',
   },
-
-}
+  cookiesInfo: {
+    popup: {
+      pl: 'Ta witryna wykorzystuje mechanizm plików cookies. Dalsze koszystanie z witryny jest jednoznaczne z akceptacją tego faktu. Opuść witrynę jeśli nie zgadzasz się z tym. Szczegółowe informacje można onaleźć w ',
+      en: 'This website uses cookies. By continuing to use the website, you accept this fact. Leave the site if you disagree. Detailed information can be found in ',
+    },
+    link: {
+      en: 'Privacy Policy',
+      pl: 'Polityce Prywatności',
+    },
+  },
+};

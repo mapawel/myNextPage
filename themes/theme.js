@@ -1,6 +1,7 @@
 export const theme = {
   color: {
     primary: '#18760030',
+    blend: '#184600B0',
     primaryOpacity: '#18760015',
     secondary: '#1F1F1F',
     back: '#081205',

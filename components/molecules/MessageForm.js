@@ -189,15 +189,17 @@ const MessageForm = ({ data }) => {
               value={values.acceptTerms}
               labelTxt="I agree to the"
               labelComponent={
-                <StyledButton onClick={togglePolicy}>
-                  Privacy Policy
+                <>
+                  <StyledButton onClick={togglePolicy}>
+                    Privacy Policy
+                  </StyledButton>
                   {isPolicyVisible && (
                     <TextModal
                       txt={data?.privacyPolicyParagraphs?.[locale]}
                       closeModal={togglePolicy}
                     />
                   )}
-                </StyledButton>
+                </>
               }
             >
               <ErrorMessage component={StyledError} name="acceptTerms" />

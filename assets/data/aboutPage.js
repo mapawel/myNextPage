@@ -23,10 +23,10 @@ export const aboutPage = {
     author: 'Piotr Parys, Bluechip',
     text: {
       en: [
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis aliquam esse facilis impedit hic! Minima, doloremque ea! Officiis dignissimos nam vero commodi quos repellat molestias voluptates asperiores eveniet vel? Adipisci!',
+        'I recommend cooperating with DEVDEFER. They are specialists in their field who understand our needs perfectly. We felt the market experience. They knew what we needed before we defined it ourselves and clearly explained what they would do and how they would help us in their field to achieve our goals.',
       ],
       pl: [
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis aliquam esse facilis impedit hic! Minima, doloremque ea! Officiis dignissimos nam vero commodi quos repellat molestias voluptates asperiores eveniet vel? Adipisci!',
+        'Polecam współpracę z DEVDEFER. To specjaliści w swojej dziedzinie rozumiejący doskonale nasze potrzeby. Widać doświadczenie rynkowe. Wiedzieli czego potrzebujemy zanim sami to określiliśmy i jasno wytłumaczyli, co zrobią i jak nam pomogą w swojej dziedzinie, abyśmy osiągneli nasze cele.',
       ],
     },
     img: piotrPimg,

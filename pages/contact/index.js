@@ -15,10 +15,10 @@ const AboutPage = () => {
   return (
     <>
       <Head>
-        <title>{headSubs?.about?.title?.[locale]}</title>
+        <title>{headSubs?.contact?.title?.[locale]}</title>
         <meta
           name="description"
-          content={headSubs?.about?.description?.[locale]}
+          content={headSubs?.contact?.description?.[locale]}
         />
       </Head>
       <main>

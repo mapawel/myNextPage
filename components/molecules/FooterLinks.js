@@ -82,7 +82,7 @@ const FooterLinks = () => {
     <FooterLinksWrapper>
       <Link href="/">
         <a>
-          <StyledLogo src="/icons/devdeferlogo.svg" />
+          <StyledLogo src="/icons/devdeferlogo.svg" alt="DEVDEFER" />
         </a>
       </Link>
       <FooterListContainer>

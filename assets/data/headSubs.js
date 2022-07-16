@@ -1,8 +1,8 @@
 export const headSubs = {
   home: {
     title: {
-      en: 'DEV.DEFER | HOME',
-      pl: 'DEV.DEFER | HOME',
+      en: 'DEVDEFER | HOME',
+      pl: 'DEVDEFER | HOME',
     },
     description: {
       en: 'Web-development for your business, websites, on-line shops, web-portals, landing pages, CRMs, CMS and more!',
@@ -11,18 +11,28 @@ export const headSubs = {
   },
   about: {
     title: {
-      en: 'DEV.DEFER | ABOUT US',
-      pl: 'DEV.DEFER | O NAS',
+      en: 'DEVDEFER | ABOUT US',
+      pl: 'DEVDEFER | O NAS',
     },
     description: {
       en: 'We speak your language of business and benefits - not just coding and applications. We understand your needs.',
       pl: 'Mówimy Twoim językiem biznesu i korzyści - nie tylko kodowania i aplikacji. Rozumiemy Twoje potrzeby.',
     },
   },
+  contact: {
+    title: {
+      en: 'DEVDEFER | CONTACT US',
+      pl: 'DEVDEFER | KONTAKT',
+    },
+    description: {
+      en: 'Contact us. Make an appointment for an individual presentation of our capabilities and find out how we can help you.',
+      pl: 'Skontaktuj się z nami. Umów się na indywitualną prezentaję naszych możliwości i dowiedz, jak możemy Ci pomóc.',
+    },
+  },
   projects: {
     title: {
-      en: 'DEV.DEFER | RECENT PROJECTS',
-      pl: 'DEV.DEFER | OSTATNIE PROJEKTY',
+      en: 'DEVDEFER | RECENT PROJECTS',
+      pl: 'DEVDEFER | OSTATNIE PROJEKTY',
     },
     description: {
       en: 'Our latest projects. Each of them is an custom solution for a client, fullfiling his needs.',
@@ -31,8 +41,8 @@ export const headSubs = {
   },
   projectDetails: {
     title: {
-      en: 'DEV.DEFER | PROJECT: ',
-      pl: 'DEV.DEFER | PROJEKT: ',
+      en: 'DEVDEFER | PROJECT: ',
+      pl: 'DEVDEFER | PROJEKT: ',
     },
     description: {
       en: '',
@@ -41,8 +51,8 @@ export const headSubs = {
   },
   projectDetailsTech: {
     title: {
-      en: 'DEV.DEFER | TECHNOLOGY for:  ',
-      pl: 'DEV.DEFER | TECHNOLOGIA dla: ',
+      en: 'DEVDEFER | TECHNOLOGY for:  ',
+      pl: 'DEVDEFER | TECHNOLOGIA dla: ',
     },
     description: {
       en: 'Web-technology used for project: ',
@@ -51,8 +61,8 @@ export const headSubs = {
   },
   solutions: {
     title: {
-      en: 'DEV.DEFER | WEB-SOLUTIONS',
-      pl: 'DEV.DEFER | ROZWIĄZANIA WEBOWE',
+      en: 'DEVDEFER | WEB-SOLUTIONS',
+      pl: 'DEVDEFER | ROZWIĄZANIA WEBOWE',
     },
     description: {
       en: 'Check out some examples of solutions for our customers to fulfill their needs.',
@@ -61,8 +71,8 @@ export const headSubs = {
   },
   solutionDetails: {
     title: {
-      en: 'DEV.DEFER | WEB-SOLUTION: ',
-      pl: 'DEV.DEFER | ROZWIĄZANIE: ',
+      en: 'DEVDEFER | WEB-SOLUTION: ',
+      pl: 'DEVDEFER | ROZWIĄZANIE: ',
     },
     description: {
       en: '',
@@ -71,8 +81,8 @@ export const headSubs = {
   },
   solutionDetailsMovie: {
     title: {
-      en: 'DEV.DEFER | WEB-SOLUTION ON MOVIE ',
-      pl: 'DEV.DEFER | ROZWIĄZANIE WEBOWE - FILM ',
+      en: 'DEVDEFER | WEB-SOLUTION ON MOVIE ',
+      pl: 'DEVDEFER | ROZWIĄZANIE WEBOWE - FILM ',
     },
     description: {
       en: 'A movie with example web-solution.',

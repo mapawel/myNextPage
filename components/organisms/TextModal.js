@@ -60,6 +60,7 @@ const TxtParagraph = styled.p`
   :last-of-type {
     margin-bottom: 2rem;
   }
+  word-wrap: anywhere;
 
   @media screen and (min-width: ${breakpoint.M}) {
     margin: 1rem 0;

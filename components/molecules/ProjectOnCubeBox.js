@@ -180,11 +180,13 @@ const ProjectOnCubeBox = ({ title, images, upSideDown }) => {
       <StyledImgBox>
         {images &&
           images.length !== 0 &&
-          images.slice(0, 3).map(({ id, img }) => (
+          images.slice(0, 3).map(({ id, img }, index) => (
             <ImageWrapper key={id}>
               <Image
                 src={img}
-                alt=" "
+                alt={`Thumbnail image of project "${title?.[locale]}" nr ${
+                  index + 1
+                }`}
                 layout="responsive"
                 placeholder="blur"
                 sizes={`(max-width: ${breakpoint.L}) 50vw, (max-width: ${breakpoint.XL}) 40vw, 22vw`}

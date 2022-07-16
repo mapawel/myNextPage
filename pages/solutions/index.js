@@ -59,8 +59,8 @@ const SolutionsPage = () => {
               label: uiSubs?.home,
             }}
             linkTwo={{
-              href: '/about',
-              label: uiSubs?.about,
+              href: '/projects',
+              label: uiSubs?.ourProjects,
             }}
           />
         </Wrapper>
