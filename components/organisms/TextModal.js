@@ -76,6 +76,7 @@ const Buttons = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  gap: 2rem;
 `;
 
 const TextModal = ({ txt = [], closeModal, redirect }) => {

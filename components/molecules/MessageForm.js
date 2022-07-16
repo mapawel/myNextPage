@@ -214,6 +214,7 @@ const MessageForm = ({ data }) => {
                 >
                   send
                 </Button>
+                {/*eslint-disable-next-line @next/next/no-img-element  */}
                 <img src="/icons/spinner.svg" alt="spinner" />
               </StyledSubmitButtonBox>
               <Button onClick={resetForm} variant="noborder">

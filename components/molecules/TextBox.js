@@ -105,6 +105,7 @@ const TextBox = ({ rect, triangle, data }) => {
     gsap.fromTo(triangleRef.current, ...pulseAnim);
     const textsToAnim = gsap.utils.toArray('.textToAnim');
     arrayTextsAnim(textsToAnim);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

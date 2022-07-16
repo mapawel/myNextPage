@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled, { css, keyframes } from 'styled-components';
@@ -175,7 +175,7 @@ const Menu = () => {
     else tl2.seek(0).pause().clear();
   };
 
-  const toggleMenu = () => {
+  const toggleMenu = useCallback(() => {
     setMenuOpen((prevState) => !prevState);
     if (!manuOpen) {
       instance.show();
@@ -184,13 +184,16 @@ const Menu = () => {
       instance.hide();
     }
     menuElementsAnim();
-  };
+  }, [instance, manuOpen]);
 
-  const checkEsc = (e) => {
-    if (e.code === 'Escape') {
-      toggleMenu();
-    }
-  };
+  const checkEsc = useCallback(
+    (e) => {
+      if (e.code === 'Escape') {
+        toggleMenu();
+      }
+    },
+    [toggleMenu]
+  );
 
   const handleClick = (e) => {
     if (e.target.closest('.menuLink')) return null;
@@ -215,6 +218,7 @@ const Menu = () => {
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toggleMenu, router.events]);
 
   useEffect(() => {
@@ -223,6 +227,7 @@ const Menu = () => {
     };
     window.addEventListener('scroll', showMenuBar);
     return () => window.removeEventListener('scroll', showMenuBar);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

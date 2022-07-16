@@ -17,8 +17,8 @@ const sa = {
     pl: 'portal z katalogiem',
   },
   description: {
-    en: 'SHOUT ABOUT - dynamiczny portal z interaktywnym katalogiem produktowym.',
-    pl: 'SHOUT ABOUT - the dynamic portal with the interactive product catalog.',
+    pl: 'SHOUT ABOUT - dynamiczny portal z interaktywnym katalogiem produktowym.',
+    en: 'SHOUT ABOUT - the dynamic portal with the interactive product catalog.',
   },
   live: {
     message: {
@@ -72,8 +72,8 @@ const sa = {
   ],
   detailProjectView: {
     title: {
-      en: 'SHOUT ABOUT - dynamiczny portal z interaktywnym katalogiem produktowym',
-      pl: 'SHOUT ABOUT - the dynamic portal with the interactive product catalog',
+      pl: 'SHOUT ABOUT - dynamiczny portal z interaktywnym katalogiem produktowym',
+      en: 'SHOUT ABOUT - the dynamic portal with the interactive product catalog',
     },
     scopeList: {
       listTitle: {
