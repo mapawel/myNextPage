@@ -335,6 +335,7 @@ const DetailProjectPage = ({ selectedProject }) => {
               layout="fill"
               placeholder="blur"
               objectFit="contain"
+              sizes={`(max-width: ${breakpoint.XL}) 90vw, 65vw`}
               priority
             />
           </ImageWrapper>
@@ -400,6 +401,7 @@ const DetailProjectPage = ({ selectedProject }) => {
                     layout="responsive"
                     placeholder="blur"
                     sizes={`(max-width: ${breakpoint.M}) 90vw, (max-width: ${breakpoint.L}) 50vw, 25vw`}
+                    priority
                   />
                 </StyledSmallImg>
               ))}

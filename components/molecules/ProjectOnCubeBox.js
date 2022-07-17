@@ -190,6 +190,7 @@ const ProjectOnCubeBox = ({ title, images, upSideDown }) => {
                 layout="responsive"
                 placeholder="blur"
                 sizes={`(max-width: ${breakpoint.L}) 50vw, (max-width: ${breakpoint.XL}) 40vw, 22vw`}
+                priority
               />
             </ImageWrapper>
           ))}

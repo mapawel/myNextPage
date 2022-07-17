@@ -47,7 +47,7 @@ const ProjectsPage = () => {
           </StyledContainer>
           <Grid2Cols>
             {projects?.map(
-              ({ slug, title, images, description, code, live }) => (
+              ({ slug, title, images, description, code, live }, index) => (
                 <ProjectBox
                   key={slug}
                   slug={slug}
@@ -56,6 +56,7 @@ const ProjectsPage = () => {
                   description={description?.[locale]}
                   code={code}
                   live={live}
+                  index={index}
                 />
               )
             )}

@@ -148,7 +148,7 @@ const ElementWrapper = styled.div`
   }
 `;
 
-const SolutionBox = ({ solution }) => {
+const SolutionBox = ({ solution, index }) => {
   const { locale } = useRouter();
   const { slug, title, shortDescription, images } = solution;
 
@@ -179,6 +179,7 @@ const SolutionBox = ({ solution }) => {
             layout="responsive"
             placeholder="blur"
             sizes={`(max-width: ${breakpoint.M}) 100vw, (max-width: ${breakpoint.XL}) 50vw, 30vw`}
+            priority={index < 4 ? true : false}
           />
         </ImageWrapper>
         <Links />

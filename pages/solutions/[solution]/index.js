@@ -407,6 +407,7 @@ const DetailSolutionPage = ({ selectedSolution }) => {
                     layout="responsive"
                     placeholder="blur"
                     sizes={`(max-width: ${breakpoint.M}) 90vw, (max-width: ${breakpoint.L}) 50vw, 25vw`}
+                    priority
                   />
                 </StyledSmallImg>
               ))}

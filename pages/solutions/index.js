@@ -46,10 +46,11 @@ const SolutionsPage = () => {
           <SectionHeading nomargin>{title}</SectionHeading>
           <SolutionsContainer>
             {solutions?.length &&
-              solutions?.map((solution) => (
+              solutions?.map((solution, index) => (
                 <SolutionBox
                 key={solution?.slug}
                 solution={solution}
+                index={index}
                 />
               ))}
           </SolutionsContainer>

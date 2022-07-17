@@ -369,7 +369,7 @@ const StyledButtonBlank = styled.button`
   cursor: pointer;
 `;
 
-const ProjectBox = ({ slug, title, images, description, live }) => {
+const ProjectBox = ({ slug, title, images, description, live, index }) => {
   const router = useRouter();
   const { locale } = router;
   const [isToolVisible, setToolVisible] = useState(false);
@@ -413,7 +413,8 @@ const ProjectBox = ({ slug, title, images, description, live }) => {
                 layout="fill"
                 placeholder="blur"
                 sizes={`(max-width: ${breakpoint.L}) 70vw, (max-width: ${breakpoint.XL}) 30vw, 20vw`}
-                // priority={true}
+                priority={index < 3 ? true : false}
+                lazyBoundary="800px"
               />
             </ImageWrapper>
           ))}
