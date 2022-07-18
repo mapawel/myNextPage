@@ -21,6 +21,7 @@ import { pageTites } from 'assets/data/pageTitles';
 import BottomButtons from 'components/molecules/BottomButtons';
 import arrayTextsAnim from 'gsapanims/arrayTextsAnim';
 import TextModal from 'components/organisms/TextModal'
+import AnimedImage from 'components/atoms/AnimedImage'
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({
@@ -295,11 +296,11 @@ const DetailProjectPage = ({ selectedProject }) => {
       gsap.fromTo(
         child,
         {
-          x: '+=50',
-          opacity: 0,
+          scale: 0.7,
+          opacity: 0.6,
         },
         {
-          x: 0,
+          scale: 1,
           opacity: 1,
           duration: 0.3,
           scrollTrigger: {
@@ -329,14 +330,11 @@ const DetailProjectPage = ({ selectedProject }) => {
           </SectionHeading>
           <StyledHeading>{title?.[locale]}</StyledHeading>
           <ImageWrapper key={title?.[locale]}>
-            <Image
+            <AnimedImage
               src={mainImage}
               alt={`image of project "${title?.[locale]}" on different devices`}
-              layout="fill"
-              placeholder="blur"
-              objectFit="contain"
               sizes={`(max-width: ${breakpoint.XL}) 90vw, 65vw`}
-              priority
+              priority={true}
             />
           </ImageWrapper>
 
@@ -401,7 +399,7 @@ const DetailProjectPage = ({ selectedProject }) => {
                     layout="responsive"
                     placeholder="blur"
                     sizes={`(max-width: ${breakpoint.M}) 90vw, (max-width: ${breakpoint.L}) 50vw, 25vw`}
-                    priority
+                    lazyBoundary="800px"
                   />
                 </StyledSmallImg>
               ))}

@@ -288,11 +288,11 @@ const DetailSolutionPage = ({ selectedSolution }) => {
       gsap.fromTo(
         child,
         {
-          x: '+=50',
-          opacity: 0,
+          scale: 0.7,
+          opacity: 0.6,
         },
         {
-          x: 0,
+          scale: 1,
           opacity: 1,
           duration: 0.3,
           scrollTrigger: {
@@ -407,7 +407,7 @@ const DetailSolutionPage = ({ selectedSolution }) => {
                     layout="responsive"
                     placeholder="blur"
                     sizes={`(max-width: ${breakpoint.M}) 90vw, (max-width: ${breakpoint.L}) 50vw, 25vw`}
-                    priority
+                    lazyBoundary="800px"
                   />
                 </StyledSmallImg>
               ))}
