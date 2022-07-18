@@ -75,7 +75,7 @@ const StyledPar = styled.p`
 `;
 
 const DetailSolutionPageMovie = ({
-  selectedSolution: { title, shortDescription },
+  selectedSolution: { title, shortDescription, movie },
 }) => {
   const { locale } = useRouter();
 
@@ -98,8 +98,8 @@ const DetailSolutionPageMovie = ({
           <StyledHeading>{title?.[locale]}</StyledHeading>
           <MovieContainer>
             <iframe
-              src="https://www.youtube.com/embed/zU54-g1UKek?start=0&autoplay=1&modestbranding=1&rel=0&cc_load_policy=1&iv_load_policy=3"
-              title="PRODUCTS REGISTRATION + ADMIN PANEL - example of a tool communicating customers with business"
+              src={movie}
+              title={title}
               frameBorder="0"
               allowFullScreen
             ></iframe>
