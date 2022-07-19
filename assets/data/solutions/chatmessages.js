@@ -8,7 +8,7 @@ const chatmessages = {
     en: 'Interactive handling of customer inquiries',
     pl: 'Sprawne prowadzenie korespondencji z klientami',
   },
-  movie: 'https://www.youtube.com/embed/L-0PzSsEDxQ?start=0&autoplay=1&modestbranding=1&rel=0&cc_load_policy=1&iv_load_policy=3',
+  movie: 'https://www.youtube.com/embed/wjQT_EUEDSs?start=0&autoplay=1&modestbranding=1&rel=0&cc_load_policy=1&iv_load_policy=3',
   shortDescription: {
     en: "We have implemented a system that improves the company\'s communication with its potential customers. Our client received a panel for tracking correspondence threads and conducting them in an orderly manner. Through the portal, the company\'s customers can quickly create a conversation thread with regard to a specific product or a general topic. Users receive notifications of changes to their thread and can continue a specific conversation in a private dedicated view.",
     pl: 'Wdrożyliśmy system usprawniający komunikację firmy z jej potencjalnymi klientami. Nasz klient otrzymał panel do śledzenia wątków korespondencji i prowadzenia jej w uporządkowany sposób. Klienci firmy poprzez portal mają możliwość szybkiego utworzenia wątku rozmowy w odniesieniu do konkretnego produktu lub też odnośnie tematu ogólnego. Użytkownicy otrzymują powiadomienia o zmianach w swoim wątku i mogą kontynuować konkretną rozmowę w prywatnym dedykowanym widoku.',

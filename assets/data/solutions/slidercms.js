@@ -9,7 +9,7 @@ const slidercms = {
     pl: 'Zarządzanie treścią slidera LIVE',
   },
   movie:
-    'https://www.youtube.com/embed/WuBehY3eg3I?start=0&autoplay=1&modestbranding=1&rel=0&cc_load_policy=1&iv_load_policy=3',
+    'https://www.youtube.com/embed/wbzS0GVPi8Q?start=0&autoplay=1&modestbranding=1&rel=0&cc_load_policy=1&iv_load_policy=3',
   shortDescription: {
     en: 'We provided our client with an easy-to-use tool for managing the content of the slider on their website. The edition works in live mode - changes in the portal are visible immediately, the user does not even have to refresh the page. The slider contains sets of related product proposals - you can easily add new sets or replace individual products in sets. The dashboard view additionally informs about the status of the slider. ',
     pl: 'Dostarczyliśmy naszemu klientowi proste w obsłudze narzędzie do zarządzania treścią slidera na ich poralu. Edycja działa w trybie live - zmiany w portalu są widoczne natychmiast, użytkownik nie musi nawet odświeżać strony. Slider zawiera sety propozycji powiązanych produktów - można łatwo dodawać nowe sety lub podmieniać poszczególne produkty w zestawach. Widok dashboardu dodatkowo informuje o statusie slidera.',
