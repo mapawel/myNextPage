@@ -98,7 +98,9 @@ const StyledListElement = styled.a`
   }
 `;
 
-const StyledLogo = styled.img``;
+const StyledLogo = styled.img`
+  width: 100%;
+`;
 
 const StyledAtag = styled.a`
   display: block;
