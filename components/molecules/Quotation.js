@@ -106,7 +106,7 @@ const Quotation = ({ text, img, author }) => (
         alt=" "
         layout="responsive"
         placeholder="blur"
-        sizes={`(max-width: ${breakpoint.XS}) 25vw, (max-width: ${breakpoint.S}) 15vw, 5vw`}
+        sizes={`(max-width: ${breakpoint.XS}) 25vw, (max-width: ${breakpoint.S}) 15vw, (max-width: ${breakpoint.L}) 22vw, (max-width: 1800px) 10vw, 7vw`}
         priority
       />
     </ImageWrapper>

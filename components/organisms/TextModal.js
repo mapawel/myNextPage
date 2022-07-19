@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 // import PropTypes from 'prop-types';
 import { Portal } from 'react-portal';
@@ -81,6 +82,20 @@ const Buttons = styled.div`
 
 const TextModal = ({ txt = [], closeModal, redirect }) => {
   const { locale } = useRouter();
+
+  const checkEsc = useCallback(
+    (e) => {
+      if (e.code === 'Escape') {
+        closeModal();
+      }
+    },
+    [closeModal]
+  );
+
+  useEffect(() => {
+    window.addEventListener('keydown', checkEsc);
+    return () => window.removeEventListener('keydown', checkEsc);
+  }, [checkEsc]);
 
   return (
     <Portal>

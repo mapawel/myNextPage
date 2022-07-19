@@ -478,7 +478,7 @@ ProjectBox.propTypes = {
   title: PropTypes.objectOf(PropTypes.string).isRequired,
   images: PropTypes.arrayOf(PropTypes.object),
   description: PropTypes.string.isRequired,
-  live: PropTypes.string.isRequired,
+  live: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object])).isRequired,
 };
 
 ProjectBox.defaultProps = {

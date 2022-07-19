@@ -61,6 +61,23 @@ const StyledListContainer = styled.div`
   justify-content: start;
   overflow-y: auto;
   gap: 5vh;
+
+  scrollbar-width: thin;
+  scrollbar-color: ${({ theme }) =>
+    `${theme.color.textPrimary} ${theme.color.backSecondary}`};
+
+  &::-webkit-scrollbar {
+    width: 1vw;
+    max-width: 15px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.color.textPrimary};
+  }
+  &::-webkit-scrollbar-track {
+    background-color: ${({ theme }) => theme.color.backSecondary};
+  }
+  
 `;
 
 const StyledList = styled.ul`
@@ -190,7 +207,7 @@ const Menu = () => {
 
   const checkEsc = useCallback(
     (e) => {
-      if (e.code === 'Escape') {
+      if (e.code === 'Escape' && manuOpen) {
         toggleMenu();
       }
     },
