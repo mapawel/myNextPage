@@ -10,21 +10,21 @@ export default async function handler(req, res) {
     locale === defaultLocale ? '' : `/${locale}`
   );
 
-  const staticPaths = fs
-    .readdirSync('pages')
-    .filter((staticPage) => {
-      return ![
-        'api',
-        '_app.js',
-        '_document.js',
-        '404.js',
-        'sitemap.xml.js',
-        'index.js',
-      ].includes(staticPage);
-    })
-    .map((staticPagePath) => {
-      return `${staticPagePath}`;
-    });
+  // const staticPaths = fs
+  //   .readdirSync('pages')
+  //   .filter((staticPage) => {
+  //     return ![
+  //       'api',
+  //       '_app.js',
+  //       '_document.js',
+  //       '404.js',
+  //       'sitemap.xml.js',
+  //       'index.js',
+  //     ].includes(staticPage);
+  //   })
+  //   .map((staticPagePath) => {
+  //     return `${staticPagePath}`;
+  //   });
 
   const projectsPaths = projects
     ?.map(({ slug }) => [`projects/${slug}`, `projects/${slug}/technicals`])
@@ -38,10 +38,10 @@ export default async function handler(req, res) {
 
   const allPaths = [
     ...localePaths.map((loc) => BASE_URL + loc),
-    ...staticPaths
-      .map((path) => localePaths.map((loc) => `${BASE_URL}${loc}/${path}`))
-      .reduce((p, c) => `${p},${c}`)
-      .split(','),
+    // ...staticPaths
+    //   .map((path) => localePaths.map((loc) => `${BASE_URL}${loc}/${path}`))
+    //   .reduce((p, c) => `${p},${c}`)
+    //   .split(','),
     ...projectsPaths
       .map((path) => localePaths.map((loc) => `${BASE_URL}${loc}/${path}`))
       .reduce((p, c) => `${p},${c}`)
