@@ -1,53 +1,41 @@
-import * as fs from 'fs';
 import { projects } from 'assets/data/projects.js';
 import { solutions } from 'assets/data/solutions.js';
+import routes from 'routes';
 
-export default async function handler(req, res) {
+const Sitemap = () => {
+  return null;
+};
+
+export const getServerSideProps = async ({ res, defaultLocale, locales }) => {
   const BASE_URL = 'https://www.devdefer.com';
-  const defaultLocale = 'en';
-  const locales = ['en', 'pl'];
+
   const localePaths = locales.map((locale) =>
     locale === defaultLocale ? '' : `/${locale}`
   );
 
-  // const staticPaths = fs
-  //   .readdirSync('pages')
-  //   .filter((staticPage) => {
-  //     return ![
-  //       'api',
-  //       '_app.js',
-  //       '_document.js',
-  //       '404.js',
-  //       'sitemap.xml.js',
-  //       'index.js',
-  //     ].includes(staticPage);
-  //   })
-  //   .map((staticPagePath) => {
-  //     return `${staticPagePath}`;
-  //   });
+  const staticPaths = routes.map(({ path }) => (path === '/' ? '' : path));
 
   const projectsPaths = projects
-    ?.map(({ slug }) => [`projects/${slug}`, `projects/${slug}/technicals`])
+    ?.map(({ slug }) => [`/projects/${slug}`, `/projects/${slug}/technicals`])
     .reduce((p, c) => `${p},${c}`)
     .split(',');
 
   const solutionsPaths = solutions
-    ?.map(({ slug }) => [`solutions/${slug}`, `solutions/${slug}/movie`])
+    ?.map(({ slug }) => [`/solutions/${slug}`, `/solutions/${slug}/movie`])
     .reduce((p, c) => `${p},${c}`)
     .split(',');
 
   const allPaths = [
-    ...localePaths.map((loc) => BASE_URL + loc),
-    // ...staticPaths
-    //   .map((path) => localePaths.map((loc) => `${BASE_URL}${loc}/${path}`))
-    //   .reduce((p, c) => `${p},${c}`)
-    //   .split(','),
+    ...staticPaths
+      .map((path) => localePaths.map((loc) => `${BASE_URL}${loc}${path}`))
+      .reduce((p, c) => `${p},${c}`)
+      .split(','),
     ...projectsPaths
-      .map((path) => localePaths.map((loc) => `${BASE_URL}${loc}/${path}`))
+      .map((path) => localePaths.map((loc) => `${BASE_URL}${loc}${path}`))
       .reduce((p, c) => `${p},${c}`)
       .split(','),
     ...solutionsPaths
-      .map((path) => localePaths.map((loc) => `${BASE_URL}${loc}/${path}`))
+      .map((path) => localePaths.map((loc) => `${BASE_URL}${loc}${path}`))
       .reduce((p, c) => `${p},${c}`)
       .split(','),
   ];
@@ -70,6 +58,12 @@ export default async function handler(req, res) {
 `;
 
   res.setHeader('Content-Type', 'text/xml');
-  // res.write(sitemap);
-  return res.send(sitemap);
-}
+  res.write(sitemap);
+  res.end();
+
+  return {
+    props: {},
+  };
+};
+
+export default Sitemap;
