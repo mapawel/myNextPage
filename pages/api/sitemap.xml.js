@@ -70,6 +70,6 @@ export default async function handler(req, res) {
 `;
 
   res.setHeader('Content-Type', 'text/xml');
-  res.write(sitemap);
-  return res.end();
+  // res.write(sitemap);
+  return res.send(sitemap);
 }
