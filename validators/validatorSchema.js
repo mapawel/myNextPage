@@ -21,9 +21,12 @@ export const validatorSchema = (locale) =>
       .required(
         locale === 'en' ? 'E-mail is required' : 'E-mail jest wymagany'
       ),
-    category: Yup.string().required(
-      locale === 'en' ? 'Choose a category.' : 'Wybierz kategorię'
-    ).oneOf(contactForm?.placeholder3?.[locale]),
+    category: Yup.string()
+      .required(locale === 'en' ? 'Choose a category.' : 'Wybierz kategorię')
+      .oneOf(
+        contactForm?.placeholder3?.[locale],
+        locale === 'en' ? 'Choose a category.' : 'Wybierz kategorię'
+      ),
     content: Yup.string()
       .min(
         8,

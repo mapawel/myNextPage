@@ -9,6 +9,7 @@ import { validatorSchema } from 'validators/validatorSchema';
 import SentMailPopUp from 'components/organisms/SentMailPopUp';
 import TextModal from 'components/organisms/TextModal';
 import { Portal } from 'react-portal';
+import { uiSubs } from 'assets/data/uiSubs';
 
 const spin = keyframes`
   from {
@@ -187,11 +188,11 @@ const MessageForm = ({ data }) => {
               id="acceptTerms"
               onChange={handleChange}
               value={values.acceptTerms}
-              labelTxt="I agree to the"
+              labelTxt={uiSubs?.privacyAccept?.text?.[locale]}
               labelComponent={
                 <>
                   <StyledButton onClick={togglePolicy}>
-                    Privacy Policy
+                  {uiSubs?.privacyAccept?.link?.[locale]}
                   </StyledButton>
                   {isPolicyVisible && (
                     <TextModal
@@ -212,13 +213,13 @@ const MessageForm = ({ data }) => {
                   disabled={isSubmitting}
                   variant="cta"
                 >
-                  send
+                  {uiSubs?.send?.[locale]}
                 </Button>
                 {/*eslint-disable-next-line @next/next/no-img-element  */}
                 <img src="/icons/spinner.svg" alt="spinner" />
               </StyledSubmitButtonBox>
               <Button onClick={resetForm} variant="noborder">
-                clear
+              {uiSubs?.clear?.[locale]}
               </Button>
             </StyledButtonBox>
           </StyledForm>

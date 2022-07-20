@@ -83,6 +83,18 @@ export const uiSubs = {
     en: "Sorry, mail's not been delivered. Please try again or use Messanger. Thank you.",
     pl: 'Przykro mi, nie można dostarczyć wiadomości. Spróbuj ponownie lub użyj Messengera.',
   },
+  send: {
+    en: 'send',
+    pl: 'wyślij',
+  },
+  clear: {
+    en: 'clear',
+    pl: 'wyczyść',
+  },
+  privacyAccept: {
+    text: { en: 'I agree to the', pl: 'Akceptuję' },
+    link: { en: 'Privacy Policy', pl: 'Politykę Prywatności' },
+  },
   cookiesInfo: {
     popup: {
       pl: 'Ta witryna wykorzystuje mechanizm plików cookies. Dalsze koszystanie z witryny jest jednoznaczne z akceptacją tego faktu. Opuść witrynę jeśli nie zgadzasz się z tym. Szczegółowe informacje można onaleźć w ',
