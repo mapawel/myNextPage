@@ -17,7 +17,6 @@ SSG, two languages website with animations, custom interactive cube element and 
 Simple Nodemailer usage as a contact form.
 Some code refactor to clean up a code needed... ;)
 
-
 ------------
 
 ### Getting Started
