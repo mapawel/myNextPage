@@ -7,7 +7,7 @@ export const sendMailToAdmin = async ({ name, mail, category, content }) => {
 
   return await transporter.sendMail({
     from: `"DEVDEFER Development" <${process.env.MAIL_USER}>`,
-    to: `${process.env.MAIL_USER}`,
+    to: `${process.env.MAIL_ADMIN}`,
     subject: `NOWA WIADOMOŚĆ ZE STRONY DEVDEFER`,
     html: `
       <h1>WIADOMOŚĆ OD: ${finalName}</h1>
