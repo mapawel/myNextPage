@@ -28,10 +28,6 @@ export default async function handler(req, res) {
 			});
 		}
 	} else {
-		res.status(405).json({
-			status:  'Error',
-			message: `Method ${req.method} is not allowed`,
-			error:   `Method ${req.method} is not allowed`,
-		});
+		res.redirect(301, '/')
 	}
 }
